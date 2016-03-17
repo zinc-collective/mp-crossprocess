@@ -169,6 +169,7 @@
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		786615671C9B60EB007810FA /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		F706FC1D145DD7F800249726 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
 		F706FC1E145DD7F800249726 /* red@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "red@2x.jpg"; sourceTree = "<group>"; };
 		F706FC1F145DD7F800249726 /* negative@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "negative@2x.jpg"; sourceTree = "<group>"; };
@@ -381,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				F782DAAA165527E800A03901 /* Default-568h@2x.png */,
+				786615671C9B60EB007810FA /* todo.md */,
 				F79DB60E1438F017004E4CA0 /* CrossProcess */,
 				F79DB6071438F017004E4CA0 /* Frameworks */,
 				F79DB6051438F017004E4CA0 /* Products */,
@@ -701,7 +703,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -728,7 +729,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -749,7 +749,6 @@
 		F79DB6231438F017004E4CA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
@@ -764,7 +763,6 @@
 		F79DB6241438F017004E4CA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
