@@ -72,13 +72,11 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
         
         if([defaults objectForKey: BCCameraDeviceKey])
         {
-            NSLog(@"TEST %i", UIImagePickerControllerCameraDeviceRear);
             self.imagePickerController.cameraDevice = [defaults integerForKey: BCCameraDeviceKey];
         }
         
         if([defaults objectForKey: BCCameraFlashModeKey])
         {
-            NSLog(@"TEST %i %i", UIImagePickerControllerCameraFlashModeAuto, [defaults integerForKey:BCCameraFlashModeKey]);
             self.imagePickerController.cameraFlashMode = [defaults integerForKey: BCCameraFlashModeKey];
         }
     }
