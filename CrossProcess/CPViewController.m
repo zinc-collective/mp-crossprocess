@@ -16,7 +16,6 @@
 #import "CPImageProcessor.h"
 #import "BCGrowlView.h"
 #import "BCUtilities.h"
-#import "FacebookSDK.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -65,11 +64,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 @interface CPViewController()
 
-@property(nonatomic, assign) BOOL               loggingIntoFacebook;
-@property(nonatomic, assign) NSUInteger         emailButtonIndex;
-@property(nonatomic, assign) NSUInteger         facebookButtonIndex;
-@property(nonatomic, assign) NSUInteger         twitterButtonIndex;
-
 @property(nonatomic, strong) UIImage*           photoToProcess;
 @property(nonatomic, strong) NSDictionary*      photoMetadata;
 @property(nonatomic, strong) NSURL*             photoAssetLibraryURL;
@@ -96,9 +90,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (NSString*) pCurvesPathFromUserSetting;
 - (BOOL) pWriteOriginalImage;
 - (CPPlaceholderType) pPlaceholderTypeFromCurveName: (NSString*) curvePath;
-- (void) pSendPhotoViaEmail;
-- (void) pSendPhotoToFacebook;
-- (void) pSendPhotoToTwitter;
 - (NSMutableDictionary*) pCurrentLocation;
 - (NSMutableDictionary*) pGPSDictionary: (CLLocation*) location;
 - (NSURL*) pURLForVisibleImageView;
@@ -113,7 +104,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (NSString*) pMimeTypeForUTI: (NSString*) uti;
 - (NSString*) pFileExtensionForUTI: (NSString*) uti;
 - (void) pCreateAndAnimatePlaceholderView: (CGSize) imageSize;
-- (BOOL) pOpenActiveFacebookSession;
 
 - (void) pHideToolbar: (BOOL) animate;
 - (void) pShowToolbar: (BOOL) animate;
@@ -121,10 +111,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @end
 
 @implementation CPViewController
-
-@synthesize emailButtonIndex = _emailButtonIndex;
-@synthesize facebookButtonIndex = _facebookButtonIndex;
-@synthesize twitterButtonIndex = _twitterButtonIndex;
 
 @synthesize photoToProcess = _photoToProcess;
 @synthesize photoMetadata = _photoMetadata;
@@ -144,7 +130,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize writingAsset = _writingAsset;
 @synthesize shouldShowWelcomeScreen = _shouldShowWelcomeScreen;
 @synthesize applicationLaunching = _applicationLaunching;
-@synthesize loggingIntoFacebook = _loggingIntoFacebook;
 @synthesize currentLocation = _currentLocation;
 
 @synthesize firstVisibleImageIndexBeforeRotation = _firstVisibleImageIndexBeforeRotation;
@@ -525,66 +510,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
 }
 
-#pragma mark - UIActionSheetDelegate
 
-- (void) actionSheet: (UIActionSheet*) actionSheet didDismissWithButtonIndex: (NSInteger) buttonIndex
-{
-    if(self.emailButtonIndex == buttonIndex)
-    {
-        [self pSendPhotoViaEmail];
-    }
-    else if(self.twitterButtonIndex == buttonIndex)
-    {
-        [self pSendPhotoToTwitter];
-    }
-    else if(self.facebookButtonIndex == buttonIndex)
-    {
-        [self pSendPhotoToFacebook];
-    }
-}
-
-#pragma mark - Actions
-
-- (IBAction) handleAction: (id)sender
-{
-	UIActionSheet*	sheet = nil;
-	BOOL            canFacebook = YES;
-    
-    Class           tweeterClass = NSClassFromString(@"TWTweetComposeViewController");
-    BOOL            canTweet = tweeterClass && [TWTweetComposeViewController canSendTweet];
-    BOOL            canEmail = [MFMailComposeViewController canSendMail];
-    
-    NSString*       title = NSLocalizedString(@"actionTitle", @"title for action sheet");
-    NSString*       cancelTitle = NSLocalizedString(@"cancel", @"cancel");
-    
-    sheet = [[UIActionSheet alloc] initWithTitle: title
-                                        delegate: self 
-                               cancelButtonTitle: cancelTitle
-                          destructiveButtonTitle: nil
-                               otherButtonTitles: nil];
-    if(sheet)
-    {
-        NSString*   emailTitle = NSLocalizedString(@"emailTitle", @"title for email action button");
-        NSString*   facebookTitle = NSLocalizedString(@"facebookTitle", @"title for facebook action button");
-        NSString*   twitterTitle = NSLocalizedString(@"twitterTitle", @"title for twitter action button");
-        
-        if(canEmail)
-        {
-            self.emailButtonIndex = [sheet addButtonWithTitle: emailTitle];
-        }
-
-        if(canTweet)
-        {
-            self.twitterButtonIndex = [sheet addButtonWithTitle: twitterTitle];
-        }
-
-        if(canFacebook)
-        {
-            self.facebookButtonIndex = [sheet addButtonWithTitle: facebookTitle];
-        }
-        
-        [sheet showFromBarButtonItem: sender animated: YES];
-    }
+- (IBAction)handleAction:(id)sender {
+    NSLog(@"Action");
 }
 
 - (IBAction) handleCapturePhoto: (id) sender
@@ -623,18 +551,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [self dismissModalViewControllerAnimated: YES];
 }
 
-#pragma mark - MFMailComposeViewControllerDelegate
-
-- (void) mailComposeController: (MFMailComposeViewController*) controller didFinishWithResult: (MFMailComposeResult) result error: (NSError*) error 
-{	
-	[self dismissModalViewControllerAnimated: YES];
-	
-	if(result == MFMailComposeResultSent)
-	{
-        NSString*   emailingNotification = NSLocalizedString(@"emailingNotification", @"Email growl notification");
-        [self presentGrowlNotification: emailingNotification]; 
-	}
-}
 
 #pragma mark - Location Management
 
@@ -833,15 +749,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     else
     {
         [self pShowToolbar: YES];
-    }
-}
-
-- (void) continueSendingToFacebook
-{
-    if(_loggingIntoFacebook)
-    {
-        self.loggingIntoFacebook = NO;
-        [self pSendPhotoToFacebook];
     }
 }
 
@@ -1325,154 +1232,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     return shouldWrite;
 }
 
-- (void) pSendPhotoViaEmail
-{
-    NSURL*  url = [self pURLForVisibleImageView];
-    if(url)
-    {    
-        [self pLoadAsset: url usingDataCompletionBlock: ^(NSData* imageData, NSString* imageUTI, BOOL didFail)
-         {
-             if(!didFail)
-             {
-                 MFMailComposeViewController*   picker = [[MFMailComposeViewController alloc] init];
-                 picker.mailComposeDelegate = self;
-                 
-                 NSString*  photoName = NSLocalizedString(@"processedPhotoName", @"Processed photo name");
-
-                 [picker setSubject: @""];
-                 [picker addAttachmentData: imageData mimeType: [self pMimeTypeForUTI: imageUTI] 
-                                  fileName: [photoName stringByAppendingPathExtension: [self pFileExtensionForUTI: imageUTI]]];
-                 
-                 NSString*  emailBody = NSLocalizedString(@"emailBody", @"Email message body");
-                 [picker setMessageBody: emailBody isHTML: YES];
-                 [self presentModalViewController: picker animated: YES];
-             }
-         }];
-    }
-}
-
-- (BOOL) pOpenActiveFacebookSession
-{
-    BOOL    result = NO;
-
-#if !TARGET_IPHONE_SIMULATOR
-    
-    if(!self.loggingIntoFacebook)
-    {
-        if(FBSession.activeSession.isOpen == NO)
-        {
-            self.loggingIntoFacebook = YES;
-            
-            NSArray* permissions = [NSArray arrayWithObjects: @"email", nil];
-            [FBSession openActiveSessionWithReadPermissions: permissions
-                                               allowLoginUI: YES
-                                          completionHandler: ^(FBSession* session, FBSessionState status, NSError* error)
-             {
-                 if(error)
-                 {
-                     NSLog(@"Facebook error [-openActiveSessionWithReadPermissions]: %@", error);
-                 }
-                 else
-                 {
-                     self.loggingIntoFacebook = NO;
-                     
-                     if(status == FBSessionStateOpen)
-                     {
-                         self.loggingIntoFacebook = YES;
-                         
-                         // Re-auth with read perms.
-
-                         NSArray* permissions = [NSArray arrayWithObjects: @"user_photos", @"friends_photos", nil];
-                         
-                         [FBSession.activeSession reauthorizeWithReadPermissions: permissions
-                                                               completionHandler: ^(FBSession* session, NSError* error)
-                          {
-                              self.loggingIntoFacebook = NO;
-                              
-                              if(error)
-                              {
-                                  NSLog(@"Facebook error [-reauthorizeWithReadPermissions]: %@", error);
-                              }
-                              else if(session.state == FBSessionStateOpenTokenExtended)
-                              {
-                                  self.loggingIntoFacebook = YES;
-                                  
-                                  // Re-auth with publish perms.
-                                  
-                                  NSArray*    permissions = [[NSArray alloc] initWithObjects:
-                                                             @"publish_stream",
-                                                             nil];
-                                  
-                                  [[FBSession activeSession] reauthorizeWithPublishPermissions: permissions
-                                                                               defaultAudience: FBSessionDefaultAudienceFriends
-                                                                             completionHandler: ^(FBSession* session, NSError* error)
-                                   {
-                                       self.loggingIntoFacebook = NO;
-                                       
-                                       if(error)
-                                       {
-                                           NSLog(@"Facebook error [-reauthorizeWithPublishPermissions]: %@", error);
-                                       }
-                                       else if(session.state == FBSessionStateOpenTokenExtended)
-                                       {
-                                           [self pSendPhotoToFacebook];
-                                       }
-                                   }];
-                              }
-                          }];
-                     }
-                 }
-             }];
-        }
-        else if(FBSession.activeSession.state == FBSessionStateOpenTokenExtended)
-        {
-            result = YES;
-        }
-    }
-    
-#endif
-    
-    return result;
-}
-
-- (void) pSendPhotoToFacebook
-{
-#if !TARGET_IPHONE_SIMULATOR
-
-    if([self pOpenActiveFacebookSession])
-    {
-        NSURL*  url = [self pURLForVisibleImageView];
-        if(url)
-        {
-            [self pLoadAsset: url usingDataCompletionBlock: ^(NSData* imageData, NSString* imageUTI, BOOL didFail)
-             {
-                 if(!didFail)
-                 {
-                     UIImage*  image = [UIImage imageWithData: imageData];
-                     
-                     [FBRequestConnection startForUploadPhoto: image
-                                            completionHandler:^(FBRequestConnection* connection,
-                                                                id result,
-                                                                NSError* error)
-                      {
-                          NSLog(@"FBRequestConnection completion handler called; result = %@; error = %@", result, error);
-                      }];
-                     
-                     NSString*   facebookNotification = NSLocalizedString(@"facebookingNotification", @"Facebook growl notification");
-                     [self presentGrowlNotification: facebookNotification];
-                 }
-             }];
-        }
-    }
-#endif
-}
-
-- (void) request: (FBRequest*) request didLoad: (id) result
-{
-#if DEBUG
-    NSLog(@"facebook result: %@", result);
-#endif
-}
 
 - (NSString*) pFileExtensionForUTI: (NSString*) uti
 {
@@ -1507,38 +1266,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 }
 
 
-- (void) pSendPhotoToTwitter
-{
-    NSURL*  url = [self pURLForVisibleImageView];
-    if(url && [TWTweetComposeViewController canSendTweet])
-    {
-        [self pLoadAsset: url usingImageCompletionBlock: ^(UIImage* image, NSString* imageUTI, BOOL didFail)
-         {
-             if(!didFail)
-             {
-                 TWTweetComposeViewController*   tweetViewController = [[TWTweetComposeViewController alloc] init];
-                 
-                 NSString*                       twitterMessage = @""; // NSLocalizedString(@"tweet", @"Twitter tweet");
-                 
-                 [tweetViewController setInitialText: twitterMessage];
-                 [tweetViewController addImage: image];
-                 [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) 
-                  {
-                      [self dismissModalViewControllerAnimated: YES];
-
-                      if(TWTweetComposeViewControllerResultDone == result)
-                      {
-                          NSString*   twitterNotification = NSLocalizedString(@"twitteringNotification", @"Twitter growl notification");
-                          [self presentGrowlNotification: twitterNotification]; 
-                      }
-                  }];
-                 
-                 
-                 [self presentModalViewController: tweetViewController animated: YES];        
-             }
-         }];
-    }
-}
 
 - (void) pLoadAsset: (NSURL*) assetURL usingDataCompletionBlock: (CPLoadAssetDataCompletionBlock) completionBlock
 {

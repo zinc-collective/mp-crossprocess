@@ -12,7 +12,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UIImageAdditions.h"
-#import "FacebookSDK.h"
 
 @interface CPAppDelegate()
 - (BOOL) pManageFirstLaunchScenario;
@@ -49,15 +48,6 @@
 		[self.locationManager startUpdatingLocation];
 	}
     
-    /* OBSOLETE
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    if([defaults objectForKey: @"FBAccessTokenKey"] && [defaults objectForKey: @"FBExpirationDateKey"])
-    {
-        self.facebookSession.accessToken = [defaults objectForKey: @"FBAccessTokenKey"];
-        self.facebookSession.expirationDate = [defaults objectForKey: @"FBExpirationDateKey"];
-    }
-    */
-    
     self.workQueue = [[NSOperationQueue alloc] init];
     
     /* OBSOLETE
@@ -91,14 +81,7 @@
     self.appInBackground = NO;
     [self.locationManager startUpdatingLocation];
     
-    if(self.viewController.loggingIntoFacebook)
-    {
-        [self.viewController continueSendingToFacebook];
-    }
-    else
-    {
-        [self.viewController presentDefaultPhotoController];
-    }
+    [self.viewController presentDefaultPhotoController];
 }
 
 - (void) applicationDidBecomeActive: (UIApplication*) application
@@ -176,20 +159,6 @@
 - (NSArray*) imageAssetsNames
 {
     return [NSArray arrayWithObjects: @"border", @"vignette", @"screen", nil];
-}
-
-#pragma mark - Facebook Support
-
-- (BOOL) application: (UIApplication*) application
-             openURL: (NSURL*) url
-   sourceApplication: (NSString*) sourceApplication
-          annotation: (id)annotation
-{
-#if !TARGET_IPHONE_SIMULATOR
-    return [FBSession.activeSession handleOpenURL: url];
-#else
-    return NO;
-#endif
 }
 
 #pragma mark - Private Methods

@@ -46,7 +46,6 @@ extern const NSInteger  CPToolbarTag;
 @property (assign, nonatomic) BOOL                          writingAsset;
 
 @property (assign, nonatomic) BOOL                          shouldShowWelcomeScreen;
-@property (readonly, nonatomic) BOOL                        loggingIntoFacebook;
 @property (assign, nonatomic) BOOL                          applicationLaunching;
 
 @property (strong, nonatomic) CLLocation*                   currentLocation;
@@ -78,7 +77,6 @@ extern const NSInteger  CPToolbarTag;
 - (IBAction) handleOptions: (id)sender;
 - (IBAction) showManual:(id)sender;
 
-- (void) continueSendingToFacebook;
 - (void) presentGrowlNotification: (NSString*) notification;
 
 @end

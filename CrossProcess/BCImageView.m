@@ -220,7 +220,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     if([imageURL isFileURL])
     {
         NSError*    error = nil;
-        UIImage*    image = [UIImage imageWithContentsOfFile: [NSData dataWithContentsOfURL: imageURL 
+        UIImage*    image = [UIImage imageWithData: [NSData dataWithContentsOfURL: imageURL
                                                                                     options: NSDataReadingMappedIfSafe 
                                                                                       error: &error]];
         
