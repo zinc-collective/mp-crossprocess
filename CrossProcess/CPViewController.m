@@ -22,6 +22,7 @@
 #import <Twitter/Twitter.h>
 #include <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
+#import <Photos/PHPhotoLibrary.h>
 
 
 #define PADDING     10
@@ -571,12 +572,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         self.firstVisibleImageIndexBeforeRotation = 0;
         self.percentScrolledIntoFirstVisibleImage = offset / scrollViewWidth;
     }    
-    
-#if DEBUG    
-    NSLog(@"firstVisibleImageIndexBeforeRotation = %d, percentScrolledIntoFirstVisibleImage = %f", 
-          self.firstVisibleImageIndexBeforeRotation,
-          self.percentScrolledIntoFirstVisibleImage);
-#endif    
 }
 
 - (void) willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation duration: (NSTimeInterval) duration
@@ -845,17 +840,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     // If they choose no, then we weill get a not-authorized status and have to bail.
     // We probably need UI here to tell the user they disable write access.
     
-    if([ALAssetsLibrary respondsToSelector: @selector(authorizationStatus)])
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusNotDetermined)
     {
-        ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
-        if(status == ALAuthorizationStatusAuthorized || status == ALAuthorizationStatusNotDetermined)
-        {
-            canWriteToAssetLibrary = YES;
-        }
-    }
-    else
-    {
-        // Not locked out under versions < ios6
         canWriteToAssetLibrary = YES;
     }
     
@@ -1071,7 +1058,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, self.processedImages.count - 1);
     
-    NSLog(@"firstNeededViewIndex = %d, lastNeededViewIndex = %d, processedImageAsset = %@", firstNeededViewIndex, lastNeededViewIndex, self.processedImages.count > 0 ? [self.processedImages objectAtIndex: firstNeededViewIndex] : nil);
+//    NSLog(@"firstNeededViewIndex = %d, lastNeededViewIndex = %d, processedImageAsset = %@", firstNeededViewIndex, lastNeededViewIndex, self.processedImages.count > 0 ? [self.processedImages objectAtIndex: firstNeededViewIndex] : nil);
 #endif
 
     [self toggleToolbarVisibility];
