@@ -28,7 +28,7 @@
         
         _shadowLevel = shadowLevel;
         _hilightLevel = hilightLevel;
-        _imageLevels = (NSUInteger*)malloc(sizeof(NSUInteger) * 256);
+        _imageLevels = (uint32_t*)malloc(sizeof(uint32_t) * 256);
         [self pGenerateLevels];
     }
     

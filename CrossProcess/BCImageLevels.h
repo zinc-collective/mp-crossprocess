@@ -10,12 +10,12 @@
 @interface BCImageLevels : NSObject
 {
     @private
-    NSUInteger*      _imageLevels;
+    uint32_t* _imageLevels;
 }
 
 @property(nonatomic, readonly) NSUInteger shadowLevel;
 @property(nonatomic, readonly) NSUInteger hilightLevel;
-@property(nonatomic, readonly) NSUInteger* imageLevels;
+@property(nonatomic, readonly) uint32_t* imageLevels;
 
 - (id) initWithShadowLevel: (NSUInteger) shadowLevel hilightLevel: (NSUInteger) hilightLevel;
 - (NSUInteger) interpolate: (NSUInteger) level;

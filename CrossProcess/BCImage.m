@@ -98,7 +98,7 @@
         CGBitmapInfo    bitmapInfo = kCGImageAlphaPremultipliedLast;
         
         _bufferSize = _rowBytes * _size.height;
-        _rawBytes = (NSUInteger*)calloc(sizeof(unsigned char), _bufferSize);
+        _rawBytes = (uint32_t*)calloc(sizeof(unsigned char), _bufferSize);
         _contextRef = CGBitmapContextCreate(_rawBytes, _size.width, _size.height, 8, _rowBytes, colorSpace, bitmapInfo);
 		_orientation = orientation;
     }
@@ -223,8 +223,8 @@
             }
         }
         
-        NSUInteger*  currentPixel = _rawBytes;
-        NSUInteger*  lastPixel = (NSUInteger*)((unsigned char*)_rawBytes + _bufferSize);
+        uint32_t*  currentPixel = _rawBytes;
+        uint32_t*  lastPixel = (uint32_t*)((unsigned char*)_rawBytes + _bufferSize);
         
         while(currentPixel < lastPixel)
         {
@@ -238,9 +238,9 @@
 
 - (void) applyLevels: (BCImageLevels*) levels
 {
-    NSUInteger*  currentPixel = _rawBytes;
-    NSUInteger*  lastPixel = (NSUInteger*)((unsigned char*)_rawBytes + _bufferSize);
-    NSUInteger*  imageLevels = levels.imageLevels;
+    uint32_t*  currentPixel = _rawBytes;
+    uint32_t*  lastPixel = (uint32_t*)((unsigned char*)_rawBytes + _bufferSize);
+    uint32_t* imageLevels = levels.imageLevels;
     
     while(currentPixel < lastPixel)
     {
