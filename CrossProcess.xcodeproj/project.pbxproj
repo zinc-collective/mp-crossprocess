@@ -56,6 +56,7 @@
 		40B81FC91440939900842FD9 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FC71440939900842FD9 /* info@2x.png */; };
 		40B81FCC144093EE00842FD9 /* pickphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FCB144093EE00842FD9 /* pickphoto.png */; };
 		40E9C647144477AC002B6D25 /* image_assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E9C646144477AC002B6D25 /* image_assets.plist */; };
+		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		F706FC35145DD7F800249726 /* red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F706FC1D145DD7F800249726 /* red.jpg */; };
 		F706FC36145DD7F800249726 /* red@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F706FC1E145DD7F800249726 /* red@2x.jpg */; };
 		F706FC37145DD7F800249726 /* negative@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F706FC1F145DD7F800249726 /* negative@2x.jpg */; };
@@ -167,6 +168,7 @@
 		40B81FCB144093EE00842FD9 /* pickphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickphoto.png; sourceTree = "<group>"; };
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
+		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		F706FC1D145DD7F800249726 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
 		F706FC1E145DD7F800249726 /* red@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "red@2x.jpg"; sourceTree = "<group>"; };
 		F706FC1F145DD7F800249726 /* negative@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "negative@2x.jpg"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786615661C9B4A87007810FA /* Photos.framework in Frameworks */,
 				F79DB6091438F017004E4CA0 /* UIKit.framework in Frameworks */,
 				F79DB60B1438F017004E4CA0 /* Foundation.framework in Frameworks */,
 				F79DB60D1438F017004E4CA0 /* CoreGraphics.framework in Frameworks */,
@@ -395,6 +398,7 @@
 		F79DB6071438F017004E4CA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				786615651C9B4A87007810FA /* Photos.framework */,
 				7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */,
 				F782DAC616552A3000A03901 /* libfacebook_ios_sdk.a */,
 				F782DB0516552FBE00A03901 /* AdSupport.framework */,
@@ -714,7 +718,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -734,7 +738,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -745,13 +749,13 @@
 		F79DB6231438F017004E4CA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = crossprocesstemp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momentpark.crossprocesstemp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -760,17 +764,14 @@
 		F79DB6241438F017004E4CA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Banana Camera Co.";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
-				PRODUCT_BUNDLE_IDENTIFIER = crossprocesstemp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momentpark.crossprocesstemp2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D40EA839-067C-4F16-8F59-41D7548DB714";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D40EA839-067C-4F16-8F59-41D7548DB714";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
