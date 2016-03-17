@@ -23,30 +23,6 @@
 #include <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
 
-@interface UIView(IndexedViews)
-
-- (NSInteger) index;
-- (void) setIndex: (NSInteger) index;
-
-@end
-
-@implementation UIView(IndexedViews)
-
-static NSInteger sViewIndexKey;
-
-- (NSInteger) index
-{
-    NSNumber*   viewIndex = (NSNumber*)objc_getAssociatedObject(self, &sViewIndexKey);
-    return [viewIndex integerValue];
-}
-
-- (void) setIndex: (NSInteger) index
-{
-    NSNumber*   viewIndex = [NSNumber numberWithInteger: index];
-    objc_setAssociatedObject(self, &sViewIndexKey, viewIndex, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
 
 #define PADDING     10
 
@@ -510,9 +486,21 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
 }
 
-
 - (IBAction)handleAction:(id)sender {
     NSLog(@"Action");
+    NSURL* url = [self pURLForVisibleImageView];
+    if (url) {
+        [self pLoadAsset:url usingImageCompletionBlock:^(UIImage *image, NSString *imageUTI, BOOL didFail) {
+            if (!didFail) {
+                [self shareImage: image];
+            }
+        }];
+    }
+}
+
+- (void) shareImage:(UIImage*)image {
+    UIActivityViewController * share = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:NULL];
+    [self presentViewController:share animated:YES completion:NULL];
 }
 
 - (IBAction) handleCapturePhoto: (id) sender
