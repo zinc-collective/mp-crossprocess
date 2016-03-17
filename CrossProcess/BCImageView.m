@@ -163,7 +163,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         
         _portraitOrientation = placeholderType >= 0;
         
-        CPPlaceholderType       type = (CPPlaceholderType)abs(placeholderType);
+        CPPlaceholderType       type = (CPPlaceholderType)labs(placeholderType);
         UIImage*                placeholderImage = [self pLoadPlaceholderImage: type];
         UIImage*                borderImage = nil;
         

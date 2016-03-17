@@ -165,7 +165,7 @@
 
 - (void) applyCurves: (NSArray*) curves
 {
-	uint            curvesMask = [self pCurveApplyMask: curves];
+	NSUInteger            curvesMask = [self pCurveApplyMask: curves];
     
     if(curvesMask != CURVE_NONE)
     {
