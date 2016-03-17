@@ -86,16 +86,10 @@
 
 - (void) applicationDidBecomeActive: (UIApplication*) application
 {
-#if !TARGET_IPHONE_SIMULATOR
-    [FBSession.activeSession handleDidBecomeActive];
-#endif
 }
 
 - (void) applicationWillTerminate: (UIApplication*) application
 {
-#if !TARGET_IPHONE_SIMULATOR
-    [FBSession.activeSession close];
-#endif
 }
 
 #pragma mark - KVO

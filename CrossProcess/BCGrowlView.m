@@ -38,7 +38,7 @@ static const NSTimeInterval	kDismissAnimationDuration = 1.5;
 		self.textLabel.backgroundColor = [UIColor clearColor];
 		self.textLabel.textColor = [UIColor whiteColor];
 		self.textLabel.font = [UIFont systemFontOfSize: 18.0];
-		self.textLabel.textAlignment = UITextAlignmentCenter;
+		self.textLabel.textAlignment = NSTextAlignmentCenter;
 		
 		[self addSubview: self.textLabel];
 	}

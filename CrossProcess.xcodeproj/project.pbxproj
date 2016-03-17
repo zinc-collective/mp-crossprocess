@@ -499,6 +499,11 @@
 				CLASSPREFIX = CP;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Copyright Banana Camera Company 2010 - 2012";
+				TargetAttributes = {
+					F79DB6031438F017004E4CA0 = {
+						DevelopmentTeam = G8R2KJ59DE;
+					};
+				};
 			};
 			buildConfigurationList = F79DB5FE1438F017004E4CA0 /* Build configuration list for PBXProject "CrossProcess" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -740,11 +745,13 @@
 		F79DB6231438F017004E4CA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_BUNDLE_IDENTIFIER = crossprocesstemp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -753,13 +760,14 @@
 		F79DB6241438F017004E4CA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Banana Camera Co.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Banana Camera Co.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_BUNDLE_IDENTIFIER = crossprocesstemp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D40EA839-067C-4F16-8F59-41D7548DB714";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D40EA839-067C-4F16-8F59-41D7548DB714";

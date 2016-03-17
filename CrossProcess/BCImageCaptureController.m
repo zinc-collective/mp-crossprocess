@@ -72,23 +72,14 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
         
         if([defaults objectForKey: BCCameraDeviceKey])
         {
+            NSLog(@"TEST %i", UIImagePickerControllerCameraDeviceRear);
             self.imagePickerController.cameraDevice = [defaults integerForKey: BCCameraDeviceKey];
         }
         
         if([defaults objectForKey: BCCameraFlashModeKey])
         {
+            NSLog(@"TEST %i %i", UIImagePickerControllerCameraFlashModeAuto, [defaults integerForKey:BCCameraFlashModeKey]);
             self.imagePickerController.cameraFlashMode = [defaults integerForKey: BCCameraFlashModeKey];
-        }
-
-        if([[self.imagePickerController.cameraOverlayView subviews] count] == 0)
-        {
-            // setup our custom overlay view for the camera
-            // ensure that our custom view's frame fits within the parent frame
-            /*
-            CGRect overlayViewFrame = self.imagePickerController.cameraOverlayView.frame;
-            self.view.frame = overlayViewFrame;
-            [self.imagePickerController.cameraOverlayView addSubview: self.view];
-             */
         }
     }
 }

@@ -363,7 +363,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) presentDefaultPhotoController
 {
-    if(self.modalViewController == nil)
+    if(self.presentedViewController == nil)
     {
         if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
         {
@@ -381,7 +381,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary])
     {
         [self.imageCaptureController setupForImageCapture: UIImagePickerControllerSourceTypePhotoLibrary];
-        [self presentModalViewController: self.imageCaptureController.imagePickerController animated: YES];
+        [self presentViewController:self.imageCaptureController.imagePickerController animated: YES completion:^{}];
     }
 }
 
@@ -390,7 +390,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
     {
         [self.imageCaptureController setupForImageCapture: UIImagePickerControllerSourceTypeCamera];
-        [self presentModalViewController: self.imageCaptureController.imagePickerController animated: YES];
+        [self presentViewController: self.imageCaptureController.imagePickerController animated: YES completion:^{}];
     }
 }
 
@@ -406,7 +406,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) userPickedPhoto: (UIImage*) photo withAssetLibraryURL: (NSURL*) url
  {
      [self pHideToolbar: NO];
-     [self dismissModalViewControllerAnimated: YES];
+     [self dismissViewControllerAnimated: YES completion:^{}];
      [self pValidateToolbarItems];
 
      // Begin an image processing operation
@@ -433,7 +433,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) userCapturedPhoto: (UIImage*) photo withMetadata: (NSDictionary*) metadata
 {
     [self pHideToolbar: NO];
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated: YES completion:^{}];
     [self pValidateToolbarItems];
 
     // Begin an image processing operation
@@ -465,7 +465,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         [self pShowToolbar: NO];
     }
  
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated: YES completion:^{}];
     [self pValidateToolbarItems];
 }
 
@@ -518,7 +518,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     CPOptionsViewController* controller = [[CPOptionsViewController alloc] initWithNibName: @"CPOptionsViewController" bundle: nil];
     controller.delegate = self;
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController: controller animated: YES];
+    [self presentViewController: controller animated: YES completion:^{}];
 }
 
 - (IBAction) showManual: (id) sender
@@ -536,7 +536,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) optionsViewControllerDidFinish: (CPOptionsViewController*) controller
 {
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated: YES completion:^{}];
 }
 
 

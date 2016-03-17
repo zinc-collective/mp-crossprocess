@@ -114,7 +114,7 @@ static NSInteger    CPLabelViewTag = 101;
 	headerLabel.shadowColor = [UIColor whiteColor];
 	headerLabel.shadowOffset = CGSizeMake(0, 1);
 	headerLabel.font = [UIFont boldSystemFontOfSize: 16];
-	headerLabel.textAlignment = UITextAlignmentLeft;
+	headerLabel.textAlignment = NSTextAlignmentLeft;
 	
 	if(section == 0)
 	{
