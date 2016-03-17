@@ -493,4 +493,8 @@ static NSInteger    CPLabelViewTag = 101;
 	return YES;
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 @end

@@ -1498,4 +1498,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     return url;
 }
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 @end
