@@ -61,6 +61,7 @@ extern const NSInteger  CPToolbarTag;
 // Holds onto the content we've captured.
 
 @property(strong, nonatomic) NSMutableArray*                processedImages;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 - (void) setBackgroundImage;
 - (void) clearBackgroundImage;

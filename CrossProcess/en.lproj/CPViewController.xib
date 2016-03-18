@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPViewController">
             <connections>
+                <outlet property="backgroundImage" destination="AXb-b5-1hv" id="KoD-r6-03h"/>
                 <outlet property="scrollView" destination="46" id="47"/>
                 <outlet property="toolbarNoCamera" destination="14" id="32"/>
                 <outlet property="toolbarWithCamera" destination="23" id="34"/>
@@ -18,15 +19,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="46">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circles" translatesAutoresizingMaskIntoConstraints="NO" id="AXb-b5-1hv">
+                    <rect key="frame" x="65" y="145" width="190" height="190"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="190" id="klI-9g-8nr"/>
+                        <constraint firstAttribute="height" constant="190" id="mdL-Ks-f3k"/>
+                    </constraints>
+                </imageView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="48"/>
                     </connections>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.058823529411764705" green="0.031372549019607843" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" id="LLP-H7-yHK"/>
+                <constraint firstItem="46" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="QmG-xJ-z8q"/>
+                <constraint firstAttribute="bottom" secondItem="46" secondAttribute="bottom" id="wIC-qs-wtx"/>
+                <constraint firstItem="AXb-b5-1hv" firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="wtP-Q5-ETg"/>
+                <constraint firstItem="AXb-b5-1hv" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="yBF-hW-1v4"/>
+                <constraint firstItem="46" firstAttribute="top" secondItem="6" secondAttribute="top" id="yhJ-Go-87e"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
@@ -91,6 +106,7 @@
         </toolbar>
     </objects>
     <resources>
+        <image name="Circles" width="190" height="190"/>
         <image name="info.png" width="36" height="19"/>
         <image name="pickphoto.png" width="26" height="19"/>
     </resources>

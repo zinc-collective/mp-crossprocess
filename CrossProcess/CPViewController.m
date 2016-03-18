@@ -116,6 +116,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize visibleImageViews = _visibleImageViews;
 
 @synthesize processedImages = _processedImages;
+@synthesize backgroundImage;
 
 - (void) didReceiveMemoryWarning
 {
@@ -130,7 +131,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
     
     self.recycledImageViews = nil;
-    [self clearBackgroundImage];
     
     [super didReceiveMemoryWarning];
 }
@@ -267,46 +267,14 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
 }
 
-- (void) setBackgroundImage
-{
-    UIImage*	background = nil;
-    
-    if(IS_IPHONE_5)
-    {
-        background = [UIImage imageNamed: @"background_568@2x"];
-    }
-    else
-    {
-        background = [UIImage imageNamed: @"background"];
-    }
-    
-#if DEBUG
-    CGRect viewFrame = self.view.frame;
-    NSLog(@"viewFrame = %@", NSStringFromCGRect(viewFrame));
-#endif
-    
-	self.view.layer.contents = (id)background.CGImage;
-	self.view.layer.contentsGravity = kCAGravityResizeAspect;
-}
 
-- (void) clearBackgroundImage
-{
-    self.view.layer.contents = nil;
-}
 
 - (void) showFirstLaunchScreen
 {
     UIView*  rootView = [self.view superview];
     
     UINib*   welcomeNib = nil;
-    if(IS_IPHONE_5)
-    {
-        welcomeNib = [UINib nibWithNibName: @"CPWelcome_iphone5" bundle: nil];
-    }
-    else
-    {
-        welcomeNib = [UINib nibWithNibName: @"CPWelcome" bundle: nil];
-    }
+    welcomeNib = [UINib nibWithNibName: @"CPWelcome" bundle: nil];
 
     if(welcomeNib)
     {
@@ -314,23 +282,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         if(contents)
         {
             UIView*  welcomeView = BCCastAsClass(UIView, [contents objectAtIndex: 0]);
+            welcomeView.frame = self.view.bounds;
             if(welcomeView)
             {
                 [rootView insertSubview: welcomeView aboveSubview: self.view];
 
-                UIImage*    welcomeBackground = nil;
-                
-                if(IS_IPHONE_5)
-                {
-                    welcomeBackground = [UIImage imageNamed: @"welcome_background_568"];
-                }
-                else
-                {
-                    welcomeBackground = [UIImage imageNamed: @"welcome_background"];
-                }
-                
-                welcomeView.layer.contentsGravity = kCAGravityResizeAspect;
-                welcomeView.layer.contents = (id)welcomeBackground.CGImage;
                 welcomeView.tag = CPWelcomeViewTag;
                 
                 UILabel*    welcomeMessageTitleLabel = BCCastAsClass(UILabel, [welcomeView viewWithTag: CPWelcomeLabelTitleTag]);
@@ -997,12 +953,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     if(self.processingImage == NO && self.photoToProcess)
     {
-        // Clear the background image.
         
         [self clearBackgroundImage];
-        
-        //assert(CGPointEqualToPoint(self.scrollView.contentOffset, CGPointZero));
-        
         CGFloat     scale = 0.5;
         
         if([[NSUserDefaults standardUserDefaults] boolForKey: CPFullSizeImageOptionKey])
@@ -1487,6 +1439,14 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+-(void)setBackgroundImage {
+    self.backgroundImage.hidden = NO;
+}
+
+-(void)clearBackgroundImage {
+    self.backgroundImage.hidden = YES;
 }
 
 @end
