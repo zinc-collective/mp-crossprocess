@@ -14,24 +14,32 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circles" translatesAutoresizingMaskIntoConstraints="NO" id="veK-lz-CbU">
-                                <rect key="frame" x="92" y="238" width="190" height="190"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="veK-lz-CbU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="0Om-fC-tkq"/>
+                                    <constraint firstAttribute="height" constant="568" id="UAR-wk-Syt"/>
                                     <constraint firstAttribute="height" constant="190" id="igM-aY-3EK"/>
                                     <constraint firstAttribute="width" constant="190" id="plq-5h-wGI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="igM-aY-3EK"/>
+                                        <exclude reference="plq-5h-wGI"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.035294117647058823" green="0.031372549019607843" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="veK-lz-CbU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NvK-dQ-5s6"/>
                             <constraint firstItem="veK-lz-CbU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="rbO-RY-dg2"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,6 +47,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Circles" width="190" height="190"/>
+        <image name="Background" width="320" height="568"/>
     </resources>
 </document>

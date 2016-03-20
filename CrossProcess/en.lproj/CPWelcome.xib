@@ -11,11 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circles" translatesAutoresizingMaskIntoConstraints="NO" id="6IS-7c-WAU">
-                    <rect key="frame" x="65" y="0.0" width="190" height="190"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WelcomeBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6IS-7c-WAU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="5Qi-7G-oyc"/>
-                        <constraint firstAttribute="width" constant="190" id="bvI-P1-H92"/>
+                        <constraint firstAttribute="width" constant="320" id="gQr-HA-BmV"/>
+                        <constraint firstAttribute="height" constant="568" id="oe8-yC-rSi"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="200" contentMode="left" text="Welcome to CrossProcess 2.0" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4">
@@ -55,15 +55,15 @@ Or, choose an existing photo from your library by hitting Cancel and hitting the
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.058823529409999999" green="0.031372549020000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.035294117649999998" green="0.031372549020000001" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="5" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="4mR-Iy-0d6"/>
+                <constraint firstItem="5" firstAttribute="top" secondItem="4" secondAttribute="top" constant="53" id="5b2-QD-TLW"/>
                 <constraint firstItem="6" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="6Mb-jO-2nm"/>
                 <constraint firstItem="6IS-7c-WAU" firstAttribute="top" secondItem="1" secondAttribute="top" id="L6x-wc-7ve"/>
                 <constraint firstItem="6IS-7c-WAU" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="YZ1-UM-Qf9"/>
                 <constraint firstItem="4" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="c04-W4-sJS"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="152" id="krk-oe-lwK"/>
-                <constraint firstItem="5" firstAttribute="top" secondItem="6IS-7c-WAU" secondAttribute="bottom" constant="15" id="nIo-Vf-Nu3"/>
                 <constraint firstAttribute="bottom" secondItem="6" secondAttribute="bottom" constant="45" id="wAo-ig-eDI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -71,6 +71,6 @@ Or, choose an existing photo from your library by hitting Cancel and hitting the
         </view>
     </objects>
     <resources>
-        <image name="Circles" width="190" height="190"/>
+        <image name="WelcomeBackground" width="320" height="568"/>
     </resources>
 </document>

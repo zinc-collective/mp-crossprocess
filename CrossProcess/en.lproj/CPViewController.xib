@@ -19,11 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circles" translatesAutoresizingMaskIntoConstraints="NO" id="AXb-b5-1hv">
-                    <rect key="frame" x="65" y="145" width="190" height="190"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="AXb-b5-1hv">
+                    <rect key="frame" x="0.0" y="-44" width="320" height="568"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="190" id="klI-9g-8nr"/>
-                        <constraint firstAttribute="height" constant="190" id="mdL-Ks-f3k"/>
+                        <constraint firstAttribute="height" constant="568" id="UvG-PY-64y"/>
+                        <constraint firstAttribute="width" constant="320" id="rQb-gL-giJ"/>
                     </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46">
@@ -33,7 +33,7 @@
                     </connections>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.058823529411764705" green="0.031372549019607843" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.035294117649999998" green="0.031372549020000001" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" id="LLP-H7-yHK"/>
                 <constraint firstItem="46" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="QmG-xJ-z8q"/>
@@ -106,7 +106,7 @@
         </toolbar>
     </objects>
     <resources>
-        <image name="Circles" width="190" height="190"/>
+        <image name="Background" width="320" height="568"/>
         <image name="info.png" width="36" height="19"/>
         <image name="pickphoto.png" width="26" height="19"/>
     </resources>
