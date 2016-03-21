@@ -88,6 +88,7 @@
 
 - (void) main
 {
+    NSLog(@"[CPIP] main");
     BCTimer*    timer = [[BCTimer alloc] init];
     [timer startTimer];
     

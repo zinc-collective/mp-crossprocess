@@ -21,4 +21,6 @@
 @property (strong, nonatomic) NSOperationQueue*             workQueue;
 @property (strong, atomic) CPScaledImageCreator*            imageCreator;           // obsolete
 
+- (NSString*)version;
+
 @end

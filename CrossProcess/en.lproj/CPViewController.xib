@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPViewController">
             <connections>
                 <outlet property="backgroundImage" destination="AXb-b5-1hv" id="KoD-r6-03h"/>
+                <outlet property="debugVersionLabel" destination="7Dv-K1-vNm" id="9u9-Gh-qcU"/>
                 <outlet property="scrollView" destination="46" id="47"/>
                 <outlet property="toolbarNoCamera" destination="14" id="32"/>
                 <outlet property="toolbarWithCamera" destination="23" id="34"/>
@@ -32,11 +33,19 @@
                         <outlet property="delegate" destination="-1" id="48"/>
                     </connections>
                 </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERSION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dv-K1-vNm">
+                    <rect key="frame" x="0.0" y="0.0" width="71.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.035294117649999998" green="0.031372549020000001" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="7Dv-K1-vNm" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="4Tt-WN-2bo"/>
                 <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" id="LLP-H7-yHK"/>
                 <constraint firstItem="46" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="QmG-xJ-z8q"/>
+                <constraint firstItem="7Dv-K1-vNm" firstAttribute="top" secondItem="6" secondAttribute="top" id="mqK-t9-JlI"/>
                 <constraint firstAttribute="bottom" secondItem="46" secondAttribute="bottom" id="wIC-qs-wtx"/>
                 <constraint firstItem="AXb-b5-1hv" firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="wtP-Q5-ETg"/>
                 <constraint firstItem="AXb-b5-1hv" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="yBF-hW-1v4"/>

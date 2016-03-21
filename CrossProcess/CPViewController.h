@@ -31,6 +31,7 @@ extern const NSInteger  CPToolbarTag;
                                                 UIScrollViewDelegate,
                                                 UIGestureRecognizerDelegate>
 
+@property (weak, nonatomic)   IBOutlet UILabel *debugVersionLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView*        scrollView;
 @property (strong, nonatomic) IBOutlet UIToolbar*           toolbarWithCamera;
 @property (strong, nonatomic) IBOutlet UIToolbar*           toolbarNoCamera;

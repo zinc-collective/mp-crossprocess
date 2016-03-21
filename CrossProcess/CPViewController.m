@@ -94,6 +94,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize photoAssetLibraryURL = _photoAssetLibraryURL;
 @synthesize photoWasCaptured = _photoWasCaptured;
 
+@synthesize debugVersionLabel;
 @synthesize scrollView = _scrollView;
 @synthesize toolbar = _toolbar;
 @synthesize toolbarNoCamera = _toolbarNoCamera;
@@ -170,6 +171,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.debugVersionLabel.text = [(CPAppDelegate*)[[UIApplication sharedApplication] delegate] version];
     
     self.view.tag = CPRootViewTag;
     
@@ -362,6 +365,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) userPickedPhoto: (UIImage*) photo withAssetLibraryURL: (NSURL*) url
  {
+     NSLog(@"[CPV] userPickedPhoto");
      [self pHideToolbar: NO];
      [self dismissViewControllerAnimated: YES completion:^{}];
      [self pValidateToolbarItems];
@@ -383,6 +387,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
      }
      else
      {
+         NSLog(@"[CPV] userPickedPhoto - scroll");
          [self.scrollView setContentOffset: CGPointZero animated: YES];
      }
 }
@@ -431,6 +436,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(context == &self->_imageProcessor)
     {
         CPImageProcessor*    ip = BCCastAsClass(CPImageProcessor, object);
+        NSLog(@"[CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
         
         if(ip && [ip isFinished])
         {
@@ -908,6 +914,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pImageProcessorDone: (CPImageProcessor*) imageProcessor
 {
+    NSLog(@"[CPV] pImageProcessorDone %i %i", (imageProcessor == self.imageProcessor), self.processingImage);
 #if DEBUG
     assert([NSThread isMainThread]);
 #endif
@@ -947,10 +954,14 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         self.imageProcessor = nil;
         self.processingImage = NO;
     }
+    else {
+        NSLog(@"[CPV] pImageProcessorDone - skip");
+    }
 }
 
 - (void) pBeginProcessingPhoto: (CGSize) imageSize
 {
+    NSLog(@"[CPV] pBeginProcessingPhoto %@", NSStringFromCGSize(imageSize));
     if(self.processingImage == NO && self.photoToProcess)
     {
         
@@ -998,6 +1009,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         
         [self.processedImages insertObject: [NSNumber numberWithInteger: placeholderAsset] atIndex: 0];
         [self pCreateAndAnimatePlaceholderView: imageSize];
+    }
+    else {
+        NSLog(@"[CPV] pBeginProcessingPhoto - skip. Already processing");
     }
 }
 

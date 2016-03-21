@@ -28,8 +28,21 @@
 @synthesize youTubeHelpURL = _youTubeHelpURL;
 @synthesize imageCreator = _imageCreator;
 
+- (NSString*)version {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle]infoDictionary];
+    
+    NSString *version = infoDictionary[@"CFBundleShortVersionString"];
+    NSString *build = infoDictionary[(NSString*)kCFBundleVersionKey];
+    NSString *bundleName = infoDictionary[(NSString *)kCFBundleNameKey];
+    return [NSString stringWithFormat:@"%@ - %@ (%@)", bundleName, version, build];
+}
+
 - (BOOL) application: (UIApplication*) application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
 {
+    
+    
+    NSLog(@"[CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[CPViewController alloc] initWithNibName:@"CPViewController" bundle:nil];
     self.viewController.applicationLaunching = YES;
