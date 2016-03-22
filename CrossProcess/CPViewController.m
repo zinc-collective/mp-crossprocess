@@ -23,6 +23,7 @@
 #include <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
 #import <Photos/PHPhotoLibrary.h>
+#import <Crashlytics/Crashlytics.h>
 
 
 #define PADDING     10
@@ -790,6 +791,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                          writingOriginal: (BOOL) writingOriginal
                          completionBlock: (CPWriteAssetCompletionBlock) writeCompletionBlock
 {
+    NSLog(@"pWriteCGImageToSavedPhotosAlbum");
 #if DEBUG
     BCTimer*                            timer = [BCTimer timer];
     [timer startTimer];
@@ -848,6 +850,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pGatherOriginalLocation: (NSURL*) assetURL andWriteToPhotoLibrary: (BCImage*) image
 {
+    NSLog(@"pGatherOriginalLocation %@", assetURL);
     ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init];
     __block NSMutableDictionary*        gpsDict = nil;
     
@@ -855,7 +858,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     
     [library assetForURL: assetURL 
              resultBlock:^(ALAsset *asset)
-     {           
+     {
+         NSLog(@" - got result");
          ALAssetRepresentation*     rep = [asset defaultRepresentation];
          NSDictionary*              imageMetadata = nil;
          if(rep)
@@ -869,6 +873,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             failureBlock:^(NSError *error)
      
      {
+         NSLog(@" - Error getting asset %@ -attempting to write anyway", error);
          // Error getting asset, but attempt to write anyways.
          [self pWriteImageToPhotoLibrary: image metadata: nil gpsData: nil];
      }];
@@ -876,6 +881,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pWriteImageToPhotoLibrary: (BCImage*) image metadata: (NSDictionary*) metadata gpsData: (NSDictionary*) gpsData
 {
+    NSLog(@"pWriteImageToPhotoLibrary %@ %@", image, metadata);
     self.writingAsset = YES;
     [self pValidateToolbarItems];
     
@@ -894,6 +900,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 #if DEBUG             
              NSLog(@"%@", error.description);
 #endif             
+         }
+         else if (!asset) {
+             NSLog(@"Missing asset! %@ %@", image, metadata);
          }
          else
          {
@@ -924,6 +933,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(imageProcessor == self.imageProcessor && self.processingImage)
     {
         BCImage*        image = imageProcessor.processedImage;
+        NSLog(@" - processedImage %@ %@", image, NSStringFromCGSize(image.size));
         BCImageView*    imageView = nil;
         
         if([self pIsDisplayingViewForIndex: 0 visibleView: &imageView])
@@ -935,15 +945,18 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
         if(imageProcessor.wasCaptured)
         {
+            NSLog(@" - wasCaptured");
             [self pWriteImageToPhotoLibrary: image metadata: imageProcessor.imageMetadata gpsData: nil];
         }
         else
         {
+            NSLog(@" - gathering original location");
             [self pGatherOriginalLocation: imageProcessor.assetURL andWriteToPhotoLibrary: image];
         }
         
         if(writeOriginal)
         {
+            NSLog(@" - writeOriginal");
             [self pWriteCGImageToSavedPhotosAlbum: imageProcessor.imageToProcess.CGImage 
                                          metadata: imageProcessor.imageMetadata 
                                           gpsData: nil 
@@ -1224,7 +1237,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
              
              if(rep)
              {
-                 long long              size = [rep size];
+                 unsigned long              size = (unsigned long)[rep size];
                  uint8_t*				buffer = (uint8_t*)malloc(size);
                  
                  if(buffer)

@@ -6,5 +6,8 @@ use_frameworks!
 
 target 'CrossProcess' do
     
+    pod 'Fabric', '~> 1.6.7'
+    pod 'Crashlytics', '~> 3.7.0'
+    
 end
 

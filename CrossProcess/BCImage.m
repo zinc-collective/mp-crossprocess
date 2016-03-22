@@ -95,7 +95,7 @@
         _rowBytes = _size.width * 4;
         _rowBytes = (_rowBytes + 15) & ~15;
         
-        CGBitmapInfo    bitmapInfo = kCGImageAlphaPremultipliedLast;
+        CGBitmapInfo    bitmapInfo = (CGBitmapInfo) kCGImageAlphaPremultipliedLast;
         
         _bufferSize = _rowBytes * _size.height;
         _rawBytes = (uint32_t*)calloc(sizeof(unsigned char), _bufferSize);

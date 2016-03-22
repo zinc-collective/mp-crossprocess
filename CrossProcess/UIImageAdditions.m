@@ -30,8 +30,6 @@
         UIImage*  scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         if(scaledImage)
         {
-            UIGraphicsEndImageContext();
-            
             NSData*   scaledImageData = UIImagePNGRepresentation(scaledImage);
             if(scaledImageData)
             {
@@ -41,6 +39,8 @@
                     NSLog(@"Unabled to write scaled image to %@", destinationURL);
                 }
             }
+            
+            UIGraphicsEndImageContext();
         }        
     }
 }

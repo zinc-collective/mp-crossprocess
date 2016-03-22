@@ -108,6 +108,7 @@
         NSDictionary*   imageAssets = [self pImageAssetsForImageSize: imageSize scale: scale];
         
         NSLog(@"imageSize = %@", NSStringFromCGSize(imageSize));
+        NSLog(@"Assets = %@", imageAssets);
         
         if(imageAssets)
         {
@@ -133,13 +134,13 @@
                 }
             }
             
-#if DEBUG    
-            NSLog(@"Scale is: %f", scale);
-#endif
+//            NSLog(@"Scale is: %f", scale);
             
             BCImage*    processedImage = [[BCImage alloc] initWithSize: self.imageToProcess.size 
-                                                                 scale: scale 
+                                                                 scale: scale
                                                            orientation: self.imageToProcess.imageOrientation];
+            
+            NSLog(@"Processed Image %@", processedImage);
             if(processedImage)
             {
                 /* Steps in the image processing for CrossProcess
@@ -151,6 +152,8 @@
                  6. If the settings requested a border, apply the final border
                  */
                 
+                NSLog(@" - doing the stuff");
+                
                 CGSize      sourceImageSize = self.imageToProcess.size;
                 
                 [processedImage pushContext];
@@ -161,6 +164,8 @@
                 CGContextConcatCTM(processedImage.context, AdjustedTransform(self.imageToProcess.imageOrientation, 
                                                                              sourceImageSize.width, 
                                                                              sourceImageSize.height));
+                
+                NSLog(@" - drawing");
                 
                 /*
                  CGRect  imageRect = CGRectZero;
@@ -177,13 +182,17 @@
                 
                 [processedImage popContext];
                 
+                NSLog(@" - curves?");
+                
                 NSString*   curvesName = [self.curvesPath lastPathComponent];
                 
                 CGSize      processedImageSize = processedImage.size;
                 CGRect      processedImageRect = CGRectMake(0.0, 0.0, processedImageSize.width, processedImageSize.height);
                 
+                
                 if([curvesName isEqualToString: @"negative.acv"] == NO)
                 {
+                    NSLog(@" - drawing vignette");
                     [self pDrawImageAtPath: [imageAssets objectForKey: @"vignette"]
                                  blendMode: kCGBlendModeOverlay
                                      alpha: 1.0
@@ -193,6 +202,7 @@
                 
                 if(self.curvesPath)
                 {
+                    NSLog(@" - applying curves");
                     NSArray* imageCurves = [BCImageCurve imageCurvesFromACV: self.curvesPath];
                     [processedImage applyCurves: imageCurves];
                 }
@@ -227,6 +237,8 @@
                     alpha = 0.20f;
                 }
                 
+                
+                NSLog(@" - applying alpha and blend");
                 CGContextSetFillColorWithColor(processedImage.context, greyColor);
                 CGContextSetBlendMode(processedImage.context, kCGBlendModeColor);
                 CGContextSetAlpha(processedImage.context, alpha);
@@ -234,6 +246,9 @@
                 
                 CGContextRestoreGState(processedImage.context);
                 CGColorRelease(greyColor);
+                
+                
+                NSLog(@" - drawing screen");
                 
                 [self pDrawImageAtPath: [imageAssets objectForKey: @"screen"]
                              blendMode: kCGBlendModeScreen
@@ -243,6 +258,7 @@
                 
                 if(self.useBorder)
                 {
+                    NSLog(@" - drawing border");
                     [self pDrawImageAtPath: [imageAssets objectForKey: @"border"]
                                  blendMode: kCGBlendModeNormal
                                      alpha: 1.0
@@ -250,9 +266,13 @@
                             finalImageSize: processedImage.size];
                 }
                 
+                
+                NSLog(@" - done!");
                 self.processedImage = processedImage;
             }
             
+            
+            NSLog(@" - stopping timer");
             [timer stopTimer];
             [timer logElapsedInMilliseconds: @"Time to process image"];
             
@@ -341,6 +361,7 @@
                   inImage: (BCImage*) image
 		   finalImageSize: (CGSize) finalSize
 {
+    NSLog(@"[CPIP] pDrawImageAtPath");
     if(path && self.appSupportURL)
     {
         NSURL*      assetURL = [self.appSupportURL URLByAppendingPathComponent: path];
@@ -351,6 +372,7 @@
             if(dataProvider)
             {
                 CGImageRef		imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, false, kCGRenderingIntentDefault);
+                NSLog(@" - imageRef %@ %@", imageRef, image.context);
                 if(imageRef)
                 {
                     CGContextSaveGState(image.context);
@@ -360,10 +382,13 @@
                     
                     CGRect		imageRect = CGRectMake(0, 0, CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
                     
+                    NSLog(@" - finished first context stuff");
+                    
                     // Rotate the portrait asset to landscape if necessary as we only store assets in portrait orientation
                     
                     if(!self.portraitOrientation)
                     {
+                        NSLog(@" - landscape");
                         CGFloat		hScale = finalSize.width / imageRect.size.height;
                         CGFloat		vScale = finalSize.height / imageRect.size.width;
                         CGContextScaleCTM(image.context, hScale, vScale);
@@ -374,6 +399,7 @@
                     }
                     else
                     {
+                        NSLog(@" - portrait");
                         CGFloat		hScale = finalSize.width / imageRect.size.width;
                         CGFloat		vScale = finalSize.height / imageRect.size.height;
                         
@@ -382,10 +408,12 @@
                     
                     // TODO: Apply scale if image isn't the correct size.
                     
+                    NSLog(@" - draw");
                     CGContextDrawImage(image.context, imageRect, imageRef);
                     
                     CGImageRelease(imageRef);
                     CGContextRestoreGState(image.context);
+                    NSLog(@" - done");
                 }
                 
                 CGDataProviderRelease(dataProvider);
