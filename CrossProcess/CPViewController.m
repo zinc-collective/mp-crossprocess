@@ -437,7 +437,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(context == &self->_imageProcessor)
     {
         CPImageProcessor*    ip = BCCastAsClass(CPImageProcessor, object);
-        NSLog(@"[CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
+//        NSLog(@"[CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
         
         if(ip && [ip isFinished])
         {
@@ -451,7 +451,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 }
 
 - (IBAction)handleAction:(id)sender {
-    NSLog(@"Action");
+//    NSLog(@"Action");
     NSURL* url = [self pURLForVisibleImageView];
     if (url) {
         [self pLoadAsset:url usingImageCompletionBlock:^(UIImage *image, NSString *imageUTI, BOOL didFail) {
@@ -859,7 +859,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [library assetForURL: assetURL 
              resultBlock:^(ALAsset *asset)
      {
-         NSLog(@" - got result");
+//         NSLog(@" - got result");
          ALAssetRepresentation*     rep = [asset defaultRepresentation];
          NSDictionary*              imageMetadata = nil;
          if(rep)
@@ -924,6 +924,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) pImageProcessorDone: (CPImageProcessor*) imageProcessor
 {
     NSLog(@"[CPV] pImageProcessorDone %i %i", (imageProcessor == self.imageProcessor), self.processingImage);
+    
 #if DEBUG
     assert([NSThread isMainThread]);
 #endif
