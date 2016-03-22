@@ -850,7 +850,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pGatherOriginalLocation: (NSURL*) assetURL andWriteToPhotoLibrary: (BCImage*) image
 {
-    NSLog(@"pGatherOriginalLocation %@", assetURL);
+    NSLog(@"pGatherOriginalLocation");
     ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init];
     __block NSMutableDictionary*        gpsDict = nil;
     
@@ -881,7 +881,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pWriteImageToPhotoLibrary: (BCImage*) image metadata: (NSDictionary*) metadata gpsData: (NSDictionary*) gpsData
 {
-    NSLog(@"pWriteImageToPhotoLibrary %@ %@", image, metadata);
+    NSLog(@"pWriteImageToPhotoLibrary");
     self.writingAsset = YES;
     [self pValidateToolbarItems];
     
