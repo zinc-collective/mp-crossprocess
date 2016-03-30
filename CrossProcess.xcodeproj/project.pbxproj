@@ -828,6 +828,7 @@
 			baseConfigurationReference = C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
@@ -843,6 +844,7 @@
 			baseConfigurationReference = CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
