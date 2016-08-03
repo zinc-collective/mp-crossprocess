@@ -824,9 +824,22 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         if(!writingOriginal)
         {
             // We always generate the processed asset as having an orientation of zero.
+            
             NSString*   orientationProperty = (__bridge NSString*)kCGImagePropertyOrientation;
             [imageMetadata setObject: [NSNumber numberWithInt: 0] forKey: orientationProperty];
         }
+        
+        
+        // if it doesn't have GPS (captured photos), insert the current location
+        if (![imageMetadata objectForKey:(NSString*)kCGImagePropertyGPSDictionary]) {
+            NSDictionary*                       gpsDict = gpsData ? gpsData : [self pCurrentLocation];
+            
+            if(gpsDict.count > 0)
+            {
+                [imageMetadata setObject: gpsDict forKey: (NSString*)kCGImagePropertyGPSDictionary];
+            }
+        }
+        
         
         [library writeImageToSavedPhotosAlbum: cgImage
                                      metadata: imageMetadata
