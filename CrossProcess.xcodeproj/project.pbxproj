@@ -56,6 +56,7 @@
 		40B81FCC144093EE00842FD9 /* pickphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FCB144093EE00842FD9 /* pickphoto.png */; };
 		40E9C647144477AC002B6D25 /* image_assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E9C646144477AC002B6D25 /* image_assets.plist */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
+		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
 		78B018151C9C49D9001132E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B018141C9C49D9001132E0 /* Images.xcassets */; };
 		78B018181C9C4CEA001132E0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B018171C9C4CEA001132E0 /* Launch Screen.storyboard */; };
 		F706FC35145DD7F800249726 /* red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F706FC1D145DD7F800249726 /* red.jpg */; };
@@ -162,6 +163,8 @@
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		786615671C9B60EB007810FA /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
+		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMetadata.h; sourceTree = "<group>"; };
+		78AD68A81D52664000D137C5 /* ImageMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMetadata.m; sourceTree = "<group>"; };
 		78B018141C9C49D9001132E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78B018171C9C4CEA001132E0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossProcess.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess.debug.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				F79DB6921439213F004E4CA0 /* CPAppDelegate.m */,
 				40172128143DD94600F5427F /* CPImageProcessor.h */,
 				40172129143DD94600F5427F /* CPImageProcessor.m */,
+				78AD68A71D52664000D137C5 /* ImageMetadata.h */,
+				78AD68A81D52664000D137C5 /* ImageMetadata.m */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				F7C7F5B3143E0810008AA9EA /* BCTimer.m in Sources */,
 				F7C7F5B7143E0CC9008AA9EA /* BCImageView.m in Sources */,
 				40A7A09014414D9600529407 /* CPOptionsViewController.m in Sources */,
+				78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */,
 				F7394DD71457BF8300F5E4F9 /* UIImageAdditions.m in Sources */,
 				403E0A1D145ECC50009B32A0 /* BCGrowlView.m in Sources */,
 				F7AE011914B556F300995297 /* BCImageLevels.m in Sources */,

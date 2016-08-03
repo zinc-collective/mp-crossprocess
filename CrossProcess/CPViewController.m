@@ -24,6 +24,7 @@
 #import <objc/runtime.h>
 #import <Photos/PHPhotoLibrary.h>
 #import <Crashlytics/Crashlytics.h>
+#import "ImageMetadata.h"
 
 
 #define PADDING     10
@@ -372,25 +373,30 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
      [self pValidateToolbarItems];
 
      // Begin an image processing operation
+     
+     [ImageMetadata fetchMetadataForURL:url found:^(NSDictionary * meta) {
+         NSLog(@"GOT METADATA %@", meta);
+         
+         self.photoToProcess = photo;
+         self.photoMetadata = meta;
+         self.photoAssetLibraryURL = url;
+         self.photoWasCaptured = NO;
+         
+         // If the scrollview's contentOffset is already 0,0 then our delegate method for scrollViewDidEndScrollingAnimation
+         // won't be called.
+         
+         CGPoint scrollOffset = self.scrollView.contentOffset;
+         if(CGPointEqualToPoint(CGPointZero, scrollOffset))
+         {
+             [self pBeginProcessingPhoto: photo.size];
+         }
+         else
+         {
+             NSLog(@"[CPV] userPickedPhoto - scroll");
+             [self.scrollView setContentOffset: CGPointZero animated: YES];
+         }
+     }];
 
-     self.photoToProcess = photo;
-     self.photoMetadata = nil;
-     self.photoAssetLibraryURL = url;
-     self.photoWasCaptured = NO;
-     
-     // If the scrollview's contentOffset is already 0,0 then our delegate method for scrollViewDidEndScrollingAnimation
-     // won't be called.
-     
-     CGPoint scrollOffset = self.scrollView.contentOffset;
-     if(CGPointEqualToPoint(CGPointZero, scrollOffset))
-     {
-         [self pBeginProcessingPhoto: photo.size];
-     }
-     else
-     {
-         NSLog(@"[CPV] userPickedPhoto - scroll");
-         [self.scrollView setContentOffset: CGPointZero animated: YES];
-     }
 }
 
 - (void) userCapturedPhoto: (UIImage*) photo withMetadata: (NSDictionary*) metadata
@@ -817,15 +823,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         
         if(!writingOriginal)
         {
-            NSDictionary*                       gpsDict = gpsData ? gpsData : [self pCurrentLocation];
-            
-            if(gpsDict.count > 0)
-            {
-                [imageMetadata setObject: gpsDict forKey: (NSString*)kCGImagePropertyGPSDictionary];
-            }
-            
             // We always generate the processed asset as having an orientation of zero.
-            
             NSString*   orientationProperty = (__bridge NSString*)kCGImagePropertyOrientation;
             [imageMetadata setObject: [NSNumber numberWithInt: 0] forKey: orientationProperty];
         }
