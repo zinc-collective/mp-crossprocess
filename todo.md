@@ -1,7 +1,7 @@
 
+
 * GPS timestamp not copying, resulting in a different timezone, when processing an app 
-
-
+* Share Text and URL
 
 
 

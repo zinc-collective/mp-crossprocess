@@ -469,7 +469,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 }
 
 - (void) shareImage:(UIImage*)image {
-    UIActivityViewController * share = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:NULL];
+    
+    NSString * shareText = @"Made with #CrossProcess";
+    NSURL * shareURL = [NSURL URLWithString:@"https://itunes.apple.com/us/app/cross-process/id355754066?mt=8"];
+    
+    UIActivityViewController * share = [[UIActivityViewController alloc] initWithActivityItems:@[image, shareText, shareURL] applicationActivities:NULL];
     [self presentViewController:share animated:YES completion:NULL];
 }
 
