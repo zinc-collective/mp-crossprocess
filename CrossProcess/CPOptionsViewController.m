@@ -2,7 +2,7 @@
 //  CPOptionsViewController.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "CPOptionsViewController.h"
@@ -74,7 +74,7 @@ static NSInteger    CPLabelViewTag = 101;
     self.saveOriginalCell = nil;
     self.infoCell = nil;
     self.communityCell = nil;
-    
+
     [super viewDidUnload];
 }
 
@@ -94,12 +94,12 @@ static NSInteger    CPLabelViewTag = 101;
 - (CGFloat) tableView: (UITableView*) tableView heightForHeaderInSection: (NSInteger) section
 {
 	CGFloat	height = 26.0;
-	
+
 	if(section == 0)
 	{
 		height = 30.0;
 	}
-    
+
 	return height;
 }
 
@@ -107,7 +107,7 @@ static NSInteger    CPLabelViewTag = 101;
 {
   	UIView* customView = [[UIView alloc] initWithFrame: CGRectMake(0, 0.0, 300.0, 26.0)];
 	UILabel* headerLabel = [[UILabel alloc] initWithFrame: CGRectZero];
-	
+
 	headerLabel.backgroundColor = [UIColor clearColor];
 	headerLabel.opaque = NO;
 	headerLabel.textColor = [UIColor darkGrayColor];
@@ -115,7 +115,7 @@ static NSInteger    CPLabelViewTag = 101;
 	headerLabel.shadowOffset = CGSizeMake(0, 1);
 	headerLabel.font = [UIFont boldSystemFontOfSize: 16];
 	headerLabel.textAlignment = NSTextAlignmentLeft;
-	
+
 	if(section == 0)
 	{
         NSString*   processHeaderText = NSLocalizedString(@"processHeaderText", @"Options - Process Header label");
@@ -128,7 +128,7 @@ static NSInteger    CPLabelViewTag = 101;
 		headerLabel.text = extrasHeaderText;
 		headerLabel.frame = CGRectMake(20, -4, 300, 26.0);
 	}
-	
+
   	[customView addSubview:headerLabel];
 	return customView;
 }
@@ -154,7 +154,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (NSInteger) tableView: (UITableView*) table numberOfRowsInSection: (NSInteger) section
 {
     NSInteger   numRows = 0;
-    
+
     if(section == 0)
     {
         numRows = 5;
@@ -163,11 +163,11 @@ static NSInteger    CPLabelViewTag = 101;
     {
         numRows = 5;
     }
-	
+
 	return numRows;
 }
 
-- (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath 
+- (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     if(indexPath.section == 1 && indexPath.row == 3)
 	{
@@ -184,7 +184,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
 	UITableViewCell*	cell = nil;
-	
+
     switch(indexPath.section)
     {
         case 0:
@@ -233,7 +233,7 @@ static NSInteger    CPLabelViewTag = 101;
 			{
                 cell = self.communityCell;
 			}
-            
+
             break;
         }
         default:
@@ -241,7 +241,7 @@ static NSInteger    CPLabelViewTag = 101;
             break;
         }
     }
-	
+
 	return cell;
 }
 
@@ -254,31 +254,31 @@ static NSInteger    CPLabelViewTag = 101;
 		self.moreInfoWebView = [[UIWebView alloc] initWithFrame: CGRectZero];
 		self.moreInfoWebView.scalesPageToFit = YES;
 		self.moreInfoWebView.delegate = self;
-		
+
 		// Webview frame is the full size of the screen - the height of the navigation bar.
-		
+
 		CGRect			webViewFrame = self.tableView.frame;
 		webViewFrame.origin.x += webViewFrame.size.width;
 		self.moreInfoWebView.frame = webViewFrame;
         self.moreInfoWebView.backgroundColor = [UIColor clearColor];
-	}		
-	
+	}
+
 	// Insert the webview as a sibling of the options view (below it - to ensure that it's also below the navigation bar)
-	
+
 	[self.view.superview insertSubview: self.moreInfoWebView aboveSubview: self.view];
-    
+
 	// Calculate the final (animatable) frames
-	
+
 	CGRect			newWebViewFrame = self.moreInfoWebView.frame;
 	newWebViewFrame.origin.x -= CGRectGetWidth(newWebViewFrame);
-	
+
     [UIView animateWithDuration: 0.4 animations:^
      {
          self.moreInfoWebView.frame = newWebViewFrame;
      }];
-        
+
 	[self.moreInfoWebView loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: CPBananaCameraMoreAppsURL]]];
-	
+
     NSString*           moreAppsTitle = NSLocalizedString(@"moreAppsTitle", @"More Apps options title");
 	UINavigationItem*	navItem = [[UINavigationItem alloc] initWithTitle: moreAppsTitle];
 	[self.navigationBar pushNavigationItem: navItem animated: YES];
@@ -288,10 +288,10 @@ static NSInteger    CPLabelViewTag = 101;
 {
     id<BCAppDelegate>   appDelegate = BCCastAsProtocol(BCAppDelegate, [[UIApplication sharedApplication] delegate]);
     NSURL*              manualURL = [appDelegate youTubeHelpURL];
-    
+
     if(manualURL)
     {
-        [[UIApplication sharedApplication] openURL: manualURL]; 
+        [[UIApplication sharedApplication] openURL: manualURL];
     }
 }
 
@@ -302,33 +302,33 @@ static NSInteger    CPLabelViewTag = 101;
 		self.socialWebView = [[UIWebView alloc] initWithFrame: CGRectZero];
 		self.socialWebView.scalesPageToFit = YES;
 		self.socialWebView.delegate = self;
-		
+
 		// Webview frame is the full size of the screen - the height of the navigation bar.
-		
+
 		CGRect			webViewFrame = self.tableView.frame;
 		webViewFrame.origin.x += webViewFrame.size.width;
 		self.socialWebView.frame = webViewFrame;
         self.socialWebView.backgroundColor = [UIColor clearColor];
-	}		
-	
+	}
+
 	// Insert the webview as a sibling of the options view (below it - to ensure that it's also below the navigation bar)
-	
+
 	[self.view.superview insertSubview: self.socialWebView aboveSubview: self.view];
-	
+
 	// Calculate the final (animatable) frames
-	
+
 	CGRect			newWebViewFrame = self.socialWebView.frame;
 	newWebViewFrame.origin.x -= CGRectGetWidth(newWebViewFrame);
-	
+
 	// Animate them into place.
-	
+
     [UIView animateWithDuration: 0.4 animations: ^
      {
          self.socialWebView.frame = newWebViewFrame;
      }];
-	
+
 	[_socialWebView loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: CPBananaCameraSocialURL]]];
-	
+
     NSString*           communityTitle = NSLocalizedString(@"communityTitle", @"Community options title");
 	UINavigationItem*	navItem = [[UINavigationItem alloc] initWithTitle: communityTitle];
 	[self.navigationBar pushNavigationItem: navItem animated: YES];
@@ -337,7 +337,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) keepOriginal: (id) sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPKeepOriginalOptionKey];
@@ -347,7 +347,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useBorder: (id) sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPWantsBorderOptionKey];
@@ -357,7 +357,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useRedCurve:(id)sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPRedProcessingOptionKey];
@@ -367,7 +367,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useBlueCurve:(id)sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPBlueProcessingOptionKey];
@@ -377,7 +377,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useGreenCurve:(id)sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPGreenProcessingOptionKey];
@@ -387,7 +387,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useBasicCurve:(id)sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPBasicProcessingOptionKey];
@@ -397,7 +397,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useExtremeCurve:(id)sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPExtremeProcessingOptionKey];
@@ -407,7 +407,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (IBAction) useFullSizeImage: (id) sender
 {
     UISwitch* uiSwitch = BCCastAsClass(UISwitch, sender);
-    
+
     if(uiSwitch)
     {
         [[NSUserDefaults standardUserDefaults] setBool: uiSwitch.isOn forKey: CPFullSizeImageOptionKey];
@@ -417,7 +417,7 @@ static NSInteger    CPLabelViewTag = 101;
 - (void) pUpdateControls
 {
     NSUserDefaults*     defaults = [NSUserDefaults standardUserDefaults];
-    
+
     BCCastAsClass(UISwitch, [self.fullsizeImageCell viewWithTag: CPSwitchViewTag]).on = [defaults boolForKey: CPFullSizeImageOptionKey];
     BCCastAsClass(UISwitch, [self.saveOriginalCell viewWithTag: CPSwitchViewTag]).on = [defaults boolForKey: CPKeepOriginalOptionKey];
     BCCastAsClass(UISwitch, [self.borderCell viewWithTag: CPSwitchViewTag]).on = [defaults boolForKey: CPWantsBorderOptionKey];
@@ -434,15 +434,15 @@ static NSInteger    CPLabelViewTag = 101;
     BCCastAsClass(UILabel, [self.saveOriginalCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"saveOriginalLabel", @"Save Original Label");
     BCCastAsClass(UILabel, [self.borderCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"borderLabel", "Border Label");
     BCCastAsClass(UILabel, [self.fullsizeImageCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"fullSizeImagesLabel", "Full Size Images Label");
-    
+
     BCCastAsClass(UILabel, [self.communityCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"communityLabel", "Community Label");
     BCCastAsClass(UILabel, [self.infoCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"moreAppsLabel", "More Apps Label");
-    
+
     BCCastAsClass(UILabel, [self.redCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"redLabel", "Red Label");
     BCCastAsClass(UILabel, [self.greenCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"greenLabel", "Green Label");
     BCCastAsClass(UILabel, [self.blueCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"blueLabel", "Blue Label");
     BCCastAsClass(UILabel, [self.basicCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"basicLabel", "Basic Label");
-    BCCastAsClass(UILabel, [self.extremeCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"extremeLabel", "Extreme Label"); 
+    BCCastAsClass(UILabel, [self.extremeCell viewWithTag: CPLabelViewTag]).text = NSLocalizedString(@"extremeLabel", "Extreme Label");
 }
 
 #pragma mark -
@@ -452,16 +452,16 @@ static NSInteger    CPLabelViewTag = 101;
 {
     NSString*           communityTitle = NSLocalizedString(@"communityTitle", @"Community options title");
     NSString*           moreAppsTitle = NSLocalizedString(@"moreAppsTitle", @"More Apps options title");
-    
+
 	if([item.title isEqualToString: moreAppsTitle])
 	{
 		// Calculate the final (animatable) frames
-		
+
 		CGRect			newWebViewFrame = self.moreInfoWebView.frame;
 		newWebViewFrame.origin.x += CGRectGetWidth(newWebViewFrame);
-		
+
 		// Animate them into place.
-		
+
         [UIView animateWithDuration: 0.4 animations:^
          {
              self.moreInfoWebView.frame = newWebViewFrame;
@@ -474,12 +474,12 @@ static NSInteger    CPLabelViewTag = 101;
 	else if([item.title isEqualToString: communityTitle])
 	{
 		// Calculate the final (animatable) frames
-		
+
 		CGRect			newWebViewFrame = self.socialWebView.frame;
 		newWebViewFrame.origin.x += CGRectGetWidth(newWebViewFrame);
-		
+
 		// Animate them into place.
-		
+
         [UIView animateWithDuration: 0.4 animations:^
          {
              self.socialWebView.frame = newWebViewFrame;
@@ -489,7 +489,7 @@ static NSInteger    CPLabelViewTag = 101;
              [self.socialWebView removeFromSuperview];
          }];
 	}
-    
+
 	return YES;
 }
 

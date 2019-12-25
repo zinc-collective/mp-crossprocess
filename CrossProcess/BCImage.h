@@ -2,7 +2,7 @@
 //  BCImage.h
 //  Baboon
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,10 +19,10 @@
     uint32_t*           _rawBytes;          // Raw pixel buffer
     uint32_t            _bufferSize;        // Pixel buffer size in bytes
     uint32_t            _rowBytes;          // Number of bytes per row (16-byte aligned)
-    
+
     CGSize              _size;              // Geometric size
 	UIImageOrientation	_orientation;		// Orientation
-    
+
     unsigned char       _reds[256];
     unsigned char       _greens[256];
     unsigned char       _blues[256];
@@ -63,7 +63,7 @@
 #define SET_RED_COMPONENT_RGBA(pixel, value)        *pixel = (*pixel & 0xFFFFFF00) | (value << 0)
 
 // ARGB use this if CGImageAlphaInfo == kCGImageAlphaPremultipliedFirst
- 
+
 #define BLUE_COMPONENT_ARGB(pixel)		(unsigned char)(*pixel >> 24)
 #define GREEN_COMPONENT_ARGB(pixel)      (unsigned char)(*pixel >> 16)
 #define RED_COMPONENT_ARGB(pixel)		(unsigned char)(*pixel >> 8)

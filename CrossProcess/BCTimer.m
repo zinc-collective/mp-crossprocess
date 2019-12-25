@@ -2,7 +2,7 @@
 //  BCTimer.m
 //  CrossProcess
 //
-//  Copyright Banana Camera Company 2010 - 2012. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCTimer.h"
@@ -35,12 +35,12 @@
     self.end = [NSDate date];
 }
 
-- (CGFloat) timeElapsedInSeconds 
+- (CGFloat) timeElapsedInSeconds
 {
     return [self.end timeIntervalSinceDate: self.start];
 }
 
-- (CGFloat) timeElapsedInMilliseconds 
+- (CGFloat) timeElapsedInMilliseconds
 {
     return [self timeElapsedInSeconds] * 1000.0f;
 }

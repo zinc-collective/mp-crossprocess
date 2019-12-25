@@ -2,7 +2,7 @@
 //  BCImageCurve.h
 //  Baboon
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -26,7 +26,7 @@ enum
 	double*		_samples;
 	BOOL		_identity;
 	UIColor*	_curveColor;
-	
+
 	uint		_pixels[256];				// 1K buffer
 	BOOL		_preprocessed;
 }

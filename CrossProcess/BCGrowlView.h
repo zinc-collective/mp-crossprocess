@@ -2,7 +2,7 @@
 //  BCGrowlView.h
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,7 +12,7 @@
 @property(nonatomic, assign) NSTimeInterval     notificationDuration;
 @property(nonatomic, strong) UILabel*           textLabel;
 
-- (void) beginNotificationInViewController: (UIViewController*) vc 
+- (void) beginNotificationInViewController: (UIViewController*) vc
                           withNotification: (NSString*) notification;
 
 @end

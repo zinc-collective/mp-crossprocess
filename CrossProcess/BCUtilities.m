@@ -2,7 +2,7 @@
 //  BCUtilities.mm
 //  Baboon
 //
-//  Copyright Banana Camera Company 2010 - 2012. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCUtilities.h"
@@ -11,10 +11,10 @@ CGRect CenterRectOverRect(CGRect a, CGRect b)
 {
 	CGPoint	centerB;
 	CGPoint centerA;
-	
+
 	centerB = CGPointMake(CGRectGetMidX(b), CGRectGetMidY(b));
 	centerA = CGPointMake(CGRectGetMidX(a), CGRectGetMidY(a));
-	
+
 	return CGRectOffset(a, centerB.x - centerA.x, centerB.y - centerA.y);
 }
 
@@ -30,15 +30,15 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 {
 	CGFloat	srcAspect = sizeToFit.width / sizeToFit.height;
 	CGFloat	dstAspect = sizeToFitInto.width / sizeToFitInto.height;
-	
+
 	CGSize	result;
-	
+
 	if(fabs(srcAspect - dstAspect) < 0.01)
 	{
 		// Aspects are close enough
 		result = sizeToFitInto;
 	}
-	else 
+	else
 	{
 		CGFloat scale = (sizeToFitInto.width / sizeToFit.width);
 		if(sizeToFit.height * scale > sizeToFitInto.height)
@@ -47,7 +47,7 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 		}
 
 		result = CGSizeMake(RoundEven(sizeToFit.width * scale), RoundEven(sizeToFit.height * scale));
-		
+
 		while(result.width < sizeToFitInto.width || result.height < sizeToFitInto.height)
 		{
 			scale += 0.01;
@@ -63,13 +63,13 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 {
 	CGSize	result = sizeToFit;
-	
+
 	if(sizeToFit.width < sizeToFit.height)
 	{
 		CGFloat		scale = sizeToFitInto.width / sizeToFit.width;
 		result.width = sizeToFit.width * scale;
 		result.height = sizeToFit.height * scale;
-		
+
 		while(result.height < sizeToFitInto.height)
 		{
 			scale += 0.1;
@@ -82,7 +82,7 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 		CGFloat		scale = sizeToFitInto.height / sizeToFit.height;
 		result.width = sizeToFit.width * scale;
 		result.height = sizeToFit.height * scale;
-		
+
 		while(result.width < sizeToFitInto.width)
 		{
 			scale += 0.1;
@@ -90,10 +90,10 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 			result.height = sizeToFit.height * scale;
 		}
 	}
-	
+
 	result.width = RoundEven(result.width);
 	result.height = RoundEven(result.height);
-	
+
 	return result;
 }
 */
@@ -101,10 +101,10 @@ CGSize FitSizeWithSize(CGSize sizeToFit, CGSize sizeToFitInto)
 CGFloat RoundEven(CGFloat a)
 {
 	long int	result = lrintf(a);
-	
+
 	if(result % 2 )
 		result += 1;
-	
+
 	return((CGFloat)result);
 }
 
@@ -129,14 +129,14 @@ CGColorRef CreateDeviceRGBColor(CGFloat r, CGFloat g, CGFloat b, CGFloat a)
 CGAffineTransform AdjustedTransform(UIImageOrientation orientation, CGFloat width, CGFloat height)
 {
     CGAffineTransform   result = CGAffineTransformIdentity;
-    
+
     if(orientation != UIImageOrientationUp && width > 0.0 && height > 0.0)
     {
         switch(orientation)
         {
-            case UIImageOrientationDown:         
+            case UIImageOrientationDown:
             {
-                result = CGAffineTransformMake(-1, 0, 0, -1, width, height); 
+                result = CGAffineTransformMake(-1, 0, 0, -1, width, height);
                 break;
             }
             case UIImageOrientationLeft:
@@ -144,39 +144,39 @@ CGAffineTransform AdjustedTransform(UIImageOrientation orientation, CGFloat widt
                 result = CGAffineTransformMake(0, height/width, -width/height, 0, width, 0);
                 break;
             }
-            case UIImageOrientationRight:        
+            case UIImageOrientationRight:
             {
-                result = CGAffineTransformMake(0, -height/width, width/height, 0, 0, height); 
+                result = CGAffineTransformMake(0, -height/width, width/height, 0, 0, height);
                 break;
             }
             case UIImageOrientationUpMirrored:
             {
-                result = CGAffineTransformMake(-1, 0, 0, 1, width, 0); 
+                result = CGAffineTransformMake(-1, 0, 0, 1, width, 0);
                 break;
             }
             case UIImageOrientationDownMirrored:
             {
-                result = CGAffineTransformMake( 1, 0, 0, -1, 0, height); 
+                result = CGAffineTransformMake( 1, 0, 0, -1, 0, height);
                 break;
             }
-            case UIImageOrientationLeftMirrored:  
+            case UIImageOrientationLeftMirrored:
             {
-                result = CGAffineTransformMake( 0, -height/width, -width/height, 0, width, height); 
+                result = CGAffineTransformMake( 0, -height/width, -width/height, 0, width, height);
                 break;
             }
-            case UIImageOrientationRightMirrored: 
+            case UIImageOrientationRightMirrored:
             {
-                result = CGAffineTransformMake( 0, height/width, width/height, 0, 0, 0); 
+                result = CGAffineTransformMake( 0, height/width, width/height, 0, 0, 0);
                 break;
             }
-            default:                              
+            default:
             {
-                result = CGAffineTransformIdentity;                        
+                result = CGAffineTransformIdentity;
                 break;
             }
         }
     }
-    
+
     return result;
 }
 

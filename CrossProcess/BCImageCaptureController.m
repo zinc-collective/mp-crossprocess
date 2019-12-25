@@ -2,7 +2,7 @@
 //  BCImageCaptureController.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCImageCaptureController.h"
@@ -19,12 +19,12 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
 - (id) initWithNibName: (NSString*) nibNameOrNil bundle: (NSBundle*) nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) 
+    if (self)
     {
         self.imagePickerController = [[UIImagePickerController alloc] init];
         self.imagePickerController.delegate = self;
     }
-    
+
     return self;
 }
 
@@ -38,7 +38,7 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
     self.view.userInteractionEnabled = NO;
 }
@@ -57,7 +57,7 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
 - (void) setupForImageCapture: (UIImagePickerControllerSourceType) sourceType
 {
     self.imagePickerController.sourceType = sourceType;
-    
+
     if(sourceType == UIImagePickerControllerSourceTypeCamera)
     {
         // user wants to use the camera interface
@@ -69,12 +69,12 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
         self.imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
 
         NSUserDefaults*     defaults = [NSUserDefaults standardUserDefaults];
-        
+
         if([defaults objectForKey: BCCameraDeviceKey])
         {
             self.imagePickerController.cameraDevice = [defaults integerForKey: BCCameraDeviceKey];
         }
-        
+
         if([defaults objectForKey: BCCameraFlashModeKey])
         {
             self.imagePickerController.cameraFlashMode = [defaults integerForKey: BCCameraFlashModeKey];
@@ -87,13 +87,13 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
 - (void) imagePickerController: (UIImagePickerController*) picker didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
     UIImage*    image = [info valueForKey: UIImagePickerControllerOriginalImage];
-    
+
     if(picker.sourceType == UIImagePickerControllerSourceTypeCamera)
     {
         NSUserDefaults*     defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger: picker.cameraDevice forKey: BCCameraDeviceKey];
         [defaults setInteger: picker.cameraFlashMode forKey: BCCameraFlashModeKey];
-        
+
         NSDictionary*   imageMetadata = [info objectForKey: UIImagePickerControllerMediaMetadata];
         [self.delegate userCapturedPhoto: image withMetadata: imageMetadata];
     }

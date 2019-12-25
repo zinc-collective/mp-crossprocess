@@ -2,7 +2,7 @@
 //  BCImageLevels.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCImageLevels.h"
@@ -23,15 +23,15 @@
     {
         if(hilightLevel > 255)
         {
-            hilightLevel = 255; 
+            hilightLevel = 255;
         }
-        
+
         _shadowLevel = shadowLevel;
         _hilightLevel = hilightLevel;
         _imageLevels = (uint32_t*)malloc(sizeof(uint32_t) * 256);
         [self pGenerateLevels];
     }
-    
+
     return self;
 }
 
@@ -55,9 +55,9 @@
         NSUInteger   max_b = self.hilightLevel;
         NSUInteger   a_span = max_a - min_a;
         NSUInteger   b_span = max_b - min_b;
-        
+
         double      scaleFactor = (double) b_span / (double) a_span;
-        
+
         for(NSUInteger i = 0; i < 256; ++i)
         {
             _imageLevels[i] = min_b + (i - min_a) * scaleFactor;

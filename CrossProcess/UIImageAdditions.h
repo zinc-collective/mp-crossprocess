@@ -2,7 +2,7 @@
 //  UIImageAdditions.h
 //  CrossProcess
 //
-//  Copyright Banana Camera Company 2010 - 2012. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
