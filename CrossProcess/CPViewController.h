@@ -2,7 +2,7 @@
 //  CPViewController.h
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -23,7 +23,7 @@ extern const NSInteger  CPWelcomeViewTag;
 extern const NSInteger  CPToolbarTag;
 
 
-@interface CPViewController : UIViewController< BCImageCaptureControllerDelegate, 
+@interface CPViewController : UIViewController< BCImageCaptureControllerDelegate,
                                                 CPOptionsViewControllerDelegate,
                                                 UIActionSheetDelegate,
                                                 MFMailComposeViewControllerDelegate,

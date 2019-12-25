@@ -513,7 +513,7 @@
 			attributes = {
 				CLASSPREFIX = CP;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Copyright Banana Camera Company 2010 - 2012";
+				ORGANIZATIONNAME = "Zinc Collective LLC";
 				TargetAttributes = {
 					F79DB6031438F017004E4CA0 = {
 						DevelopmentTeam = G8R2KJ59DE;

@@ -2,7 +2,7 @@
 //  BCImageView.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCImageView.h"
@@ -32,7 +32,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     {
         self.layer.contentsGravity = kCAGravityResizeAspect;
     }
-    
+
     return self;
 }
 
@@ -44,7 +44,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         self.layer.contentsGravity = kCAGravityResizeAspect;
         self.layer.contents = (id)image.CGImageRef;
     }
-    
+
     return self;
 }
 
@@ -53,31 +53,31 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     if(self = [super initWithFrame: BCViewFrame])
     {
         _portraitOrientation = isPortrait;
-        
+
         UIImage*    placeholderImage = [self pLoadPlaceholderImage: placeholderType];
 
         if(self.portraitOrientation == NO)
         {
             CGSize      imageSize = placeholderImage.size;      // 320 wide x 428 high
-            
+
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageSize.height, imageSize.width), YES, 0.0f);
 
             CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0f, imageSize.width);
             transform = CGAffineTransformRotate(transform, radians(-90));
             CGContextConcatCTM(UIGraphicsGetCurrentContext(), transform);
-            
+
             [placeholderImage drawAtPoint: CGPointZero];
             placeholderImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext(); 
+            UIGraphicsEndImageContext();
         }
 
         self.layer.contentsGravity = kCAGravityResizeAspect;
         self.layer.contents = (id)placeholderImage.CGImage;
     }
-    
+
     return self;
 }
- 
+
 - (id) initWithImageURL: (NSURL*) imageURL
 {
     if(self = [super initWithFrame: BCViewFrame])
@@ -85,7 +85,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         self.layer.contentsGravity = kCAGravityResizeAspect;
         [self pUseImageURL: imageURL];
     }
-    
+
     return self;
 }
 
@@ -94,7 +94,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
 - (void) drawRect: (CGRect) rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+
     CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeRectWithWidth(context, rect, 4.0);
 }
@@ -117,9 +117,9 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         CALayer*    contentLayer = [CALayer layer];
         contentLayer.contentsGravity = kCAGravityResizeAspect;
         contentLayer.bounds = self.layer.bounds;
-        contentLayer.position = self.layer.position;        
+        contentLayer.position = self.layer.position;
         contentLayer.contents = (__bridge id)contentAsset.CGImage;
-        
+
         [self.layer addSublayer: contentLayer];
         [self.layer addSublayer: frameLayer];
     }
@@ -128,7 +128,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
 - (void) useAsset: (id) asset
 {
     // Asset can be an a url, a uiimage, or a placeholder
-    
+
     NSURL*      assetURL = BCCastAsClass(NSURL, asset);
     UIImage*    assetUIImage = BCCastAsClass(UIImage, asset);
     BCImage*    assetImage = BCCastAsClass(BCImage, asset);
@@ -140,10 +140,10 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         CATransition*   crossfade = [CATransition animation];
         crossfade.type = kCATransitionFade;
         crossfade.duration = 2.0;
-        
+
         [self.layer addAnimation: crossfade forKey: kCATransition];
     }
-    
+
     if(assetURL)
     {
         [self pUseImageURL: assetURL];
@@ -160,22 +160,22 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     else if(assetPlaceholder)
     {
         NSInteger       placeholderType = [assetPlaceholder integerValue];
-        
+
         _portraitOrientation = placeholderType >= 0;
-        
+
         CPPlaceholderType       type = (CPPlaceholderType)labs(placeholderType);
         UIImage*                placeholderImage = [self pLoadPlaceholderImage: type];
         UIImage*                borderImage = nil;
-        
+
         if((type & CPPlaceholderBorder) != 0)
         {
             borderImage = [self pLoadPlaceholderBorderImage];
         }
-        
+
         if(CGSizeEqualToSize(self.naturalSize, CGSizeZero))
         {
             CGSize      imageSize = placeholderImage.size;      // 320 wide x 428 high
-            
+
             if(self.portraitOrientation == NO)
             {
                 UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageSize.height, imageSize.width), YES, 0.0f);
@@ -184,16 +184,16 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
                 transform = CGAffineTransformRotate(transform, radians(-90));
                 CGContextConcatCTM(UIGraphicsGetCurrentContext(), transform);
             }
-            else 
+            else
             {
                 UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageSize.width, imageSize.height), YES, 0.0f);
             }
-            
+
             [placeholderImage drawAtPoint: CGPointZero];
             [borderImage drawAtPoint: CGPointZero];
-            
+
             placeholderImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext(); 
+            UIGraphicsEndImageContext();
         }
         else
         {
@@ -202,12 +202,12 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(placeholderSize.width, placeholderSize.height), YES, 0.0f);
             [placeholderImage drawInRect: CGRectMake(0.0, 0.0, placeholderSize.width, placeholderSize.height)];
             [borderImage drawInRect: CGRectMake(0.0, 0.0, placeholderSize.width, placeholderSize.height)];
-            
+
             placeholderImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext(); 
+            UIGraphicsEndImageContext();
         }
 
-        self.layer.contents = (__bridge id)placeholderImage.CGImage;        
+        self.layer.contents = (__bridge id)placeholderImage.CGImage;
     }
     else
     {
@@ -221,9 +221,9 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     {
         NSError*    error = nil;
         UIImage*    image = [UIImage imageWithData: [NSData dataWithContentsOfURL: imageURL
-                                                                                    options: NSDataReadingMappedIfSafe 
+                                                                                    options: NSDataReadingMappedIfSafe
                                                                                       error: &error]];
-        
+
         if(image)
         {
             [self pCrossFadeLayer];
@@ -238,15 +238,15 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     else
     {
         ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; // AppDelegate().assetLibrary;
-        
-        [library assetForURL: imageURL 
-                 resultBlock:^(ALAsset *asset) 
+
+        [library assetForURL: imageURL
+                 resultBlock:^(ALAsset *asset)
          {
              assert([NSThread isMainThread]);
-             
+
              ALAssetRepresentation*	rep = [asset defaultRepresentation];
              CGImageRef fullscreenImageRef = [rep fullScreenImage];
-             
+
              if(fullscreenImageRef)
              {
                  [self pCrossFadeLayer];
@@ -257,7 +257,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
              {
                  NSLog(@"Failed to load asset");
              }
-         }   
+         }
                 failureBlock:^(NSError *error)
          {
              NSLog(@"%@", [error description]);
@@ -272,7 +272,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         CATransition*   crossfade = [CATransition animation];
         crossfade.type = kCATransitionFade;
         crossfade.duration = 2.0;
-        
+
         [self.layer addAnimation: crossfade forKey: kCATransition];
     }
 }
@@ -286,7 +286,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
 - (UIImage*) pLoadPlaceholderBorderImage
 {
     UIImage*    image = [UIImage imageNamed: @"preview_border"];
-    
+
     if(!image)
     {
 #if DEBUG
@@ -295,16 +295,16 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         image = [UIImage imageNamed: [@"preview_border" stringByAppendingPathExtension: @"png"]];
     }
     assert(image);
-    
+
     return image;
 }
 
 - (UIImage*) pLoadPlaceholderImage: (CPPlaceholderType) placeholderType
 {
     NSString*   placeholderName = nil;
-    
+
     NSUInteger   type = placeholderType & ~CPPlaceholderBorder;
-    
+
     switch(type)
     {
         case CPPlaceholderBasic:
@@ -342,9 +342,9 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
             break;
         }
     }
-    
+
     UIImage*    image = nil;
-    
+
     if(placeholderName)
     {
         image = [UIImage imageNamed: placeholderName];

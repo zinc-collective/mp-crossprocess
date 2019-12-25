@@ -2,7 +2,7 @@
 //  BCImageScrollView.h
 //  CrossProcess
 //
-//  Copyright 2010-2011 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,7 +2,7 @@
 //  BCUtilities.h
 //  Baboon
 //
-//  Copyright Banana Camera Company 2010 - 2011. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

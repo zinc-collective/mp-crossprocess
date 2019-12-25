@@ -1,0 +1,1 @@
+Contributors transfer all ownership rights to Zinc Collective LLC upon submission of their contributions into the primary Zinc Collective LLC repository. Contributor's guarantee that they have the right to transfer ownership of their contributions; and shall indemnify Zinc Collective LLC from any and all repercussions caused by a violation of this guarantee.

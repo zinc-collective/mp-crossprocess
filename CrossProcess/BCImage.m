@@ -2,7 +2,7 @@
 //  BCImage.mm
 //  Baboon
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCImage.h"
@@ -26,24 +26,24 @@
 + (CGColorSpaceRef) deviceRGBColorSpace
 {
     static CGColorSpaceRef  sColorspace = nil;
-    
+
     if(!sColorspace)
     {
         sColorspace = CGColorSpaceCreateDeviceRGB();
     }
-    
+
     return sColorspace;
 }
 
 + (CGColorRef) genericGrayColor80
 {
     static CGColorRef   sGenericGrayColor80;
-    
+
     if(!sGenericGrayColor80)
     {
         sGenericGrayColor80 = CreateDeviceGrayColor(0.8, 0.2);
     }
-    
+
     return sGenericGrayColor80;
 }
 
@@ -52,22 +52,22 @@
 {
     CGSize      sourceSize = image.size;
 	CGSize      destinationSize = CGSizeZero;
-    
+
 	destinationSize.width = roundf(sourceSize.width * scale);
 	destinationSize.height = roundf(sourceSize.height * scale);
-    
+
     crop.size.width = roundf(crop.size.width * scale);
     crop.size.height = roundf(crop.size.height * scale);
 
-    
+
     BCImage*    resultImage = [[BCImage alloc] initWithSize: destinationSize orientation: image.imageOrientation];
-    
+
     if(resultImage)
     {
         CGAffineTransform   tf = CGAffineTransformMakeScale(scale, scale);
-     
+
         [resultImage pushContext];
-		
+
         CGContextSetInterpolationQuality(resultImage.context, kCGInterpolationHigh);
         CGContextConcatCTM(resultImage.context, tf);
         CGContextConcatCTM(resultImage.context, AdjustedTransform(image.imageOrientation, sourceSize.width, sourceSize.height));
@@ -78,7 +78,7 @@
 
         [resultImage popContext];
     }
-    
+
     return resultImage;
 }
 */
@@ -89,20 +89,20 @@
     {
         _size.width = roundf(imageSize.width * scale);
         _size.height = roundf(imageSize.height * scale);
-        
+
         CGColorSpaceRef     colorSpace = [[self class] deviceRGBColorSpace];
-        
+
         _rowBytes = _size.width * 4;
         _rowBytes = (_rowBytes + 15) & ~15;
-        
+
         CGBitmapInfo    bitmapInfo = (CGBitmapInfo) kCGImageAlphaPremultipliedLast;
-        
+
         _bufferSize = _rowBytes * _size.height;
         _rawBytes = (uint32_t*)calloc(sizeof(unsigned char), _bufferSize);
         _contextRef = CGBitmapContextCreate(_rawBytes, _size.width, _size.height, 8, _rowBytes, colorSpace, bitmapInfo);
 		_orientation = orientation;
     }
-    
+
     return  self;
 }
 
@@ -110,7 +110,7 @@
 {
     CGContextRelease(_contextRef);
     _contextRef = NULL;
-    
+
 	if(_rawBytes)
 	{
 		free(_rawBytes);
@@ -125,7 +125,7 @@
         UIGraphicsPushContext(_contextRef);
         CGContextSaveGState(_contextRef);
     }
-    
+
     return _contextRef;
 }
 
@@ -146,7 +146,7 @@
     {
         result = CGBitmapContextCreateImage(_contextRef);
     }
-    
+
     return result;
 }
 
@@ -156,7 +156,7 @@
     BCImageCurve*   redCurve = [curves objectAtIndex: 1];
     BCImageCurve*   greenCurve = [curves objectAtIndex: 2];
     BCImageCurve*   blueCurve = [curves objectAtIndex: 3];
-    
+
     return ((rgbCurve.identity ? 0 : CURVE_COLORS) |
             (redCurve.identity ? 0 : CURVE_RED) |
             (greenCurve.identity ? 0 : CURVE_GREEN) |
@@ -166,14 +166,14 @@
 - (void) applyCurves: (NSArray*) curves
 {
 	NSUInteger            curvesMask = [self pCurveApplyMask: curves];
-    
+
     if(curvesMask != CURVE_NONE)
     {
         BCImageCurve*   rgbCurve = [curves objectAtIndex: 0];
         BCImageCurve*   redCurve = [curves objectAtIndex: 1];
         BCImageCurve*   greenCurve = [curves objectAtIndex: 2];
         BCImageCurve*   blueCurve = [curves objectAtIndex: 3];
-        
+
         for(unsigned int i = 0; i <= 255; ++i)
         {
             switch(curvesMask)
@@ -222,10 +222,10 @@
                 }
             }
         }
-        
+
         uint32_t*  currentPixel = _rawBytes;
         uint32_t*  lastPixel = (uint32_t*)((unsigned char*)_rawBytes + _bufferSize);
-        
+
         while(currentPixel < lastPixel)
         {
             SET_RED_COMPONENT_RGBA(currentPixel, _reds[RED_COMPONENT_RGBA(currentPixel)]);
@@ -241,7 +241,7 @@
     uint32_t*  currentPixel = _rawBytes;
     uint32_t*  lastPixel = (uint32_t*)((unsigned char*)_rawBytes + _bufferSize);
     uint32_t* imageLevels = levels.imageLevels;
-    
+
     while(currentPixel < lastPixel)
     {
         SET_RED_COMPONENT_RGBA(currentPixel, imageLevels[RED_COMPONENT_RGBA(currentPixel)]);

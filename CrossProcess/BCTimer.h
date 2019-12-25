@@ -2,12 +2,12 @@
 //  BCTimer.h
 //  CrossProcess
 //
-//  Copyright Banana Camera Company 2010 - 2012. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface BCTimer : NSObject 
+@interface BCTimer : NSObject
 
 @property(nonatomic, strong, readonly) NSDate* start;
 @property(nonatomic, strong, readonly) NSDate* end;

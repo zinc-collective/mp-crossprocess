@@ -2,7 +2,7 @@
 //  BCAppDelegate.h
 //  CrossProcess
 //
-//  Copyright 2012 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -2,7 +2,7 @@
 //  BCMiscellaneous.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "BCMiscellaneous.h"
@@ -11,10 +11,10 @@
 id BCDynamicCast(Class c, id<NSObject> src)
 {
 	id result = nil;
-    
+
 	if(src != nil && [src isKindOfClass: c])
 		result = src;
-    
+
 	return result;
 }
 
@@ -22,10 +22,10 @@ id BCDynamicCast(Class c, id<NSObject> src)
 id BCProtocolCast(Protocol* protocol, id<NSObject> src)
 {
 	id result = nil;
-    
+
 	if(src != nil && [src conformsToProtocol: protocol])
 		result = src;
-    
+
 	return result;
 }
 
@@ -33,10 +33,10 @@ id BCProtocolCast(Protocol* protocol, id<NSObject> src)
 CFTypeRef BCCFTypeCast(CFTypeID typeId, CFTypeRef src)
 {
     CFTypeRef result = NULL;
-    
+
     if (src != NULL && CFGetTypeID(src) == typeId)
         result = src;
-    
+
     return result;
 }
 

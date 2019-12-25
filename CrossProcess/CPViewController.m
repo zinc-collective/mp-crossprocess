@@ -2,7 +2,7 @@
 //  CPViewController.m
 //  CrossProcess
 //
-//  Copyright 2010-2013 Banana Camera Company. All rights reserved.
+//  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
 #import "CPViewController.h"
@@ -60,7 +60,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) pImageProcessorDone: (CPImageProcessor*) imageProcessor;
 - (void) pWriteImageToPhotoLibrary: (BCImage*) image metadata: (NSDictionary*) metadata gpsData: (NSDictionary*) gpsData;
 - (void) pGatherOriginalLocation: (NSURL*) assetURL andWriteToPhotoLibrary: (BCImage*) image;
-- (void) pWriteCGImageToSavedPhotosAlbum: (CGImageRef) cgImage 
+- (void) pWriteCGImageToSavedPhotosAlbum: (CGImageRef) cgImage
                                 metadata: (NSDictionary*) metadata
                                  gpsData: (NSDictionary*) gpsData
                          writingOriginal: (BOOL) writingOriginal
@@ -123,18 +123,18 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) didReceiveMemoryWarning
 {
-#if DEBUG    
+#if DEBUG
     NSLog(@"Recieved memory warning");
 #endif
-    
+
     if(self.captureSound != 0)
     {
         AudioServicesDisposeSystemSoundID(self.captureSound);
         self.captureSound = 0;
     }
-    
+
     self.recycledImageViews = nil;
-    
+
     [super didReceiveMemoryWarning];
 }
 
@@ -146,7 +146,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         self.processedImages = [[NSMutableArray alloc] initWithCapacity: 10];
     }
-    
+
     return self;
 }
 
@@ -165,7 +165,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 #if DEBUG
     NSLog(@"-viewDidLayoutSubviews");
 #endif
-    
+
     [super viewDidLayoutSubviews];
 }
 */
@@ -173,11 +173,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.debugVersionLabel.text = [(CPAppDelegate*)[[UIApplication sharedApplication] delegate] version];
-    
+
     self.view.tag = CPRootViewTag;
-    
+
     //self.scrollView.frame = [self pFrameForScrollView];
     [self pAdjustScrollViewFrame];
     self.scrollView.tag = CPScrollViewTag;
@@ -190,22 +190,22 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
 
-    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self 
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget: self
                                                                                 action: @selector(pHandleSingleTap:)];
     singleTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer: singleTap];
-    
+
     [self setBackgroundImage];
     [self pSetupPhotoCaptureSound];
-    
+
     if(self.imageCaptureController == nil)
     {
         self.imageCaptureController = [[BCImageCaptureController alloc] initWithNibName: @"BCImageCaptureController" bundle: nil];
         self.imageCaptureController.delegate = self;
     }
-    
+
     // Set the appropriate toolbar
-    
+
     if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == YES)
 	{
         self.toolbar = self.toolbarWithCamera;
@@ -218,28 +218,28 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         self.toolbarWithCamera = nil;
         self.toolbarNoCamera = nil;
     }
-    
+
     // Toolbar should be off by default
     self.toolbar.alpha = 0.0f;
-        
+
     CGSize viewSize = self.view.frame.size;
     CGSize toolbarSize = self.toolbar.frame.size;
-    
+
     self.toolbar.frame = CGRectMake(0, viewSize.height - toolbarSize.height, viewSize.width, toolbarSize.height);
     self.toolbar.tag = CPToolbarTag;
     [self.view insertSubview: self.toolbar aboveSubview: self.scrollView];
-    
+
     self.recycledImageViews = [[NSMutableSet alloc] init];
     self.visibleImageViews = [[NSMutableSet alloc] init];
-    
+
 }
 
 - (void) viewDidUnload
 {
-#if DEBUG    
+#if DEBUG
     NSLog(@"View did unload");
 #endif
-    
+
     [super viewDidUnload];
 
     if(self.captureSound != 0)
@@ -256,11 +256,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) viewDidAppear: (BOOL) animated
 {
     [super viewDidAppear: animated];
-    
+
     if(self.applicationLaunching)
     {
         self.applicationLaunching = NO;
-        
+
         if(self.shouldShowWelcomeScreen)
         {
             [self showFirstLaunchScreen];
@@ -277,7 +277,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) showFirstLaunchScreen
 {
     UIView*  rootView = [self.view superview];
-    
+
     UINib*   welcomeNib = nil;
     welcomeNib = [UINib nibWithNibName: @"CPWelcome" bundle: nil];
 
@@ -293,24 +293,24 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                 [rootView insertSubview: welcomeView aboveSubview: self.view];
 
                 welcomeView.tag = CPWelcomeViewTag;
-                
+
                 UILabel*    welcomeMessageTitleLabel = BCCastAsClass(UILabel, [welcomeView viewWithTag: CPWelcomeLabelTitleTag]);
                 UILabel*    welcomeMessageMessageLabel = BCCastAsClass(UILabel, [welcomeView viewWithTag: CPWelcomeLabelMessageTag]);
                 UIButton*   introVideoButton = BCCastAsClass(UIButton, [welcomeView viewWithTag: CPIntroVideoButtonTag]);
-                
+
                 NSString*   welcomeTitleString = NSLocalizedString(@"welcomeMessage", @"CP Welcome Title");
                 NSString*   welcomeMessageString = NSLocalizedString(@"welcomeMessageTitle", @"CP Welcome Message");
                 NSString*   introVideoButtonString = NSLocalizedString(@"introVideoText", @"CP Intro Video Button Text");
-                
+
                 welcomeMessageTitleLabel.text = welcomeTitleString;
                 welcomeMessageMessageLabel.text = welcomeMessageString;
-                
+
                 [introVideoButton setTitle: introVideoButtonString forState: UIControlStateNormal];
                 [introVideoButton setTitle: introVideoButtonString forState: UIControlStateHighlighted];
-                
-                [UIView transitionFromView: self.view 
-                                    toView: welcomeView 
-                                  duration: 1.0 
+
+                [UIView transitionFromView: self.view
+                                    toView: welcomeView
+                                  duration: 1.0
                                    options: UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionTransitionCrossDissolve
                                 completion: ^(BOOL finished)
                  {
@@ -373,18 +373,18 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
      [self pValidateToolbarItems];
 
      // Begin an image processing operation
-     
+
      [ImageMetadata fetchMetadataForURL:url found:^(NSDictionary * meta) {
          NSLog(@"GOT METADATA %@", meta);
-         
+
          self.photoToProcess = photo;
          self.photoMetadata = meta;
          self.photoAssetLibraryURL = url;
          self.photoWasCaptured = NO;
-         
+
          // If the scrollview's contentOffset is already 0,0 then our delegate method for scrollViewDidEndScrollingAnimation
          // won't be called.
-         
+
          CGPoint scrollOffset = self.scrollView.contentOffset;
          if(CGPointEqualToPoint(CGPointZero, scrollOffset))
          {
@@ -406,7 +406,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [self pValidateToolbarItems];
 
     // Begin an image processing operation
-    
+
     self.photoToProcess = photo;
     self.photoMetadata = metadata;
     self.photoAssetLibraryURL = nil;
@@ -433,7 +433,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         [self pShowToolbar: NO];
     }
- 
+
     [self dismissViewControllerAnimated: YES completion:^{}];
     [self pValidateToolbarItems];
 }
@@ -444,12 +444,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         CPImageProcessor*    ip = BCCastAsClass(CPImageProcessor, object);
 //        NSLog(@"[CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
-        
+
         if(ip && [ip isFinished])
         {
             [self performSelectorOnMainThread: @selector(pImageProcessorDone:) withObject: ip waitUntilDone: NO];
         }
-    } 
+    }
     else
     {
         [super observeValueForKeyPath: keyPath ofObject: object change: change context: context];
@@ -469,10 +469,10 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 }
 
 - (void) shareImage:(UIImage*)image {
-    
+
     NSString * shareText = @"Made with #CrossProcess";
     NSURL * shareURL = [NSURL URLWithString:@"https://itunes.apple.com/us/app/cross-process/id355754066?mt=8"];
-    
+
     UIActivityViewController * share = [[UIActivityViewController alloc] initWithActivityItems:@[image, shareText, shareURL] applicationActivities:NULL];
     [self presentViewController:share animated:YES completion:NULL];
 }
@@ -499,10 +499,10 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     id<BCAppDelegate>   appDelegate = BCCastAsProtocol(BCAppDelegate, [[UIApplication sharedApplication] delegate]);
     NSURL*              manualURL = [appDelegate youTubeHelpURL];
-    
+
     if(manualURL)
     {
-        [[UIApplication sharedApplication] openURL: manualURL]; 
+        [[UIApplication sharedApplication] openURL: manualURL];
     }
 }
 
@@ -534,31 +534,31 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     CGFloat offset = self.scrollView.contentOffset.x;
     CGFloat scrollViewWidth = self.scrollView.bounds.size.width;
-    
+
     if(offset >= 0)
     {
         self.firstVisibleImageIndexBeforeRotation = floorf(offset / scrollViewWidth);
         self.percentScrolledIntoFirstVisibleImage = (offset - (self.firstVisibleImageIndexBeforeRotation * scrollViewWidth)) / scrollViewWidth;
-    } 
+    }
     else
     {
         self.firstVisibleImageIndexBeforeRotation = 0;
         self.percentScrolledIntoFirstVisibleImage = offset / scrollViewWidth;
-    }    
+    }
 }
 
 - (void) willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation duration: (NSTimeInterval) duration
 {
     // recalculate contentSize based on current orientation
     self.scrollView.contentSize = [self pContentSizeForScrollView];
-    
+
     // adjust frames and configuration of each visible page
-    
+
     for(UIView* subview in self.scrollView.subviews)
     {
         subview.frame = [self pFrameForViewAtIndex: subview.index];
     }
-    
+
     // adjust contentOffset to preserve page location based on values collected prior to location
     CGFloat scrollViewWidth = self.scrollView.bounds.size.width;
     CGFloat newOffset = (self.firstVisibleImageIndexBeforeRotation * scrollViewWidth) + (self.percentScrolledIntoFirstVisibleImage * scrollViewWidth);
@@ -586,51 +586,51 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(self.processedImages.count > 0)
     {
         NSNumber*  placeholderAsset = BCCastAsClass(NSNumber, [self.processedImages objectAtIndex: 0]);
-        
+
         if(placeholderAsset)
         {
             // Ensure that the # of assets we have are reflected in the scrollview size.
-            
+
             self.scrollView.contentSize = [self pContentSizeForScrollView];
 
             // Increment the visible image indices.
-            
+
             for(BCImageView* view in self.visibleImageViews)
             {
                 [view setIndex: view.index + 1];
             }
-            
+
             // Start the capture sound.
-            
+
             [self pPlayPhotoCaptureSound];
 
             // Create the new placeholder view, add it to the scrollview and animate it in.
-            
+
             BCImageView*    imageView = [[BCImageView alloc] initWithFrame: BCViewFrame];
-            
+
             // Only set the natural size if the photo wasn't captured.
-            
+
             if(self.imageProcessor.wasCaptured == NO)
             {
                 imageView.naturalSize = imageSize;
             }
-            
+
             [self pConfigureView: imageView forIndex: 0];
 
             [imageView useAsset: placeholderAsset];
-            
+
             CGRect initialFrame = imageView.frame;
             imageView.frame = CGRectOffset(initialFrame, -(initialFrame.size.width + PADDING + PADDING), 0);
-            
+
             [self.scrollView addSubview: imageView];
             [self.visibleImageViews addObject: imageView];
-            
+
             // Since we add a placeholder to the beginning of the array we need
             // to update the array indices appropriately and offset the visible image views
-            
-            [UIView animateWithDuration: 2.0 
-                                  delay: 0.0 
-                                options: UIViewAnimationOptionCurveEaseInOut 
+
+            [UIView animateWithDuration: 2.0
+                                  delay: 0.0
+                                options: UIViewAnimationOptionCurveEaseInOut
                              animations: ^
              {
                  for(BCImageView* view in self.visibleImageViews)
@@ -658,8 +658,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         }
         else
         {
-            [UIView animateWithDuration: 0.4 
-                                  delay: 0.1 
+            [UIView animateWithDuration: 0.4
+                                  delay: 0.1
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^
              {
@@ -682,8 +682,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         }
         else
         {
-            [UIView animateWithDuration: 0.4 
-                                  delay: 0.1 
+            [UIView animateWithDuration: 0.4
+                                  delay: 0.1
                                 options: UIViewAnimationOptionCurveEaseIn
                              animations:^
              {
@@ -716,7 +716,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     BOOL    optionsEnabled = YES;
     BOOL    pickPhotoEnabled = YES;
     BOOL    capturePhotoEnabled = YES;
-    
+
     if(self.animatingImage || self.processingImage)
     {
         actionEnabled = NO;
@@ -724,12 +724,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         pickPhotoEnabled = NO;
         capturePhotoEnabled = NO;
     }
-    
+
     if(self.writingAsset || self.processedImages.count == 0)
     {
         actionEnabled = NO;
     }
-       
+
     for(UIBarButtonItem* item in self.toolbar.items)
     {
         if(item.tag == CPActionBarButtonItemTag)
@@ -742,11 +742,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         }
         else if(item.tag == CPCapturePhotoBarButtonItemTag)
         {
-            item.enabled = capturePhotoEnabled;            
+            item.enabled = capturePhotoEnabled;
         }
         else if(item.tag == CPPickPhotoBarButtonItemTag)
         {
-            item.enabled = pickPhotoEnabled;            
+            item.enabled = pickPhotoEnabled;
         }
     }
 }
@@ -754,48 +754,48 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (NSMutableDictionary*) pGPSDictionary: (CLLocation*) location
 {
     NSMutableDictionary*    gpsDict = [[NSMutableDictionary alloc] init];
-    
+
     if(location != nil)
     {
 		CLLocationDegrees exifLatitude = location.coordinate.latitude;
 		CLLocationDegrees exifLongitude = location.coordinate.longitude;
-        
+
 		[gpsDict setObject: location.timestamp forKey: (NSString*)kCGImagePropertyGPSTimeStamp];
-		
-		if(exifLatitude < 0.0) 
+
+		if(exifLatitude < 0.0)
         {
 			exifLatitude = exifLatitude*(-1);
 			[gpsDict setObject: @"S" forKey: (NSString*)kCGImagePropertyGPSLatitudeRef];
-		} 
+		}
         else
         {
 			[gpsDict setObject: @"N" forKey: (NSString*)kCGImagePropertyGPSLatitudeRef];
 		}
-		
+
         [gpsDict setObject: [NSNumber numberWithFloat: exifLatitude] forKey: (NSString*)kCGImagePropertyGPSLatitude];
-        
+
 		if(exifLongitude < 0.0)
         {
 			exifLongitude = exifLongitude*(-1);
 			[gpsDict setObject: @"W" forKey: (NSString*)kCGImagePropertyGPSLongitudeRef];
-		} 
+		}
         else
         {
 			[gpsDict setObject: @"E" forKey: (NSString*)kCGImagePropertyGPSLongitudeRef];
 		}
-		
+
         [gpsDict setObject: [NSNumber numberWithFloat: exifLongitude] forKey: (NSString*)kCGImagePropertyGPSLongitude];
     }
-    
+
     return  gpsDict;
 }
 
-- (NSMutableDictionary*) pCurrentLocation 
+- (NSMutableDictionary*) pCurrentLocation
 {
     return [self pGPSDictionary: self.currentLocation];
 }
 
-- (void) pWriteCGImageToSavedPhotosAlbum: (CGImageRef) cgImage 
+- (void) pWriteCGImageToSavedPhotosAlbum: (CGImageRef) cgImage
                                 metadata: (NSDictionary*) metadata
                                  gpsData: (NSDictionary*) gpsData
                          writingOriginal: (BOOL) writingOriginal
@@ -806,45 +806,45 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     BCTimer*                            timer = [BCTimer timer];
     [timer startTimer];
 #endif
-    
+
     ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init]; //AppDelegate().assetLibrary;
     BOOL                                canWriteToAssetLibrary = NO;
-    
+
     // We can get into a situation where the user is asked if our app can write to the photo library (ios6)
     // If they choose no, then we weill get a not-authorized status and have to bail.
     // We probably need UI here to tell the user they disable write access.
-    
+
     PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
     if(status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusNotDetermined)
     {
         canWriteToAssetLibrary = YES;
     }
-    
+
     if(canWriteToAssetLibrary)
     {
         NSMutableDictionary*                imageMetadata = [metadata mutableCopy];
         UIBackgroundTaskIdentifier          backgroundIdent = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{}];
-        
+
         if(!writingOriginal)
         {
             // We always generate the processed asset as having an orientation of zero.
-            
+
             NSString*   orientationProperty = (__bridge NSString*)kCGImagePropertyOrientation;
             [imageMetadata setObject: [NSNumber numberWithInt: 0] forKey: orientationProperty];
         }
-        
-        
+
+
         // if it doesn't have GPS (captured photos), insert the current location
         if (![imageMetadata objectForKey:(NSString*)kCGImagePropertyGPSDictionary]) {
             NSDictionary*                       gpsDict = gpsData ? gpsData : [self pCurrentLocation];
-            
+
             if(gpsDict.count > 0)
             {
                 [imageMetadata setObject: gpsDict forKey: (NSString*)kCGImagePropertyGPSDictionary];
             }
         }
-        
-        
+
+
         [library writeImageToSavedPhotosAlbum: cgImage
                                      metadata: imageMetadata
                               completionBlock:^(NSURL* asset, NSError* error)
@@ -857,7 +857,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
              {
                  writeCompletionBlock(asset, error);
              }
-             
+
              [[UIApplication sharedApplication] endBackgroundTask: backgroundIdent];
          }];
     }
@@ -868,10 +868,10 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSLog(@"pGatherOriginalLocation");
     ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init];
     __block NSMutableDictionary*        gpsDict = nil;
-    
+
     // Gather the EXIF data if we can...
-    
-    [library assetForURL: assetURL 
+
+    [library assetForURL: assetURL
              resultBlock:^(ALAsset *asset)
      {
 //         NSLog(@" - got result");
@@ -881,12 +881,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          {
              imageMetadata = [rep metadata];
          }
-         
+
          gpsDict = [self pGPSDictionary: BCCastAsClass(CLLocation, [asset valueForProperty: ALAssetPropertyLocation])];
          [self pWriteImageToPhotoLibrary: image metadata: imageMetadata gpsData: gpsDict];
-     } 
+     }
             failureBlock:^(NSError *error)
-     
+
      {
          NSLog(@" - Error getting asset %@ -attempting to write anyway", error);
          // Error getting asset, but attempt to write anyways.
@@ -899,9 +899,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSLog(@"pWriteImageToPhotoLibrary");
     self.writingAsset = YES;
     [self pValidateToolbarItems];
-    
+
     __block CGImageRef  imageRefToWrite = image.CGImageRef;
-    
+
     [self pWriteCGImageToSavedPhotosAlbum: imageRefToWrite
                                  metadata: metadata
                                   gpsData: gpsData
@@ -909,21 +909,21 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                           completionBlock:^(NSURL* asset, NSError* error)
      {
          self.writingAsset = NO;
-         
+
          if(error)
          {
-#if DEBUG             
+#if DEBUG
              NSLog(@"%@", error.description);
-#endif             
+#endif
          }
          else if (!asset) {
              NSLog(@"Missing asset! %@ %@", image, metadata);
          }
          else
          {
-             // We are always tacking onto the beginning of the image list. We stash a placeholder object at that index until we 
+             // We are always tacking onto the beginning of the image list. We stash a placeholder object at that index until we
              // are finished writing to the photo library and obtaining the asset URL.
-             
+
              if(self.processedImages.count > 0)
              {
                  [self.processedImages replaceObjectAtIndex: 0 withObject: asset];
@@ -931,7 +931,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          }
 
          [self pValidateToolbarItems];
-         
+
          CGImageRelease(imageRefToWrite);
      }];
 }
@@ -939,19 +939,19 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) pImageProcessorDone: (CPImageProcessor*) imageProcessor
 {
     NSLog(@"[CPV] pImageProcessorDone %i %i", (imageProcessor == self.imageProcessor), self.processingImage);
-    
+
 #if DEBUG
     assert([NSThread isMainThread]);
 #endif
-    
+
     [imageProcessor removeObserver: self forKeyPath: @"isFinished"];
-    
+
     if(imageProcessor == self.imageProcessor && self.processingImage)
     {
         BCImage*        image = imageProcessor.processedImage;
         NSLog(@" - processedImage %@ %@", image, NSStringFromCGSize(image.size));
         BCImageView*    imageView = nil;
-        
+
         if([self pIsDisplayingViewForIndex: 0 visibleView: &imageView])
         {
             [imageView useAsset: image];
@@ -969,17 +969,17 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             NSLog(@" - gathering original location");
             [self pGatherOriginalLocation: imageProcessor.assetURL andWriteToPhotoLibrary: image];
         }
-        
+
         if(writeOriginal)
         {
             NSLog(@" - writeOriginal");
-            [self pWriteCGImageToSavedPhotosAlbum: imageProcessor.imageToProcess.CGImage 
-                                         metadata: imageProcessor.imageMetadata 
-                                          gpsData: nil 
+            [self pWriteCGImageToSavedPhotosAlbum: imageProcessor.imageToProcess.CGImage
+                                         metadata: imageProcessor.imageMetadata
+                                          gpsData: nil
                                   writingOriginal: YES
                                   completionBlock: NULL];
         }
-        
+
         self.imageProcessor = nil;
         self.processingImage = NO;
     }
@@ -993,49 +993,49 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSLog(@"[CPV] pBeginProcessingPhoto %@", NSStringFromCGSize(imageSize));
     if(self.processingImage == NO && self.photoToProcess)
     {
-        
+
         [self clearBackgroundImage];
         CGFloat     scale = 0.5;
-        
+
         if([[NSUserDefaults standardUserDefaults] boolForKey: CPFullSizeImageOptionKey])
         {
             scale = 1.0;
         }
-        
-        self.imageProcessor = [[CPImageProcessor alloc] initWithImage: self.photoToProcess 
-                                                             metadata: self.photoMetadata 
+
+        self.imageProcessor = [[CPImageProcessor alloc] initWithImage: self.photoToProcess
+                                                             metadata: self.photoMetadata
                                                       assetLibraryURL: self.photoAssetLibraryURL
-                                                                scale: scale 
-                                                             cropRect: CGRectZero 
+                                                                scale: scale
+                                                             cropRect: CGRectZero
                                                           wasCaptured: self.photoWasCaptured];
-        
+
         self.imageProcessor.queuePriority = NSOperationQueuePriorityVeryHigh;
         self.imageProcessor.curvesPath = [self pCurvesPathFromUserSetting];
-        
+
         // These are temporary instance variables
-        
+
         self.photoToProcess = nil;
         self.photoMetadata = nil;
         self.photoAssetLibraryURL = nil;
         self.photoWasCaptured = NO;
-        
+
         if(!self.imageQueue)
         {
             self.imageQueue = [[NSOperationQueue alloc] init];
         }
-        
+
         [self.imageProcessor addObserver: self forKeyPath: @"isFinished"  options: 0 context: &self->_imageProcessor];
         self.processingImage = YES;
         [self.imageQueue addOperation: self.imageProcessor];
-        
+
         // Start by adding an empty slot for the 0-th image and then update the scroll view content/metrics
-        
+
         NSInteger       placeholderAsset = [self pPlaceholderTypeFromCurveName: self.imageProcessor.curvesPath];
         if(self.imageProcessor.portraitOrientation == NO)
         {
             placeholderAsset *= -1;
         }
-        
+
         [self.processedImages insertObject: [NSNumber numberWithInteger: placeholderAsset] atIndex: 0];
         [self pCreateAndAnimatePlaceholderView: imageSize];
     }
@@ -1052,7 +1052,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSInteger   lastNeededViewIndex  = floorf((CGRectGetMaxX(visibleBounds)-1) / CGRectGetWidth(visibleBounds));
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, self.processedImages.count - 1);
-    
+
 //    NSLog(@"firstNeededViewIndex = %d, lastNeededViewIndex = %d, processedImageAsset = %@", firstNeededViewIndex, lastNeededViewIndex, self.processedImages.count > 0 ? [self.processedImages objectAtIndex: firstNeededViewIndex] : nil);
 #endif
 
@@ -1062,12 +1062,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (BOOL) gestureRecognizer: (UIGestureRecognizer*) gestureRecognizer shouldReceiveTouch: (UITouch*) touch
 {
     BOOL    shouldReceive = YES;
-    
+
     if([touch.view isKindOfClass:[UIControl class]])
     {
         return NO;
     }
-    
+
     return shouldReceive;
 }
 
@@ -1075,11 +1075,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     UIView*  rootView = [sender.view superview];
     UIView*  welcomeView = [rootView viewWithTag: CPWelcomeViewTag];
-        
+
     [UIView transitionFromView: welcomeView
-                        toView: self.view  
+                        toView: self.view
                       duration: 1.0
-                       options: UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionTransitionCrossDissolve 
+                       options: UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionTransitionCrossDissolve
                     completion: ^(BOOL finished)
      {
          [welcomeView removeFromSuperview];
@@ -1093,7 +1093,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         OSStatus            status = kAudioServicesNoError;
         SystemSoundID       soundID = 0;
-        
+
         status = AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"CameraNoise" ofType:@"aif"]], &soundID);
         if(status == kAudioServicesNoError)
         {
@@ -1115,7 +1115,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     NSString*           curveName = [[curvePath lastPathComponent] stringByDeletingPathExtension];
     CPPlaceholderType   type = CPPlaceholderBasic;
-    
+
     if([curveName isEqualToString: @"red"])
     {
         type = CPPlaceholderRed;
@@ -1140,12 +1140,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         type = CPPlaceholderNegative;
     }
-    
+
     if([[NSUserDefaults standardUserDefaults] boolForKey: CPWantsBorderOptionKey])
     {
         type |= CPPlaceholderBorder;
     }
- 
+
     return type;
 }
 
@@ -1154,7 +1154,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSString*           path = nil;
     NSMutableArray*     choices = [NSMutableArray arrayWithCapacity: 5];
     NSUserDefaults*     defaults = [NSUserDefaults standardUserDefaults];
-    
+
     if([defaults boolForKey: CPRedProcessingOptionKey])
     {
         [choices addObject: @"red"];
@@ -1179,12 +1179,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         [choices addObject: @"extreme"];
     }
-    
+
     if(choices.count == 0)
     {
         [choices addObject: @"negative"];
     }
-    
+
     NSInteger  choiceIndex = lrand48() % choices.count;
     path = [[NSBundle mainBundle] pathForResource: [choices objectAtIndex: choiceIndex] ofType: @"acv"];
     return path;
@@ -1193,12 +1193,12 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (BOOL) pWriteOriginalImage
 {
     BOOL    shouldWrite = NO;
-    
+
     if(self.imageProcessor.wasCaptured && [[NSUserDefaults standardUserDefaults] boolForKey: CPKeepOriginalOptionKey])
     {
         shouldWrite = YES;
     }
-    
+
     return shouldWrite;
 }
 
@@ -1206,7 +1206,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (NSString*) pFileExtensionForUTI: (NSString*) uti
 {
 	NSString*	extension = @"";
-	
+
 	if([uti isEqualToString: @"public.jpeg"])
 	{
 		extension = @"jpeg";
@@ -1215,14 +1215,14 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 	{
 		extension = @"png";
 	}
-	
+
 	return extension;
 }
 
 - (NSString*) pMimeTypeForUTI: (NSString*) uti
 {
 	NSString*	mimeType = @"";
-	
+
 	if([uti isEqualToString: @"public.jpeg"])
 	{
 		mimeType = @"image/jpeg";
@@ -1231,7 +1231,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 	{
 		mimeType = @"image/png";
 	}
-	
+
 	return mimeType;
 }
 
@@ -1240,50 +1240,50 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) pLoadAsset: (NSURL*) assetURL usingDataCompletionBlock: (CPLoadAssetDataCompletionBlock) completionBlock
 {
     if(completionBlock)
-    {    
+    {
         ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; //AppDelegate().assetLibrary;
-        
-        [library assetForURL: assetURL 
-                 resultBlock:^(ALAsset *asset) 
+
+        [library assetForURL: assetURL
+                 resultBlock:^(ALAsset *asset)
          {
              assert([NSThread isMainThread]);
-             
+
              ALAssetRepresentation*     rep = [asset defaultRepresentation];
              BOOL                       didFail = YES;
-             
+
              if(rep)
              {
                  unsigned long              size = (unsigned long)[rep size];
                  uint8_t*				buffer = (uint8_t*)malloc(size);
-                 
+
                  if(buffer)
                  {
                      NSError*           error = nil;
                      NSUInteger         numBytes = 0;
                      numBytes = [rep getBytes: buffer fromOffset: 0 length: size error: &error];
-                     
+
                      if(numBytes > 0 && !error)
                      {
                          NSData*    photoData = [[NSData alloc] initWithBytes: buffer length: size];
-                         
+
                          didFail = NO;
                          completionBlock(photoData, [rep UTI], didFail);
                      }
-                     else if(error) 
+                     else if(error)
                      {
                          NSLog(@"ALAssetRepresentation -getBytes::: failed - %@", [error description]);
                      }
-                     
+
                      free(buffer);
                  }
              }
-             
+
              if(didFail)
              {
                  completionBlock(nil, nil, YES);
              }
-             
-         }   
+
+         }
                 failureBlock:^(NSError *error)
          {
              NSLog(@"%@", [error description]);
@@ -1297,15 +1297,15 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(completionBlock)
     {
         ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; // AppDelegate().assetLibrary;
-        
-        [library assetForURL: assetURL 
-                 resultBlock:^(ALAsset *asset) 
+
+        [library assetForURL: assetURL
+                 resultBlock:^(ALAsset *asset)
          {
              assert([NSThread isMainThread]);
-             
+
              ALAssetRepresentation*     rep = [asset defaultRepresentation];
              BOOL                       didFail = YES;
-             
+
              if(rep)
              {
                  UIImage* image = [UIImage imageWithCGImage: [rep fullResolutionImage]];
@@ -1315,13 +1315,13 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                      completionBlock(image, [rep UTI], didFail);
                  }
              }
-             
+
              if(didFail)
              {
                  completionBlock(nil, nil, YES);
              }
-             
-         }   
+
+         }
                 failureBlock:^(NSError *error)
          {
              NSLog(@"%@", [error description]);
@@ -1338,7 +1338,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     CGRect frame = self.scrollView.frame;
     frame.origin.x -= PADDING;
     frame.size.width += (2 * PADDING);
-    
+
     self.scrollView.frame = frame;
 }
 
@@ -1356,13 +1356,13 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     return CGSizeMake(bounds.size.width * self.processedImages.count, bounds.size.height);
 }
 
-- (CGRect) pFrameForViewAtIndex: (NSInteger) index 
+- (CGRect) pFrameForViewAtIndex: (NSInteger) index
 {
     CGRect bounds = self.scrollView.bounds;
     CGRect viewFrame = bounds;
     viewFrame.size.width -= (2 * PADDING);
     viewFrame.origin.x = (bounds.size.width * index) + PADDING;
-    
+
     return viewFrame;
 }
 
@@ -1376,13 +1376,13 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (BOOL) pIsDisplayingViewForIndex: (NSUInteger) index visibleView: (BCImageView**) visibleView
 {
     BOOL foundView = NO;
-    
+
     for(BCImageView* view in self.visibleImageViews)
     {
         if(view.index == index)
         {
             foundView = YES;
-            
+
             if(visibleView)
             {
                 *visibleView = view;
@@ -1390,7 +1390,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             break;
         }
     }
-    
+
     return foundView;
 }
 
@@ -1408,60 +1408,60 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     /*
     CGSize  contentSize = [self pContentSizeForScrollView];
-    
+
     if(!CGSizeEqualToSize(contentSize, self.scrollView.contentSize))
     {
         self.scrollView.contentSize = contentSize;
     }
     */
-    
+
     CGRect      visibleBounds = self.scrollView.bounds;
     NSInteger   firstNeededViewIndex = floorf(CGRectGetMinX(visibleBounds) / CGRectGetWidth(visibleBounds)) - 1;
     NSInteger   lastNeededViewIndex  = floorf((CGRectGetMaxX(visibleBounds)-1) / CGRectGetWidth(visibleBounds)) + 1;
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, self.processedImages.count - 1);
-    
-    // Recycle no-longer-visible pages 
-    
+
+    // Recycle no-longer-visible pages
+
     for(BCImageView* view in self.visibleImageViews)
     {
-        if(view.index < firstNeededViewIndex || view.index > lastNeededViewIndex) 
+        if(view.index < firstNeededViewIndex || view.index > lastNeededViewIndex)
         {
             [self.recycledImageViews addObject: view];
             [view clearContent];
             [view removeFromSuperview];
         }
     }
-    
+
     [self.visibleImageViews minusSet: self.recycledImageViews];
 
     // add missing pages
-    
-    for(NSInteger index = firstNeededViewIndex; index <= lastNeededViewIndex; index++) 
+
+    for(NSInteger index = firstNeededViewIndex; index <= lastNeededViewIndex; index++)
     {
         if(![self pIsDisplayingViewForIndex: index visibleView: NULL])
         {
             id              asset = [self.processedImages objectAtIndex: index];
-            
+
             // We want an empty slot if the processed images slot if a placeholder
             if(BCCastAsClass(NSNumber, asset) == nil)
             {
                 BCImageView*    imageView = [self pDequeueRecycledView];
-                
+
                 if(imageView == nil)
                 {
                     imageView = [[BCImageView alloc] initWithFrame: BCViewFrame];
                 }
-                
+
                 [self pConfigureView: imageView forIndex: index];
 
                 [imageView useAsset: asset];
-                
+
                 [self.scrollView addSubview: imageView];
                 [self.visibleImageViews addObject: imageView];
             }
         }
-    }    
+    }
 }
 
 - (NSURL*) pURLForVisibleImageView
@@ -1476,7 +1476,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     {
         url = BCCastAsClass(NSURL, [self.processedImages objectAtIndex: firstNeededViewIndex]);
     }
-    
+
     return url;
 }
 
