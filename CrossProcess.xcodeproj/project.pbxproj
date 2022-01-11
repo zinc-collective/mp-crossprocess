@@ -488,12 +488,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F79DB6221438F017004E4CA0 /* Build configuration list for PBXNativeTarget "CrossProcess" */;
 			buildPhases = (
+				984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */,
 				DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */,
 				F79DB6001438F017004E4CA0 /* Sources */,
 				F79DB6011438F017004E4CA0 /* Frameworks */,
 				F79DB6021438F017004E4CA0 /* Resources */,
-				16485BD2195675B7FE80816F /* Embed Pods Frameworks */,
-				380BC3C4AD6CBC0C94D4024E /* Copy Pods Resources */,
 				782AADCA1CA1AD5500C3839C /* ShellScript */,
 			);
 			buildRules = (
@@ -516,7 +515,7 @@
 				ORGANIZATIONNAME = "Zinc Collective LLC";
 				TargetAttributes = {
 					F79DB6031438F017004E4CA0 = {
-						DevelopmentTeam = G8R2KJ59DE;
+						DevelopmentTeam = 5GGD34ZNFU;
 					};
 				};
 			};
@@ -617,36 +616,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		16485BD2195675B7FE80816F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		380BC3C4AD6CBC0C94D4024E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		782AADCA1CA1AD5500C3839C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +628,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6a09c19815c2f7f42d12f74f97f8f87c0f139e62 d29b37ba3305e7a136158c7684175a69995c401705890454f260b5b758d91816";
+		};
+		984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CrossProcess-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -834,6 +821,7 @@
 			baseConfigurationReference = C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
@@ -850,6 +838,7 @@
 			baseConfigurationReference = CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
