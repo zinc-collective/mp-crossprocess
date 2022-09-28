@@ -35,6 +35,7 @@ const NSInteger  CPIntroVideoButtonTag = 202;
 const NSInteger  CPRootViewTag = 200;
 const NSInteger  CPScrollViewTag = 300;
 const NSInteger  CPToolbarTag = 400;
+const NSInteger  CPToolbarPositionOffsetY = 30;
 
 typedef void (^CPWriteAssetCompletionBlock)(NSURL *assetURL, NSError *error);
 typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageUTI, BOOL didFail);
@@ -224,7 +225,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     CGSize viewSize = self.view.frame.size;
     CGSize toolbarSize = self.toolbar.frame.size;
 
-    self.toolbar.frame = CGRectMake(0, viewSize.height - toolbarSize.height, viewSize.width, toolbarSize.height);
+    self.toolbar.frame = CGRectMake(0, viewSize.height - toolbarSize.height - CPToolbarPositionOffsetY, viewSize.width, toolbarSize.height);
     self.toolbar.tag = CPToolbarTag;
     [self.view insertSubview: self.toolbar aboveSubview: self.scrollView];
 
