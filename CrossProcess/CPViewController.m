@@ -23,7 +23,6 @@
 #include <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
 #import <Photos/PHPhotoLibrary.h>
-#import <Crashlytics/Crashlytics.h>
 #import "ImageMetadata.h"
 
 

@@ -12,8 +12,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UIImageAdditions.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface CPAppDelegate()
 - (BOOL) pManageFirstLaunchScenario;
@@ -41,8 +39,6 @@
 
 - (BOOL) application: (UIApplication*) application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
 {
-
-    [Fabric with:@[[Crashlytics class]]];
 
     NSLog(@"[CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
 
