@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPViewController">
@@ -20,12 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="AXb-b5-1hv">
-                    <rect key="frame" x="0.0" y="-44" width="320" height="568"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="568" id="UvG-PY-64y"/>
-                        <constraint firstAttribute="width" constant="320" id="rQb-gL-giJ"/>
-                    </constraints>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="AXb-b5-1hv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -34,89 +32,94 @@
                     </connections>
                 </scrollView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERSION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dv-K1-vNm">
-                    <rect key="frame" x="0.0" y="0.0" width="71.5" height="20.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="71" height="20.666666666666668"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.035294117649999998" green="0.031372549020000001" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.035294117649999998" green="0.031372549020000001" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="7Dv-K1-vNm" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="4Tt-WN-2bo"/>
+                <constraint firstAttribute="trailing" secondItem="AXb-b5-1hv" secondAttribute="trailing" id="GZ3-ki-gZG"/>
                 <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" id="LLP-H7-yHK"/>
                 <constraint firstItem="46" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="QmG-xJ-z8q"/>
+                <constraint firstAttribute="bottom" secondItem="AXb-b5-1hv" secondAttribute="bottom" id="Wa9-4z-6sy"/>
+                <constraint firstItem="AXb-b5-1hv" firstAttribute="top" secondItem="6" secondAttribute="top" id="hfq-MS-sVc"/>
                 <constraint firstItem="7Dv-K1-vNm" firstAttribute="top" secondItem="6" secondAttribute="top" id="mqK-t9-JlI"/>
+                <constraint firstItem="AXb-b5-1hv" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="ssa-BG-V1A"/>
                 <constraint firstAttribute="bottom" secondItem="46" secondAttribute="bottom" id="wIC-qs-wtx"/>
-                <constraint firstItem="AXb-b5-1hv" firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="wtP-Q5-ETg"/>
-                <constraint firstItem="AXb-b5-1hv" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="yBF-hW-1v4"/>
                 <constraint firstItem="46" firstAttribute="top" secondItem="6" secondAttribute="top" id="yhJ-Go-87e"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="387" y="-11"/>
         </view>
         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="14">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <items>
                 <barButtonItem tag="100" style="plain" systemItem="action" id="15">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handleAction:" destination="-1" id="36"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="17"/>
                 <barButtonItem tag="200" image="pickphoto.png" style="plain" id="18">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handlePickPhoto:" destination="-1" id="38"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="22"/>
                 <barButtonItem tag="400" image="info.png" style="plain" id="21">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handleOptions:" destination="-1" id="41"/>
                     </connections>
                 </barButtonItem>
             </items>
+            <point key="canvasLocation" x="132" y="-11"/>
         </toolbar>
         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="23">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <items>
                 <barButtonItem tag="100" style="plain" systemItem="action" id="24">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handleAction:" destination="-1" id="35"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="25"/>
                 <barButtonItem tag="200" image="pickphoto.png" style="plain" id="26">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handlePickPhoto:" destination="-1" id="37"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="27"/>
                 <barButtonItem tag="300" style="plain" systemItem="camera" id="28">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handleCapturePhoto:" destination="-1" id="39"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem style="plain" systemItem="flexibleSpace" id="30"/>
                 <barButtonItem tag="400" image="info.png" style="plain" id="29">
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="handleOptions:" destination="-1" id="40"/>
                     </connections>
                 </barButtonItem>
             </items>
+            <point key="canvasLocation" x="135" y="-244"/>
         </toolbar>
     </objects>
     <resources>
         <image name="Background" width="320" height="568"/>
-        <image name="info.png" width="36" height="19"/>
+        <image name="info.png" width="21.654134750366211" height="21.654134750366211"/>
         <image name="pickphoto.png" width="26" height="19"/>
     </resources>
 </document>
