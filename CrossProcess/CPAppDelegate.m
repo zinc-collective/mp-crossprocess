@@ -40,7 +40,7 @@
 - (BOOL) application: (UIApplication*) application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
 {
 
-    NSLog(@"[CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
+    NSLog(@"###---> [CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[CPViewController alloc] initWithNibName:@"CPViewController" bundle:nil];

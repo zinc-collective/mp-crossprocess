@@ -124,7 +124,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) didReceiveMemoryWarning
 {
 #if DEBUG
-    NSLog(@"Recieved memory warning");
+    NSLog(@"###---> Recieved memory warning");
 #endif
 
     if(self.captureSound != 0)
@@ -163,7 +163,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) viewDidLayoutSubviews
 {
 #if DEBUG
-    NSLog(@"-viewDidLayoutSubviews");
+    NSLog(@"###---> -viewDidLayoutSubviews");
 #endif
 
     [super viewDidLayoutSubviews];
@@ -237,7 +237,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (void) viewDidUnload
 {
 #if DEBUG
-    NSLog(@"View did unload");
+    NSLog(@"###---> View did unload");
 #endif
 
     [super viewDidUnload];
@@ -367,7 +367,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) userPickedPhoto: (UIImage*) photo withAssetLibraryURL: (NSURL*) url
  {
-     NSLog(@"[CPV] userPickedPhoto");
+     NSLog(@"###---> [CPV] userPickedPhoto");
      [self pHideToolbar: NO];
      [self dismissViewControllerAnimated: YES completion:^{}];
      [self pValidateToolbarItems];
@@ -375,7 +375,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
      // Begin an image processing operation
 
      [ImageMetadata fetchMetadataForURL:url found:^(NSDictionary * meta) {
-         NSLog(@"GOT METADATA %@", meta);
+         NSLog(@"###---> GOT METADATA %@", meta);
 
          self.photoToProcess = photo;
          self.photoMetadata = meta;
@@ -392,7 +392,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          }
          else
          {
-             NSLog(@"[CPV] userPickedPhoto - scroll");
+             NSLog(@"###---> [CPV] userPickedPhoto - scroll");
              [self.scrollView setContentOffset: CGPointZero animated: YES];
          }
      }];
@@ -443,7 +443,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(context == &self->_imageProcessor)
     {
         CPImageProcessor*    ip = BCCastAsClass(CPImageProcessor, object);
-//        NSLog(@"[CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
+//        NSLog(@"###---> [CPV] observeValueForKeyPath %i", (ip && [ip isFinished]));
 
         if(ip && [ip isFinished])
         {
@@ -457,7 +457,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 }
 
 - (IBAction)handleAction:(id)sender {
-//    NSLog(@"Action");
+//    NSLog(@"###---> Action");
     NSURL* url = [self pURLForVisibleImageView];
     if (url) {
         [self pLoadAsset:url usingImageCompletionBlock:^(UIImage *image, NSString *imageUTI, BOOL didFail) {
@@ -569,7 +569,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) scrollViewDidScroll: (UIScrollView*) scrollView
 {
-    //NSLog(@"-scrollViewDidScroll. Current offset = %@", NSStringFromCGPoint(scrollView.contentOffset));
+    //NSLog(@"###---> -scrollViewDidScroll. Current offset = %@", NSStringFromCGPoint(scrollView.contentOffset));
     [self pTileViews];
 }
 
@@ -801,7 +801,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                          writingOriginal: (BOOL) writingOriginal
                          completionBlock: (CPWriteAssetCompletionBlock) writeCompletionBlock
 {
-    NSLog(@"pWriteCGImageToSavedPhotosAlbum");
+    NSLog(@"###---> pWriteCGImageToSavedPhotosAlbum");
 #if DEBUG
     BCTimer*                            timer = [BCTimer timer];
     [timer startTimer];
@@ -865,7 +865,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pGatherOriginalLocation: (NSURL*) assetURL andWriteToPhotoLibrary: (BCImage*) image
 {
-    NSLog(@"pGatherOriginalLocation");
+    NSLog(@"###---> pGatherOriginalLocation");
     ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init];
     __block NSMutableDictionary*        gpsDict = nil;
 
@@ -874,7 +874,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [library assetForURL: assetURL
              resultBlock:^(ALAsset *asset)
      {
-//         NSLog(@" - got result");
+//         NSLog(@"###--->  - got result");
          ALAssetRepresentation*     rep = [asset defaultRepresentation];
          NSDictionary*              imageMetadata = nil;
          if(rep)
@@ -888,7 +888,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             failureBlock:^(NSError *error)
 
      {
-         NSLog(@" - Error getting asset %@ -attempting to write anyway", error);
+         NSLog(@"###--->  - Error getting asset %@ -attempting to write anyway", error);
          // Error getting asset, but attempt to write anyways.
          [self pWriteImageToPhotoLibrary: image metadata: nil gpsData: nil];
      }];
@@ -896,7 +896,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pWriteImageToPhotoLibrary: (BCImage*) image metadata: (NSDictionary*) metadata gpsData: (NSDictionary*) gpsData
 {
-    NSLog(@"pWriteImageToPhotoLibrary");
+    NSLog(@"###---> pWriteImageToPhotoLibrary");
     self.writingAsset = YES;
     [self pValidateToolbarItems];
 
@@ -913,11 +913,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          if(error)
          {
 #if DEBUG
-             NSLog(@"%@", error.description);
+             NSLog(@"###---> %@", error.description);
 #endif
          }
          else if (!asset) {
-             NSLog(@"Missing asset! %@ %@", image, metadata);
+             NSLog(@"###---> Missing asset! %@ %@", image, metadata);
          }
          else
          {
@@ -938,7 +938,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) pImageProcessorDone: (CPImageProcessor*) imageProcessor
 {
-    NSLog(@"[CPV] pImageProcessorDone %i %i", (imageProcessor == self.imageProcessor), self.processingImage);
+    NSLog(@"###---> [CPV] pImageProcessorDone %i %i", (imageProcessor == self.imageProcessor), self.processingImage);
 
 #if DEBUG
     assert([NSThread isMainThread]);
@@ -949,7 +949,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     if(imageProcessor == self.imageProcessor && self.processingImage)
     {
         BCImage*        image = imageProcessor.processedImage;
-        NSLog(@" - processedImage %@ %@", image, NSStringFromCGSize(image.size));
+        NSLog(@"###--->  - processedImage %@ %@", image, NSStringFromCGSize(image.size));
         BCImageView*    imageView = nil;
 
         if([self pIsDisplayingViewForIndex: 0 visibleView: &imageView])
@@ -961,18 +961,18 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
         if(imageProcessor.wasCaptured)
         {
-            NSLog(@" - wasCaptured");
+            NSLog(@"###--->  - wasCaptured");
             [self pWriteImageToPhotoLibrary: image metadata: imageProcessor.imageMetadata gpsData: nil];
         }
         else
         {
-            NSLog(@" - gathering original location");
+            NSLog(@"###--->  - gathering original location");
             [self pGatherOriginalLocation: imageProcessor.assetURL andWriteToPhotoLibrary: image];
         }
 
         if(writeOriginal)
         {
-            NSLog(@" - writeOriginal");
+            NSLog(@"###--->  - writeOriginal");
             [self pWriteCGImageToSavedPhotosAlbum: imageProcessor.imageToProcess.CGImage
                                          metadata: imageProcessor.imageMetadata
                                           gpsData: nil
@@ -984,13 +984,13 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         self.processingImage = NO;
     }
     else {
-        NSLog(@"[CPV] pImageProcessorDone - skip");
+        NSLog(@"###---> [CPV] pImageProcessorDone - skip");
     }
 }
 
 - (void) pBeginProcessingPhoto: (CGSize) imageSize
 {
-    NSLog(@"[CPV] pBeginProcessingPhoto %@", NSStringFromCGSize(imageSize));
+    NSLog(@"###---> [CPV] pBeginProcessingPhoto %@", NSStringFromCGSize(imageSize));
     if(self.processingImage == NO && self.photoToProcess)
     {
 
@@ -1040,7 +1040,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
         [self pCreateAndAnimatePlaceholderView: imageSize];
     }
     else {
-        NSLog(@"[CPV] pBeginProcessingPhoto - skip. Already processing");
+        NSLog(@"###---> [CPV] pBeginProcessingPhoto - skip. Already processing");
     }
 }
 
@@ -1053,7 +1053,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     firstNeededViewIndex = MAX(firstNeededViewIndex, 0);
     lastNeededViewIndex  = MIN(lastNeededViewIndex, self.processedImages.count - 1);
 
-//    NSLog(@"firstNeededViewIndex = %d, lastNeededViewIndex = %d, processedImageAsset = %@", firstNeededViewIndex, lastNeededViewIndex, self.processedImages.count > 0 ? [self.processedImages objectAtIndex: firstNeededViewIndex] : nil);
+//    NSLog(@"###---> firstNeededViewIndex = %d, lastNeededViewIndex = %d, processedImageAsset = %@", firstNeededViewIndex, lastNeededViewIndex, self.processedImages.count > 0 ? [self.processedImages objectAtIndex: firstNeededViewIndex] : nil);
 #endif
 
     [self toggleToolbarVisibility];
@@ -1271,7 +1271,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
                      }
                      else if(error)
                      {
-                         NSLog(@"ALAssetRepresentation -getBytes::: failed - %@", [error description]);
+                         NSLog(@"###---> ALAssetRepresentation -getBytes::: failed - %@", [error description]);
                      }
 
                      free(buffer);
@@ -1286,7 +1286,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          }
                 failureBlock:^(NSError *error)
          {
-             NSLog(@"%@", [error description]);
+             NSLog(@"###---> %@", [error description]);
              completionBlock(nil, nil, YES);
          }];
     }
@@ -1324,7 +1324,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
          }
                 failureBlock:^(NSError *error)
          {
-             NSLog(@"%@", [error description]);
+             NSLog(@"###---> %@", [error description]);
              completionBlock(nil, nil, YES);
          }];
     }
