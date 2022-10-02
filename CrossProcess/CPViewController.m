@@ -447,7 +447,9 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
         if(ip && [ip isFinished])
         {
-            [self performSelectorOnMainThread: @selector(pImageProcessorDone:) withObject: ip waitUntilDone: NO];
+            dispatch_async(dispatch_get_main_queue(),^ {
+                [self pImageProcessorDone:ip];
+            } );
         }
     }
     else
