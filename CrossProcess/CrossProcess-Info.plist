@@ -6,6 +6,12 @@
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app can use images in the photo library and save new ones to the photo library</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app can use images in the photo library and save new ones to the photo library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera so you can take photographs.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app can save location data to the meta-data of your photos. It is nice to have this fo apps that make slideshows and photo viewers.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
