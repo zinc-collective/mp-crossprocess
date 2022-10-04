@@ -17,6 +17,7 @@
 - (BOOL) pManageFirstLaunchScenario;
 @end
 
+@import Sentry;
 @implementation CPAppDelegate
 
 @synthesize window = _window;
@@ -39,6 +40,23 @@
 
 - (BOOL) application: (UIApplication*) application didFinishLaunchingWithOptions: (NSDictionary*) launchOptions
 {
+    //Add Sentry
+    [SentrySDK startWithConfigureOptions:^(SentryOptions *options) {
+        options.dsn = @"https://80b12769e0464318864705d1afa60bd6@o268108.ingest.sentry.io/4503925805613056";
+        options.debug = false; // Enabled debug when first installing is always helpful
+        // Example uniform sample rate: capture 100% of transactions for performance monitoring
+        options.tracesSampleRate = @1.0;
+        
+        // Features turned off by default, but worth checking out
+        options.enableAppHangTracking = true;
+        options.enableFileIOTracking = true;
+        options.enableCoreDataTracking = true;
+        
+        // Enable all experimental features
+        options.enableUserInteractionTracing = true;
+        options.attachScreenshot = true;
+        options.attachViewHierarchy = true;
+    }];
 
     NSLog(@"###---> [CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
 

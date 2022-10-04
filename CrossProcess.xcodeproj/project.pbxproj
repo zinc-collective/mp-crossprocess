@@ -498,6 +498,7 @@
 				F79DB6011438F017004E4CA0 /* Frameworks */,
 				F79DB6021438F017004E4CA0 /* Resources */,
 				782AADCA1CA1AD5500C3839C /* ShellScript */,
+				75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -616,6 +617,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		782AADCA1CA1AD5500C3839C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -844,6 +862,7 @@
 			baseConfigurationReference = C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -868,6 +887,7 @@
 			baseConfigurationReference = CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
