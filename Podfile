@@ -1,13 +1,10 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '8.0'
+platform :ios, '14.0'
 
-# Uncomment this line if you're using Swift
-use_frameworks!
+project 'CrossProcess.xcodeproj'
 
 target 'CrossProcess' do
-    
-    pod 'Fabric', '~> 1.6.7'
-    pod 'Crashlytics', '~> 3.7.0'
-    
+    use_frameworks!
+  
+    pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.27.0'
 end
-

@@ -232,7 +232,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         }
         else if(error)
         {
-            NSLog(@"%@", [error description]);
+            NSLog(@"###---> %@", [error description]);
         }
     }
     else
@@ -255,12 +255,12 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
              }
              else
              {
-                 NSLog(@"Failed to load asset");
+                 NSLog(@"###---> Failed to load asset");
              }
          }
                 failureBlock:^(NSError *error)
          {
-             NSLog(@"%@", [error description]);
+             NSLog(@"###---> %@", [error description]);
          }];
     }
 }
@@ -290,7 +290,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     if(!image)
     {
 #if DEBUG
-        NSLog(@"[pLoadPlaceholderBorderImage] Using -imageNamed old school");
+        NSLog(@"###---> [pLoadPlaceholderBorderImage] Using -imageNamed old school");
 #endif
         image = [UIImage imageNamed: [@"preview_border" stringByAppendingPathExtension: @"png"]];
     }
@@ -351,7 +351,7 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
         if(!image)
         {
 #if DEBUG
-            NSLog(@"[pLoadPlaceholderImage] Using -imageNamed old school");
+            NSLog(@"###---> [pLoadPlaceholderImage] Using -imageNamed old school");
 #endif
             image = [UIImage imageNamed: [placeholderName stringByAppendingPathExtension: @"jpg"]];
         }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,7 @@
 		40B81FC91440939900842FD9 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FC71440939900842FD9 /* info@2x.png */; };
 		40B81FCC144093EE00842FD9 /* pickphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FCB144093EE00842FD9 /* pickphoto.png */; };
 		40E9C647144477AC002B6D25 /* image_assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E9C646144477AC002B6D25 /* image_assets.plist */; };
+		6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2C0C2928E3458A00B775A7 /* CoreImage.framework */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
 		78B018151C9C49D9001132E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B018141C9C49D9001132E0 /* Images.xcassets */; };
@@ -160,6 +161,7 @@
 		40B81FC71440939900842FD9 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
 		40B81FCB144093EE00842FD9 /* pickphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickphoto.png; sourceTree = "<group>"; };
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
+		6D2C0C2928E3458A00B775A7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		786615671C9B60EB007810FA /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				F7BAF7AB144D171A00A6B845 /* MessageUI.framework in Frameworks */,
 				40A04CDD144DA4A4004F62F6 /* Twitter.framework in Frameworks */,
 				403E0A20145F3144009B32A0 /* ImageIO.framework in Frameworks */,
+				6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */,
 				F782DACE16552F1300A03901 /* Accounts.framework in Frameworks */,
 				F782DB0416552F8000A03901 /* Social.framework in Frameworks */,
 				F782DB0616552FBE00A03901 /* AdSupport.framework in Frameworks */,
@@ -420,6 +423,7 @@
 		F79DB6071438F017004E4CA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D2C0C2928E3458A00B775A7 /* CoreImage.framework */,
 				786615651C9B4A87007810FA /* Photos.framework */,
 				7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */,
 				F782DAC616552A3000A03901 /* libfacebook_ios_sdk.a */,
@@ -488,13 +492,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F79DB6221438F017004E4CA0 /* Build configuration list for PBXNativeTarget "CrossProcess" */;
 			buildPhases = (
+				984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */,
 				DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */,
 				F79DB6001438F017004E4CA0 /* Sources */,
 				F79DB6011438F017004E4CA0 /* Frameworks */,
 				F79DB6021438F017004E4CA0 /* Resources */,
-				16485BD2195675B7FE80816F /* Embed Pods Frameworks */,
-				380BC3C4AD6CBC0C94D4024E /* Copy Pods Resources */,
 				782AADCA1CA1AD5500C3839C /* ShellScript */,
+				75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -512,19 +516,15 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CP;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Zinc Collective LLC";
-				TargetAttributes = {
-					F79DB6031438F017004E4CA0 = {
-						DevelopmentTeam = G8R2KJ59DE;
-					};
-				};
 			};
 			buildConfigurationList = F79DB5FE1438F017004E4CA0 /* Build configuration list for PBXProject "CrossProcess" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				fr,
 				ja,
@@ -617,34 +617,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		16485BD2195675B7FE80816F /* Embed Pods Frameworks */ = {
+		75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		380BC3C4AD6CBC0C94D4024E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		782AADCA1CA1AD5500C3839C /* ShellScript */ = {
@@ -658,7 +645,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6a09c19815c2f7f42d12f74f97f8f87c0f139e62 d29b37ba3305e7a136158c7684175a69995c401705890454f260b5b758d91816";
+			shellScript = "
+";
+		};
+		984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CrossProcess-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -758,12 +764,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -788,7 +805,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -799,12 +816,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -821,7 +849,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -834,13 +862,26 @@
 			baseConfigurationReference = C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.greyscalegorilla.CrossProcess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -850,13 +891,26 @@
 			baseConfigurationReference = CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
 				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.greyscalegorilla.CrossProcess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

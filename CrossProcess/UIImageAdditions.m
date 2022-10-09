@@ -36,7 +36,7 @@
                 NSError*    error = nil;
                 if([scaledImageData writeToURL: destinationURL options: NSDataWritingFileProtectionNone error: &error] == NO)
                 {
-                    NSLog(@"Unabled to write scaled image to %@", destinationURL);
+                    NSLog(@"###---> Unabled to write scaled image to %@", destinationURL);
                 }
             }
 
@@ -104,7 +104,7 @@
     }
 
 #if DEBUG
-    NSLog(@"Finished creating scaled images...");
+    NSLog(@"###---> Finished creating scaled images...");
 #endif
 
     [[UIApplication sharedApplication] endBackgroundTask: backgroundIdent];

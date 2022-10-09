@@ -52,17 +52,17 @@
 
 - (void) logElapsedInSeconds: (NSString*) prefix
 {
-    NSLog(@"%@: %lf seconds", prefix ? prefix : @"Total time was", [self timeElapsedInSeconds]);
+    NSLog(@"###---> %@: %lf seconds", prefix ? prefix : @"Total time was", [self timeElapsedInSeconds]);
 }
 
 - (void) logElapsedInMilliseconds: (NSString*) prefix
 {
-    NSLog(@"%@: %lf milliseconds", prefix ? prefix : @"Total time was", [self timeElapsedInMilliseconds]);
+    NSLog(@"###---> %@: %lf milliseconds", prefix ? prefix : @"Total time was", [self timeElapsedInMilliseconds]);
 }
 
 - (void) logElapsedInMinutes: (NSString*) prefix
 {
-    NSLog(@"%@: %lf minutes", prefix ? prefix : @"Total time was", [self timeElapsedInMinutes]);
+    NSLog(@"###---> %@: %lf minutes", prefix ? prefix : @"Total time was", [self timeElapsedInMinutes]);
 }
 
 @end

@@ -17,27 +17,23 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.7.1</string>
+	<string>2.8.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>6a09c19815c2f7f42d12f74f97f8f87c0f139e62</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
+	<string>10</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera so you can take photographs.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app can save location data to the meta-data of your photos. It is nice to have this fo apps that make slideshows and photo viewers.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app can use images in the photo library and save new ones to the photo library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app can use images in the photo library and save new ones to the photo library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIStatusBarHidden</key>
