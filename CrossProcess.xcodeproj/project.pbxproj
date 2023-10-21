@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24AB77F1F5C3AF281E659C18 /* Pods_CrossProcess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5239D2E97CF1AF2A7B9023 /* Pods_CrossProcess.framework */; };
 		4017212A143DD94600F5427F /* CPImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 40172129143DD94600F5427F /* CPImageProcessor.m */; };
 		40172130143DD95D00F5427F /* BCImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017212D143DD95D00F5427F /* BCImage.m */; };
 		40172131143DD95D00F5427F /* BCImageCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017212F143DD95D00F5427F /* BCImageCurve.m */; };
@@ -56,6 +55,8 @@
 		40B81FCC144093EE00842FD9 /* pickphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FCB144093EE00842FD9 /* pickphoto.png */; };
 		40E9C647144477AC002B6D25 /* image_assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E9C646144477AC002B6D25 /* image_assets.plist */; };
 		6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2C0C2928E3458A00B775A7 /* CoreImage.framework */; };
+		6D7EABB72AE415E1004158AF /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB62AE415E1004158AF /* Sentry */; };
+		6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB82AE415E1004158AF /* SentrySwiftUI */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
 		78B018151C9C49D9001132E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B018141C9C49D9001132E0 /* Images.xcassets */; };
@@ -106,7 +107,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F5239D2E97CF1AF2A7B9023 /* Pods_CrossProcess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrossProcess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40172128143DD94600F5427F /* CPImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPImageProcessor.h; sourceTree = "<group>"; };
 		40172129143DD94600F5427F /* CPImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CPImageProcessor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4017212C143DD95D00F5427F /* BCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCImage.h; sourceTree = "<group>"; };
@@ -164,13 +164,10 @@
 		6D2C0C2928E3458A00B775A7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
-		786615671C9B60EB007810FA /* todo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMetadata.h; sourceTree = "<group>"; };
 		78AD68A81D52664000D137C5 /* ImageMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMetadata.m; sourceTree = "<group>"; };
 		78B018141C9C49D9001132E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78B018171C9C4CEA001132E0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossProcess.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess.debug.xcconfig"; sourceTree = "<group>"; };
-		CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossProcess.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossProcess/Pods-CrossProcess.release.xcconfig"; sourceTree = "<group>"; };
 		F706FC1D145DD7F800249726 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
 		F706FC1E145DD7F800249726 /* red@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "red@2x.jpg"; sourceTree = "<group>"; };
 		F706FC1F145DD7F800249726 /* negative@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "negative@2x.jpg"; sourceTree = "<group>"; };
@@ -241,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				786615661C9B4A87007810FA /* Photos.framework in Frameworks */,
+				6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */,
 				F79DB6091438F017004E4CA0 /* UIKit.framework in Frameworks */,
 				F79DB60B1438F017004E4CA0 /* Foundation.framework in Frameworks */,
 				F79DB60D1438F017004E4CA0 /* CoreGraphics.framework in Frameworks */,
@@ -254,8 +252,8 @@
 				6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */,
 				F782DACE16552F1300A03901 /* Accounts.framework in Frameworks */,
 				F782DB0416552F8000A03901 /* Social.framework in Frameworks */,
+				6D7EABB72AE415E1004158AF /* Sentry in Frameworks */,
 				F782DB0616552FBE00A03901 /* AdSupport.framework in Frameworks */,
-				24AB77F1F5C3AF281E659C18 /* Pods_CrossProcess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,15 +331,6 @@
 			name = "image assets";
 			sourceTree = "<group>";
 		};
-		52F35BD42B247ABBB7AC6C53 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */,
-				CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		78B018161C9C4A40001132E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,11 +393,9 @@
 		F79DB5F91438F017004E4CA0 = {
 			isa = PBXGroup;
 			children = (
-				786615671C9B60EB007810FA /* todo.md */,
 				F79DB60E1438F017004E4CA0 /* CrossProcess */,
 				F79DB6071438F017004E4CA0 /* Frameworks */,
 				F79DB6051438F017004E4CA0 /* Products */,
-				52F35BD42B247ABBB7AC6C53 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -440,7 +427,6 @@
 				F79DB6081438F017004E4CA0 /* UIKit.framework */,
 				F79DB60A1438F017004E4CA0 /* Foundation.framework */,
 				F79DB60C1438F017004E4CA0 /* CoreGraphics.framework */,
-				1F5239D2E97CF1AF2A7B9023 /* Pods_CrossProcess.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -492,19 +478,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F79DB6221438F017004E4CA0 /* Build configuration list for PBXNativeTarget "CrossProcess" */;
 			buildPhases = (
-				984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */,
-				DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */,
 				F79DB6001438F017004E4CA0 /* Sources */,
 				F79DB6011438F017004E4CA0 /* Frameworks */,
 				F79DB6021438F017004E4CA0 /* Resources */,
 				782AADCA1CA1AD5500C3839C /* ShellScript */,
-				75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CrossProcess;
+			packageProductDependencies = (
+				6D7EABB62AE415E1004158AF /* Sentry */,
+				6D7EABB82AE415E1004158AF /* SentrySwiftUI */,
+			);
 			productName = CrossProcess;
 			productReference = F79DB6041438F017004E4CA0 /* CrossProcess.app */;
 			productType = "com.apple.product-type.application";
@@ -534,6 +521,9 @@
 				"zh-Hant",
 			);
 			mainGroup = F79DB5F91438F017004E4CA0;
+			packageReferences = (
+				6D7EABB52AE415E0004158AF /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+			);
 			productRefGroup = F79DB6051438F017004E4CA0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -617,23 +607,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		75413D5E3E773CB4EFEEA870 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossProcess/Pods-CrossProcess-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		782AADCA1CA1AD5500C3839C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -647,39 +620,6 @@
 			shellPath = /bin/sh;
 			shellScript = "
 ";
-		};
-		984E3746E0211AD56E8CF92C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CrossProcess-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB45622AD3421C85DB440DEE /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -859,7 +799,6 @@
 		};
 		F79DB6231438F017004E4CA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4C28E970671C24D9076E159 /* Pods-CrossProcess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -888,7 +827,6 @@
 		};
 		F79DB6241438F017004E4CA0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEA698B7A533C7200460AE76 /* Pods-CrossProcess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -937,6 +875,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D7EABB52AE415E0004158AF /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D7EABB62AE415E1004158AF /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D7EABB52AE415E0004158AF /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		6D7EABB82AE415E1004158AF /* SentrySwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D7EABB52AE415E0004158AF /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = SentrySwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F79DB5FB1438F017004E4CA0 /* Project object */;
 }
