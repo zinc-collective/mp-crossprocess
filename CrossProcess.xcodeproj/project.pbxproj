@@ -57,6 +57,7 @@
 		6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2C0C2928E3458A00B775A7 /* CoreImage.framework */; };
 		6D7EABB72AE415E1004158AF /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB62AE415E1004158AF /* Sentry */; };
 		6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB82AE415E1004158AF /* SentrySwiftUI */; };
+		6DBF12BF2AE570A1007A7FEE /* PhotoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
 		78B018151C9C49D9001132E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B018141C9C49D9001132E0 /* Images.xcassets */; };
@@ -107,8 +108,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		40172128143DD94600F5427F /* CPImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPImageProcessor.h; sourceTree = "<group>"; };
-		40172129143DD94600F5427F /* CPImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CPImageProcessor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		40172128143DD94600F5427F /* CPImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPImageProcessor.h; path = App/CPImageProcessor.h; sourceTree = "<group>"; };
+		40172129143DD94600F5427F /* CPImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CPImageProcessor.m; path = App/CPImageProcessor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4017212C143DD95D00F5427F /* BCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCImage.h; sourceTree = "<group>"; };
 		4017212D143DD95D00F5427F /* BCImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BCImage.m; sourceTree = "<group>"; };
 		4017212E143DD95D00F5427F /* BCImageCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCImageCurve.h; sourceTree = "<group>"; };
@@ -149,8 +150,8 @@
 		409E772F15A239E0009A9421 /* vignette_50%_1936x2592.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vignette_50%_1936x2592.png"; sourceTree = "<group>"; };
 		409E773015A239E0009A9421 /* vignette_50%_2448x3264.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vignette_50%_2448x3264.png"; sourceTree = "<group>"; };
 		40A04CDC144DA4A4004F62F6 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		40A7A08D14414D9600529407 /* CPOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOptionsViewController.h; sourceTree = "<group>"; };
-		40A7A08E14414D9600529407 /* CPOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOptionsViewController.m; sourceTree = "<group>"; };
+		40A7A08D14414D9600529407 /* CPOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPOptionsViewController.h; path = App/CPOptionsViewController.h; sourceTree = "<group>"; };
+		40A7A08E14414D9600529407 /* CPOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPOptionsViewController.m; path = App/CPOptionsViewController.m; sourceTree = "<group>"; };
 		40A7A0941442942200529407 /* basic.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = basic.acv; sourceTree = "<group>"; };
 		40A7A0951442942200529407 /* blue.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = blue.acv; sourceTree = "<group>"; };
 		40A7A0961442942200529407 /* extreme.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = extreme.acv; sourceTree = "<group>"; };
@@ -162,10 +163,12 @@
 		40B81FCB144093EE00842FD9 /* pickphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickphoto.png; sourceTree = "<group>"; };
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
 		6D2C0C2928E3458A00B775A7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossProcess-Bridging-Header.h"; sourceTree = "<group>"; };
+		6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoProvider.swift; path = App/PhotoProvider.swift; sourceTree = "<group>"; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
-		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMetadata.h; sourceTree = "<group>"; };
-		78AD68A81D52664000D137C5 /* ImageMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMetadata.m; sourceTree = "<group>"; };
+		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageMetadata.h; path = App/ImageMetadata.h; sourceTree = "<group>"; };
+		78AD68A81D52664000D137C5 /* ImageMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageMetadata.m; path = App/ImageMetadata.m; sourceTree = "<group>"; };
 		78B018141C9C49D9001132E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78B018171C9C4CEA001132E0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F706FC1D145DD7F800249726 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
@@ -198,16 +201,16 @@
 		F79DB6101438F017004E4CA0 /* CrossProcess-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CrossProcess-Info.plist"; sourceTree = "<group>"; };
 		F79DB6121438F017004E4CA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F79DB6161438F017004E4CA0 /* CrossProcess-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossProcess-Prefix.pch"; sourceTree = "<group>"; };
-		F79DB6171438F017004E4CA0 /* CPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPAppDelegate.h; sourceTree = "<group>"; };
-		F79DB61A1438F017004E4CA0 /* CPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CPViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F79DB61B1438F017004E4CA0 /* CPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CPViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F79DB6171438F017004E4CA0 /* CPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CPAppDelegate.h; path = App/CPAppDelegate.h; sourceTree = "<group>"; };
+		F79DB61A1438F017004E4CA0 /* CPAppConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CPAppConstants.h; path = App/CPAppConstants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F79DB61B1438F017004E4CA0 /* CPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CPViewController.m; path = App/CPViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F79DB61E1438F017004E4CA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CPViewController.xib; sourceTree = "<group>"; };
-		F79DB6921439213F004E4CA0 /* CPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAppDelegate.m; sourceTree = "<group>"; };
+		F79DB6921439213F004E4CA0 /* CPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPAppDelegate.m; path = App/CPAppDelegate.m; sourceTree = "<group>"; };
 		F79DB69F14398899004E4CA0 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F79DB6A1143988AA004E4CA0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F7A2CE651439913800A81895 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F7A2CE741439931C00A81895 /* CPAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAppConstants.h; sourceTree = "<group>"; };
-		F7A2CE751439936900A81895 /* CPAppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAppConstants.m; sourceTree = "<group>"; };
+		F7A2CE741439931C00A81895 /* CPAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAppConstants.h; path = App/CPAppConstants.h; sourceTree = "<group>"; };
+		F7A2CE751439936900A81895 /* CPAppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPAppConstants.m; path = App/CPAppConstants.m; sourceTree = "<group>"; };
 		F7A2CE771439F4DF00A81895 /* BCMiscellaneous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMiscellaneous.h; sourceTree = "<group>"; };
 		F7A2CE781439F4DF00A81895 /* BCMiscellaneous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMiscellaneous.m; sourceTree = "<group>"; };
 		F7AE011714B556F300995297 /* BCImageLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCImageLevels.h; sourceTree = "<group>"; };
@@ -334,7 +337,7 @@
 		78B018161C9C4A40001132E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				F79DB61A1438F017004E4CA0 /* CPViewController.h */,
+				F79DB61A1438F017004E4CA0 /* CPAppConstants.h */,
 				F79DB61B1438F017004E4CA0 /* CPViewController.m */,
 				40A7A08D14414D9600529407 /* CPOptionsViewController.h */,
 				40A7A08E14414D9600529407 /* CPOptionsViewController.m */,
@@ -346,6 +349,7 @@
 				40172129143DD94600F5427F /* CPImageProcessor.m */,
 				78AD68A71D52664000D137C5 /* ImageMetadata.h */,
 				78AD68A81D52664000D137C5 /* ImageMetadata.m */,
+				6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -446,12 +450,13 @@
 		F79DB60F1438F017004E4CA0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */,
 				F79DB6101438F017004E4CA0 /* CrossProcess-Info.plist */,
 				F79DB6111438F017004E4CA0 /* InfoPlist.strings */,
 				F7E2DA80147AAF50009F12FF /* main.m */,
 				F79DB6161438F017004E4CA0 /* CrossProcess-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		F79DB69414398599004E4CA0 /* Resources */ = {
@@ -505,6 +510,11 @@
 				CLASSPREFIX = CP;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Zinc Collective LLC";
+				TargetAttributes = {
+					F79DB6031438F017004E4CA0 = {
+						LastSwiftMigration = 1500;
+					};
+				};
 			};
 			buildConfigurationList = F79DB5FE1438F017004E4CA0 /* Build configuration list for PBXProject "CrossProcess" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -637,6 +647,7 @@
 				4017212A143DD94600F5427F /* CPImageProcessor.m in Sources */,
 				40172130143DD95D00F5427F /* BCImage.m in Sources */,
 				40172131143DD95D00F5427F /* BCImageCurve.m in Sources */,
+				6DBF12BF2AE570A1007A7FEE /* PhotoProvider.swift in Sources */,
 				40172134143DDC8200F5427F /* BCUtilities.m in Sources */,
 				F7C7F5B3143E0810008AA9EA /* BCTimer.m in Sources */,
 				F7C7F5B7143E0CC9008AA9EA /* BCImageView.m in Sources */,
@@ -687,6 +698,7 @@
 				F79DB6121438F017004E4CA0 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F79DB61D1438F017004E4CA0 /* CPViewController.xib */ = {
@@ -808,8 +820,8 @@
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
-				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
+				GCC_PREFIX_HEADER = "CrossProcess/Supporting Files/CrossProcess-Prefix.pch";
+				INFOPLIST_FILE = "CrossProcess/Supporting Files/CrossProcess-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -820,6 +832,9 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "CrossProcess/Supporting Files/CrossProcess-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -836,8 +851,8 @@
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CrossProcess/CrossProcess-Prefix.pch";
-				INFOPLIST_FILE = "CrossProcess/CrossProcess-Info.plist";
+				GCC_PREFIX_HEADER = "CrossProcess/Supporting Files/CrossProcess-Prefix.pch";
+				INFOPLIST_FILE = "CrossProcess/Supporting Files/CrossProcess-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -848,6 +863,8 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "CrossProcess/Supporting Files/CrossProcess-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
