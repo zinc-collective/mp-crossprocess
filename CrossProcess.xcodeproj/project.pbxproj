@@ -58,6 +58,7 @@
 		6D7EABB72AE415E1004158AF /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB62AE415E1004158AF /* Sentry */; };
 		6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB82AE415E1004158AF /* SentrySwiftUI */; };
 		6DBF12BF2AE570A1007A7FEE /* PhotoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */; };
+		6DBF12C42AF4A0ED007A7FEE /* CrossProcess-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
 		78B018151C9C49D9001132E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B018141C9C49D9001132E0 /* Images.xcassets */; };
@@ -654,6 +655,7 @@
 				40A7A09014414D9600529407 /* CPOptionsViewController.m in Sources */,
 				78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */,
 				F7394DD71457BF8300F5E4F9 /* UIImageAdditions.m in Sources */,
+				6DBF12C42AF4A0ED007A7FEE /* CrossProcess-Bridging-Header.h in Sources */,
 				403E0A1D145ECC50009B32A0 /* BCGrowlView.m in Sources */,
 				F7AE011914B556F300995297 /* BCImageLevels.m in Sources */,
 			);
@@ -820,7 +822,8 @@
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CrossProcess/Supporting Files/CrossProcess-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_NAME)/Supporting Files/CrossProcess-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$PROJECT_DIR/$(PROJECT_NAME)/**";
 				INFOPLIST_FILE = "CrossProcess/Supporting Files/CrossProcess-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
@@ -832,7 +835,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CrossProcess/Supporting Files/CrossProcess-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Supporting Files/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -851,7 +854,8 @@
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CrossProcess/Supporting Files/CrossProcess-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_NAME)/Supporting Files/CrossProcess-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$PROJECT_DIR/$(PROJECT_NAME)/**";
 				INFOPLIST_FILE = "CrossProcess/Supporting Files/CrossProcess-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
@@ -863,7 +867,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CrossProcess/Supporting Files/CrossProcess-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Supporting Files/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
