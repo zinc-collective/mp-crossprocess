@@ -210,7 +210,7 @@
 		F79DB69F14398899004E4CA0 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F79DB6A1143988AA004E4CA0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F7A2CE651439913800A81895 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F7A2CE741439931C00A81895 /* CPAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAppConstants.h; path = App/CPAppConstants.h; sourceTree = "<group>"; };
+		F7A2CE741439931C00A81895 /* CPAppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPAppConstants.h; path = App/CPAppConstants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F7A2CE751439936900A81895 /* CPAppConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPAppConstants.m; path = App/CPAppConstants.m; sourceTree = "<group>"; };
 		F7A2CE771439F4DF00A81895 /* BCMiscellaneous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMiscellaneous.h; sourceTree = "<group>"; };
 		F7A2CE781439F4DF00A81895 /* BCMiscellaneous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMiscellaneous.m; sourceTree = "<group>"; };
