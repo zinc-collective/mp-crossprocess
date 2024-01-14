@@ -611,7 +611,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
             // Create the new placeholder view, add it to the scrollview and animate it in.
 
-            BCImageView*    imageView = [[BCImageView alloc] initWithFrame: BCViewFrame];
+            BCImageView*    imageView = [[BCImageView alloc] initWithFrame:BCViewFrame photoProvider:[[PhotoSource alloc] init]];
 
             // Only set the natural size if the photo wasn't captured.
 
@@ -1455,7 +1455,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
                 if(imageView == nil)
                 {
-                    imageView = [[BCImageView alloc] initWithFrame: BCViewFrame];
+                    imageView = [[BCImageView alloc] initWithFrame: BCViewFrame photoProvider:[[PhotoSource alloc] init]];
                 }
 
                 [self pConfigureView: imageView forIndex: index];

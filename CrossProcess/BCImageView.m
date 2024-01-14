@@ -25,12 +25,14 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
 
 @synthesize portraitOrientation = _portraitOrientation;
 @synthesize naturalSize = _naturalSize;
+@synthesize photoSource = _photoSource;
 
-- (id) initWithFrame: (CGRect) frame
+- (id) initWithFrame:(CGRect) frame photoProvider:(id<PhotoProvider>) photoProvider
 {
     if(self = [super initWithFrame: BCViewFrame])
     {
         self.layer.contentsGravity = kCAGravityResizeAspect;
+        self.photoSource = photoProvider;
     }
 
     return self;
@@ -237,31 +239,24 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     }
     else
     {
-        ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; // AppDelegate().assetLibrary;
+        [_photoSource getAssetWithImageURL:imageURL success:^(CGImageRef assetRef)
+        {
+            assert([NSThread isMainThread]);
 
-        [library assetForURL: imageURL
-                 resultBlock:^(ALAsset *asset)
-         {
-             assert([NSThread isMainThread]);
-
-             ALAssetRepresentation*	rep = [asset defaultRepresentation];
-             CGImageRef fullscreenImageRef = [rep fullScreenImage];
-
-             if(fullscreenImageRef)
-             {
-                 [self pCrossFadeLayer];
-                 self.layer.contentsGravity = kCAGravityResizeAspect;
-                 self.layer.contents = (__bridge id)fullscreenImageRef;
-             }
-             else
-             {
-                 NSLog(@"###---> Failed to load asset");
-             }
-         }
-                failureBlock:^(NSError *error)
-         {
-             NSLog(@"###---> %@", [error description]);
-         }];
+            if(assetRef)
+            {
+                [self pCrossFadeLayer];
+                self.layer.contentsGravity = kCAGravityResizeAspect;
+                self.layer.contents = (__bridge id)assetRef; //TODO: the docs say I should not do this becasue this use case is "tied to a view"
+            }
+            else
+            {
+                NSLog(@"###---> Asset Not Found");
+            }
+        } failure:^(NSError *error)
+        {
+            NSLog(@"###---> Failed to load asset: %@", [error description]);
+        }];
     }
 }
 

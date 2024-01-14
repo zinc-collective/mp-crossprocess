@@ -5,6 +5,7 @@
 //  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
+#import "CrossProcess-Swift.h"
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
@@ -31,6 +32,9 @@ typedef enum
 - (id) initWithImageURL: (NSURL*) imageURL;
 - (id) initWithPlaceholder: (CPPlaceholderType) placeholderType portraitOrientation: (BOOL) isPortrait;
 */
+- (id) initWithFrame: (CGRect) frame
+       photoProvider: (id<PhotoProvider>) photoProvider;
+
 
 - (void) clearContent;
 - (void) useAsset: (id) asset;
@@ -38,5 +42,6 @@ typedef enum
 
 @property(nonatomic, readonly) BOOL portraitOrientation;
 @property(nonatomic, assign) CGSize naturalSize;
+@property(assign, nonatomic) id<PhotoProvider>     photoSource;
 
 @end
