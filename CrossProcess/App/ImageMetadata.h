@@ -11,7 +11,6 @@
 
 @interface ImageMetadata : NSObject
 
-+(void)fetchMetadataForURL:(NSURL*)url found:(void(^)(NSDictionary*))found;
 +(void)fetchMetadataForAsset:(PHAsset*)asset found:(void(^)(NSDictionary*))found;
 +(void)fetchMetadataForAssetIdentifier:(NSString*)assetIdentifier found:(void(^)(NSDictionary*))found;
 
