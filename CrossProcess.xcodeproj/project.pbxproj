@@ -57,7 +57,7 @@
 		6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2C0C2928E3458A00B775A7 /* CoreImage.framework */; };
 		6D7EABB72AE415E1004158AF /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB62AE415E1004158AF /* Sentry */; };
 		6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB82AE415E1004158AF /* SentrySwiftUI */; };
-		6DBF12BF2AE570A1007A7FEE /* PhotoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */; };
+		6DBF12BF2AE570A1007A7FEE /* PhotoSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */; };
 		6DBF12C42AF4A0ED007A7FEE /* CrossProcess-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
@@ -165,7 +165,7 @@
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
 		6D2C0C2928E3458A00B775A7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossProcess-Bridging-Header.h"; sourceTree = "<group>"; };
-		6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoProvider.swift; path = App/PhotoProvider.swift; sourceTree = "<group>"; };
+		6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSource.swift; path = App/PhotoSource.swift; sourceTree = "<group>"; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageMetadata.h; path = App/ImageMetadata.h; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 				40172129143DD94600F5427F /* CPImageProcessor.m */,
 				78AD68A71D52664000D137C5 /* ImageMetadata.h */,
 				78AD68A81D52664000D137C5 /* ImageMetadata.m */,
-				6DBF12BE2AE570A1007A7FEE /* PhotoProvider.swift */,
+				6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -649,7 +649,7 @@
 				4017212A143DD94600F5427F /* CPImageProcessor.m in Sources */,
 				40172130143DD95D00F5427F /* BCImage.m in Sources */,
 				40172131143DD95D00F5427F /* BCImageCurve.m in Sources */,
-				6DBF12BF2AE570A1007A7FEE /* PhotoProvider.swift in Sources */,
+				6DBF12BF2AE570A1007A7FEE /* PhotoSource.swift in Sources */,
 				40172134143DDC8200F5427F /* BCUtilities.m in Sources */,
 				F7C7F5B3143E0810008AA9EA /* BCTimer.m in Sources */,
 				F7C7F5B7143E0CC9008AA9EA /* BCImageView.m in Sources */,

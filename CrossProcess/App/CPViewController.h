@@ -37,6 +37,7 @@ extern const NSInteger  CPToolbarTag;
 @property (strong, nonatomic) IBOutlet UIToolbar*           toolbarNoCamera;
 
 @property (strong, nonatomic) BCImageCaptureController*     imageCaptureController;
+@property (strong, nonatomic) BCImageCaptureController*     imageLibraryController;
 @property (assign, nonatomic) SystemSoundID                 captureSound;
 @property (strong, nonatomic) CPImageProcessor*             imageProcessor;
 @property (strong, nonatomic) NSOperationQueue*             imageQueue;

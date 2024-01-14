@@ -61,7 +61,13 @@
     NSLog(@"###---> [CPAppDelegate] didFinishLaunchingWithOptions - %@", [self version]);
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    BCImageCaptureController* imageCaptureController = [[BCImageCaptureController alloc] initWithNibName: @"BCImageCaptureController" bundle: nil];
     self.viewController = [[CPViewController alloc] initWithNibName:@"CPViewController" bundle:nil];
+    self.viewController.imageCaptureController = imageCaptureController;
+    self.viewController.imageCaptureController.delegate = self.viewController;
+    self.viewController.imageLibraryController = imageCaptureController;
+    self.viewController.imageLibraryController.delegate = self.viewController;
     self.viewController.applicationLaunching = YES;
 
     self.window.rootViewController = self.viewController;

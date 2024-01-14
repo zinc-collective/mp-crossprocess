@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <PhotosUI/PhotosUI.h>
 
 extern NSString* const      BCCameraDeviceKey;
 extern NSString* const      BCCameraFlashModeKey;
@@ -18,6 +19,7 @@ extern NSString* const      BCCameraFlashModeKey;
 
 @property (assign, nonatomic) id<BCImageCaptureControllerDelegate>    delegate;
 @property (strong, nonatomic) UIImagePickerController* imagePickerController;
+@property (strong, nonatomic) PHPickerViewController* imagePickerLibraryController;
 
 - (void) setupForImageCapture: (UIImagePickerControllerSourceType) sourceType;
 

@@ -5,6 +5,7 @@
 //  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
+#import "CrossProcess-Swift.h"
 #import "BCImageCaptureController.h"
 #import "CPAppConstants.h"
 
@@ -15,14 +16,23 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
 
 @synthesize delegate = _delegate;
 @synthesize imagePickerController = _imagePickerController;
+@synthesize imagePickerLibraryController = _imagePickerLibraryController;
 
 - (id) initWithNibName: (NSString*) nibNameOrNil bundle: (NSBundle*) nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
+        PHPhotoLibrary* photoLibrary = [PHPhotoLibrary sharedPhotoLibrary];
+        //https://ikyle.me/blog/2020/phpickerviewcontroller
+        PHPickerConfiguration *config = [[PHPickerConfiguration alloc] initWithPhotoLibrary:photoLibrary];
+        config.selectionLimit = 1;
+        config.filter = [PHPickerFilter imagesFilter];
+
         self.imagePickerController = [[UIImagePickerController alloc] init];
         self.imagePickerController.delegate = self;
+        self.imagePickerLibraryController = [[PHPickerViewController alloc] initWithConfiguration:config];
+        self.imagePickerLibraryController.delegate = self;
     }
 
     return self;
