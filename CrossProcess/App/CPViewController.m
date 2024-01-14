@@ -5,6 +5,8 @@
 //  Copyright 2019 Zinc Collective LLC. All rights reserved.
 //
 
+#import "CrossProcess-Swift.h"
+
 #import "CPViewController.h"
 #import "CPAppConstants.h"
 #import "CPAppDelegate.h"
@@ -46,6 +48,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @property(nonatomic, strong) UIImage*           photoToProcess;
 @property(nonatomic, strong) NSDictionary*      photoMetadata;
 @property(nonatomic, strong) NSURL*             photoAssetLibraryURL;
+@property(nonatomic, strong) NSString*          photoAssetLibraryAssetIdentifier;
 @property(nonatomic, assign) BOOL               photoWasCaptured;
 
 - (void) pLoadAsset: (NSURL*) assetURL usingImageCompletionBlock: (CPLoadAssetImageCompletionBlock) completionBlock;
@@ -94,6 +97,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize photoToProcess = _photoToProcess;
 @synthesize photoMetadata = _photoMetadata;
 @synthesize photoAssetLibraryURL = _photoAssetLibraryURL;
+@synthesize photoAssetLibraryAssetIdentifier = _photoAssetLibraryAssetIdentifier;
 @synthesize photoWasCaptured = _photoWasCaptured;
 
 @synthesize debugVersionLabel;
@@ -103,6 +107,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize toolbarWithCamera = _toolbarWithCamera;
 @synthesize captureSound = _captureSound;
 @synthesize imageCaptureController = _imageCaptureController;
+@synthesize imageLibraryController = _imageLibraryController;
 @synthesize imageProcessor = _imageProcessor;
 @synthesize imageQueue = _imageQueue;
 @synthesize processingImage = _processingImage;
@@ -198,11 +203,11 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [self setBackgroundImage];
     [self pSetupPhotoCaptureSound];
 
-    if(self.imageCaptureController == nil)
-    {
-        self.imageCaptureController = [[BCImageCaptureController alloc] initWithNibName: @"BCImageCaptureController" bundle: nil];
-        self.imageCaptureController.delegate = self;
-    }
+//    if(self.imageCaptureController == nil)
+//    {
+//        self.imageCaptureController = [[BCImageCaptureController alloc] initWithNibName: @"BCImageCaptureController" bundle: nil];
+//        self.imageCaptureController.delegate = self;
+//    }
 
     // Set the appropriate toolbar
 
@@ -340,10 +345,10 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (void) presentPhotoPickerController
 {
-    if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary])
+    if(self.imageLibraryController != nil)
     {
-        [self.imageCaptureController setupForImageCapture: UIImagePickerControllerSourceTypePhotoLibrary];
-        [self presentViewController:self.imageCaptureController.imagePickerController animated: YES completion:^{}];
+        [self.imageLibraryController setupForPhotoLibraryCapture];
+        [self presentViewController:self.imageLibraryController.imagePickerLibraryController animated: YES completion:^{}];
     }
 }
 
@@ -365,21 +370,19 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 #pragma mark - BCImageCaptureControllerDelegate
 
-- (void) userPickedPhoto: (UIImage*) photo withAssetLibraryURL: (NSURL*) url
+- (void) userPickedPhoto: (UIImage*) photo withPhotoLibraryAsset: (NSString*) identifier
  {
-     NSLog(@"###---> [CPV] userPickedPhoto");
      [self pHideToolbar: NO];
      [self dismissViewControllerAnimated: YES completion:^{}];
      [self pValidateToolbarItems];
 
      // Begin an image processing operation
-
-     [ImageMetadata fetchMetadataForURL:url found:^(NSDictionary * meta) {
+     [ImageMetadata fetchMetadataForAssetIdentifier:identifier found:^(NSDictionary * meta) {
          NSLog(@"###---> GOT METADATA %@", meta);
 
          self.photoToProcess = photo;
          self.photoMetadata = meta;
-         self.photoAssetLibraryURL = url;
+         self.photoAssetLibraryAssetIdentifier = identifier;
          self.photoWasCaptured = NO;
 
          // If the scrollview's contentOffset is already 0,0 then our delegate method for scrollViewDidEndScrollingAnimation

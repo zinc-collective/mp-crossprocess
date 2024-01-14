@@ -15,13 +15,14 @@ extern NSString* const      BCCameraFlashModeKey;
 
 @protocol BCImageCaptureControllerDelegate;
 
-@interface BCImageCaptureController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface BCImageCaptureController : UIViewController<UIImagePickerControllerDelegate, PHPickerViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (assign, nonatomic) id<BCImageCaptureControllerDelegate>    delegate;
 @property (strong, nonatomic) UIImagePickerController* imagePickerController;
 @property (strong, nonatomic) PHPickerViewController* imagePickerLibraryController;
 
 - (void) setupForImageCapture: (UIImagePickerControllerSourceType) sourceType;
+- (void) setupForPhotoLibraryCapture;
 
 @end
 
@@ -29,7 +30,7 @@ extern NSString* const      BCCameraFlashModeKey;
 
 @protocol BCImageCaptureControllerDelegate
 
-- (void) userPickedPhoto: (UIImage*) photo withAssetLibraryURL: (NSURL*) url;
+- (void) userPickedPhoto: (UIImage*) photo withPhotoLibraryAsset: (NSString*) identifier;
 - (void) userCapturedPhoto: (UIImage*) photo withMetadata: (NSDictionary*) metadata;
 - (void) userCancelled;
 

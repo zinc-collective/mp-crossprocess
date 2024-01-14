@@ -11,10 +11,16 @@
 @implementation ImageMetadata
 
 
-+(void)fetchMetadataForURL:(NSURL*)url found:(void(^)(NSDictionary*))found {
-    PHAsset * asset = [PHAsset fetchAssetsWithALAssetURLs:@[url] options:nil][0];
++(void)fetchMetadataForAssetIdentifier:(NSString*)assetIdentifier found:(void(^)(NSDictionary*))found {
+    PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
+    allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithLocalIdentifiers:[[NSArray alloc] initWithObjects:assetIdentifier, nil] options:allPhotosOptions];
+    NSMutableArray<PHAsset*> *arrPhassets=[[NSMutableArray alloc]init];
+    [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+        [arrPhassets addObject:asset];
+    }];
 
-    [ImageMetadata fetchMetadataForAsset:asset found:found];
+    [ImageMetadata fetchMetadataForAsset:arrPhassets.firstObject found:found];
 }
 
 +(void)fetchMetadataForAsset:(PHAsset*)asset found:(void(^)(NSDictionary*))found {

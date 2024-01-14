@@ -54,10 +54,11 @@
 		40B81FC91440939900842FD9 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FC71440939900842FD9 /* info@2x.png */; };
 		40B81FCC144093EE00842FD9 /* pickphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B81FCB144093EE00842FD9 /* pickphoto.png */; };
 		40E9C647144477AC002B6D25 /* image_assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E9C646144477AC002B6D25 /* image_assets.plist */; };
+		6D170E812B53E019006B2429 /* EXT+NSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D170E802B53E019006B2429 /* EXT+NSItemProvider.swift */; };
+		6D170E832B53E14F006B2429 /* PhotoSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D170E822B53E14F006B2429 /* PhotoSource.swift */; };
 		6D2C0C2A28E3458A00B775A7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2C0C2928E3458A00B775A7 /* CoreImage.framework */; };
 		6D7EABB72AE415E1004158AF /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB62AE415E1004158AF /* Sentry */; };
 		6D7EABB92AE415E1004158AF /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7EABB82AE415E1004158AF /* SentrySwiftUI */; };
-		6DBF12BF2AE570A1007A7FEE /* PhotoSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */; };
 		6DBF12C42AF4A0ED007A7FEE /* CrossProcess-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */; };
 		786615661C9B4A87007810FA /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 786615651C9B4A87007810FA /* Photos.framework */; };
 		78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD68A81D52664000D137C5 /* ImageMetadata.m */; };
@@ -163,9 +164,10 @@
 		40B81FC71440939900842FD9 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
 		40B81FCB144093EE00842FD9 /* pickphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickphoto.png; sourceTree = "<group>"; };
 		40E9C646144477AC002B6D25 /* image_assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = image_assets.plist; sourceTree = "<group>"; };
+		6D170E802B53E019006B2429 /* EXT+NSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EXT+NSItemProvider.swift"; sourceTree = "<group>"; };
+		6D170E822B53E14F006B2429 /* PhotoSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSource.swift; path = App/PhotoSource.swift; sourceTree = "<group>"; };
 		6D2C0C2928E3458A00B775A7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6DBF12BD2AE570A0007A7FEE /* CrossProcess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossProcess-Bridging-Header.h"; sourceTree = "<group>"; };
-		6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSource.swift; path = App/PhotoSource.swift; sourceTree = "<group>"; };
 		7809E2941C99AD2400DD8EB4 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = facebook_ios_sdk_built/libfacebook_ios_sdk.a; sourceTree = "<group>"; };
 		786615651C9B4A87007810FA /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		78AD68A71D52664000D137C5 /* ImageMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageMetadata.h; path = App/ImageMetadata.h; sourceTree = "<group>"; };
@@ -335,6 +337,14 @@
 			name = "image assets";
 			sourceTree = "<group>";
 		};
+		6D170E7D2B53DF2C006B2429 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D170E802B53E019006B2429 /* EXT+NSItemProvider.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		78B018161C9C4A40001132E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,7 +360,7 @@
 				40172129143DD94600F5427F /* CPImageProcessor.m */,
 				78AD68A71D52664000D137C5 /* ImageMetadata.h */,
 				78AD68A81D52664000D137C5 /* ImageMetadata.m */,
-				6DBF12BE2AE570A1007A7FEE /* PhotoSource.swift */,
+				6D170E822B53E14F006B2429 /* PhotoSource.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -440,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				78B018161C9C4A40001132E0 /* App */,
+				6D170E7D2B53DF2C006B2429 /* Extensions */,
 				F79DB69414398599004E4CA0 /* Resources */,
 				F758D8B314B7D6A9000FD393 /* Shared */,
 				78B018141C9C49D9001132E0 /* Images.xcassets */,
@@ -643,17 +654,18 @@
 				F7E2DA7F147AAF50009F12FF /* main.m in Sources */,
 				F79DB61C1438F017004E4CA0 /* CPViewController.m in Sources */,
 				F79DB6931439213F004E4CA0 /* CPAppDelegate.m in Sources */,
+				6D170E832B53E14F006B2429 /* PhotoSource.swift in Sources */,
 				F7A2CE761439936900A81895 /* CPAppConstants.m in Sources */,
 				F7A2CE791439F4E000A81895 /* BCMiscellaneous.m in Sources */,
 				F7B3B297143CA61200D5F2FB /* BCImageCaptureController.m in Sources */,
 				4017212A143DD94600F5427F /* CPImageProcessor.m in Sources */,
 				40172130143DD95D00F5427F /* BCImage.m in Sources */,
 				40172131143DD95D00F5427F /* BCImageCurve.m in Sources */,
-				6DBF12BF2AE570A1007A7FEE /* PhotoSource.swift in Sources */,
 				40172134143DDC8200F5427F /* BCUtilities.m in Sources */,
 				F7C7F5B3143E0810008AA9EA /* BCTimer.m in Sources */,
 				F7C7F5B7143E0CC9008AA9EA /* BCImageView.m in Sources */,
 				40A7A09014414D9600529407 /* CPOptionsViewController.m in Sources */,
+				6D170E812B53E019006B2429 /* EXT+NSItemProvider.swift in Sources */,
 				78AD68A91D52664000D137C5 /* ImageMetadata.m in Sources */,
 				F7394DD71457BF8300F5E4F9 /* UIImageAdditions.m in Sources */,
 				6DBF12C42AF4A0ED007A7FEE /* CrossProcess-Bridging-Header.h in Sources */,
