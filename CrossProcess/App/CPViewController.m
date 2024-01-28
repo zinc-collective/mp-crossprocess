@@ -41,7 +41,6 @@ const NSInteger  CPToolbarPositionOffsetY = 30;
 
 typedef void (^CPWriteAssetCompletionBlock)(NSURL *assetURL, NSError *error);
 typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageUTI, BOOL didFail);
-typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imageUTI, BOOL didFail);
 
 @interface CPViewController()
 
@@ -51,7 +50,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @property(nonatomic, assign) BOOL               photoWasCaptured;
 
 - (void) pLoadAsset: (NSURL*) assetURL usingImageCompletionBlock: (CPLoadAssetImageCompletionBlock) completionBlock;
-- (void) pLoadAsset: (NSURL*) assetURL usingDataCompletionBlock: (CPLoadAssetDataCompletionBlock) completionBlock;
 
 - (void) pHandleWelcomeTap: (UITapGestureRecognizer*) sender;
 - (void) pHandleSingleTap: (UITapGestureRecognizer*) sender;
@@ -1353,63 +1351,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 	}
 
 	return mimeType;
-}
-
-
-
-- (void) pLoadAsset: (NSURL*) assetURL usingDataCompletionBlock: (CPLoadAssetDataCompletionBlock) completionBlock
-{
-    if(completionBlock)
-    {
-        ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; //AppDelegate().assetLibrary;
-
-        [library assetForURL: assetURL
-                 resultBlock:^(ALAsset *asset)
-         {
-             assert([NSThread isMainThread]);
-
-             ALAssetRepresentation*     rep = [asset defaultRepresentation];
-             BOOL                       didFail = YES;
-
-             if(rep)
-             {
-                 unsigned long              size = (unsigned long)[rep size];
-                 uint8_t*				buffer = (uint8_t*)malloc(size);
-
-                 if(buffer)
-                 {
-                     NSError*           error = nil;
-                     NSUInteger         numBytes = 0;
-                     numBytes = [rep getBytes: buffer fromOffset: 0 length: size error: &error];
-
-                     if(numBytes > 0 && !error)
-                     {
-                         NSData*    photoData = [[NSData alloc] initWithBytes: buffer length: size];
-
-                         didFail = NO;
-                         completionBlock(photoData, [rep UTI], didFail);
-                     }
-                     else if(error)
-                     {
-                         NSLog(@"###---> ALAssetRepresentation -getBytes::: failed - %@", [error description]);
-                     }
-
-                     free(buffer);
-                 }
-             }
-
-             if(didFail)
-             {
-                 completionBlock(nil, nil, YES);
-             }
-
-         }
-                failureBlock:^(NSError *error)
-         {
-             NSLog(@"###---> %@", [error description]);
-             completionBlock(nil, nil, YES);
-         }];
-    }
 }
 
 - (void) pLoadAsset: (NSURL*) assetURL usingImageCompletionBlock: (CPLoadAssetImageCompletionBlock) completionBlock
