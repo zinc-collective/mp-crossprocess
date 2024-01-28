@@ -72,7 +72,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 - (BOOL) pWriteOriginalImage;
 - (CPPlaceholderType) pPlaceholderTypeFromCurveName: (NSString*) curvePath;
 - (NSMutableDictionary*) pCurrentLocation;
-- (NSMutableDictionary*) pGPSDictionary: (CLLocation*) location;
+- (NSMutableDictionary*) pGPSDictionaryStartingWith: (NSMutableDictionary*) dict at: (CLLocation*) location;
 - (NSURL*) pURLForVisibleImageView;
 - (void) pAdjustScrollViewFrame;
 - (CGRect) pFrameForScrollView;
@@ -755,9 +755,14 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
 }
 
-- (NSMutableDictionary*) pGPSDictionary: (CLLocation*) location
+- (NSMutableDictionary*) pGPSDictionaryStartingWith: (NSMutableDictionary*) dict at: (CLLocation*) location
 {
-    NSMutableDictionary*    gpsDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary*    gpsDict = nil;
+    if(dict != nil) {
+        gpsDict = dict;
+    } else {
+        gpsDict = [[NSMutableDictionary alloc] init];
+    }
 
     if(location != nil)
     {
@@ -823,7 +828,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             }
         } else {
             if(writeCompletionBlock) {
-                [SentrySDK captureError:error];
                 writeCompletionBlock(nil, error);
             }
         }
@@ -832,7 +836,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 - (NSMutableDictionary*) pCurrentLocation
 {
-    return [self pGPSDictionary: self.currentLocation];
+    return [self pGPSDictionaryStartingWith:nil at:self.currentLocation];
 }
 
 - (void) pWriteCGImageToSavedPhotosAlbum: (CGImageRef) cgImage
@@ -900,35 +904,113 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     }
 }
 
+- (NSMutableDictionary *)extractImageMetadata:(BCImage *)image {
+  NSMutableDictionary *metadataDict = [[NSMutableDictionary alloc] init];
+  
+  // Create a CGImageSource from the image
+  CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)UIImagePNGRepresentation([UIImage imageWithCGImage:image.CGImageRef]), NULL);
+  if (!source) {
+    NSLog(@"Error: Couldn't create CGImageSource");
+    return nil;
+  }
+  
+  // Get the image properties dictionary
+  NSDictionary *propertiesDict = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(source, 0, NULL));
+  if (!propertiesDict) {
+    CFRelease(source);
+    NSLog(@"Error: Couldn't get image properties");
+    return nil;
+  }
+  
+  // Extract specific metadata values
+  NSString *UTI = (NSString *)CFBridgingRelease(CGImageSourceGetType(source));
+  NSInteger width = CGImageGetWidth(image.CGImageRef);
+  NSInteger height = CGImageGetHeight(image.CGImageRef);
+  
+  [metadataDict setObject:UTI forKey:@"UTI"];
+  [metadataDict setObject:@(width) forKey:@"Width"];
+  [metadataDict setObject:@(height) forKey:@"Height"];
+  
+  // Loop through the properties dictionary and add relevant values
+  for (NSString *key in propertiesDict) {
+    id value = [propertiesDict objectForKey:key];
+    if ([value isKindOfClass:[NSString class]]) {
+      [metadataDict setObject:value forKey:key];
+    } else if ([value isKindOfClass:[NSNumber class]]) {
+      [metadataDict setObject:value forKey:key];
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+      // Handle nested dictionaries if needed
+      NSDictionary *nestedDict = (NSDictionary *)value;
+      // Extract specific values from nested dictionary, like GPS coordinates
+      NSString *latitude = [nestedDict objectForKey:@"Latitude"];
+      NSString *longitude = [nestedDict objectForKey:@"Longitude"];
+      if (latitude && longitude) {
+        [metadataDict setObject:@{@"Latitude": latitude, @"Longitude": longitude} forKey:@"GPS"];
+      }
+    }
+  }
+  
+  // Clean up
+  CFRelease(source);
+  
+  return metadataDict;
+}
+
+
+
+
+// Helper function to convert and format coordinate strings
+- (double)convertCoordinateString:(NSString *)coordinate withRef:(NSString *)ref {
+  double degrees = [[coordinate substringToIndex:2] doubleValue];
+  double minutes = [[coordinate substringFromIndex:2] doubleValue];
+  minutes /= 60.0;
+  
+  if ([ref isEqualToString:@"S"] || [ref isEqualToString:@"W"]) {
+    degrees *= -1.0;
+  }
+  
+  return degrees + minutes;
+}
+
+
 - (void) pGatherOriginalLocation: (NSURL*) assetURL andWriteToPhotoLibrary: (BCImage*) image
 {
     NSLog(@"###---> pGatherOriginalLocation");
-    ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init];
-    __block NSMutableDictionary*        gpsDict = nil;
-
-    // Gather the EXIF data if we can...
-
-    [library assetForURL: assetURL
-             resultBlock:^(ALAsset *asset)
-     {
-//         NSLog(@"###--->  - got result");
-         ALAssetRepresentation*     rep = [asset defaultRepresentation];
-         NSDictionary*              imageMetadata = nil;
-         if(rep)
-         {
-             imageMetadata = [rep metadata];
-         }
-
-         gpsDict = [self pGPSDictionary: BCCastAsClass(CLLocation, [asset valueForProperty: ALAssetPropertyLocation])];
-         [self pWriteImageToPhotoLibrary: image metadata: imageMetadata gpsData: gpsDict];
-     }
-            failureBlock:^(NSError *error)
-
-     {
-         NSLog(@"###--->  - Error getting asset %@ -attempting to write anyway", error);
-         // Error getting asset, but attempt to write anyways.
-         [self pWriteImageToPhotoLibrary: image metadata: nil gpsData: nil];
-     }];
+    __weak CPViewController*            weakSelf = self;
+    
+    PhotoSource* library = [[PhotoSource alloc] init];
+    [library getAssetWithImageURL:assetURL success:^(CGImageRef cgImage){
+        // Get metadata
+        CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)UIImagePNGRepresentation([UIImage imageWithCGImage:image.CGImageRef]), NULL);
+        NSMutableDictionary* imageMetadata = CFBridgingRelease(CGImageSourceCopyProperties(source, nil));
+        
+        // Get GPS data
+        NSMutableDictionary* gpsDict = [imageMetadata objectForKey:(NSString *)kCGImagePropertyGPSDictionary];
+        
+        // Create location object
+        // Parse latitude and longitude
+        NSString *latitudeRef = [gpsDict objectForKey:(NSString *)kCGImagePropertyGPSLatitudeRef];
+        NSString *latitude = [gpsDict objectForKey:(NSString *)kCGImagePropertyGPSLatitude];
+        
+        NSString *longitudeRef = [gpsDict objectForKey:(NSString *)kCGImagePropertyGPSLongitudeRef];
+        NSString *longitude = [gpsDict objectForKey:(NSString *)kCGImagePropertyGPSLongitude];
+        
+        double latitudeValue = [self convertCoordinateString:latitude withRef:latitudeRef];
+        double longitudeValue = [self convertCoordinateString:longitude withRef:longitudeRef];
+        
+        // Create CLLocation
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudeValue longitude:longitudeValue];
+        
+        // combine
+        NSMutableDictionary* gpsDictFinal = [self pGPSDictionaryStartingWith:gpsDict at:location];
+    
+        // 2. call legacy write method
+        [weakSelf pWriteImageToPhotoLibrary:image metadata:imageMetadata gpsData:gpsDictFinal];
+    } failure:^(NSError* error){
+        NSLog(@"###--->  - Error getting asset %@ -attempting to write anyway", error);
+        // Error getting asset, but attempt to write anyways.
+        [weakSelf pWriteImageToPhotoLibrary:image metadata:nil gpsData:nil];
+    }];
 }
 
 - (void) pWriteImageToPhotoLibrary: (BCImage*) image metadata: (NSDictionary*) metadata gpsData: (NSDictionary*) gpsData
