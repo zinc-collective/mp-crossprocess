@@ -92,6 +92,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
 @end
 
+@import Sentry;
 @implementation CPViewController
 
 @synthesize photoToProcess = _photoToProcess;
@@ -795,6 +796,42 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     return  gpsDict;
 }
 
+
+#pragma mark - util functions for PhotoKit
+- (PHAssetCollection*)getPhotoAlbumReference {
+    PHFetchResult<PHAssetCollection *> *recentAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeSmartAlbumRecentlyAdded options:nil];
+    return [recentAlbums firstObject];
+}
+
+- (void)writeImageToPhotosLibrary:(CGImageRef)imageRef
+                  completionBlock: (CPWriteAssetCompletionBlock) writeCompletionBlock
+{
+    __block PHObjectPlaceholder *tempNewAsset;
+    
+    // Perform the change request
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        UIImage *image = [UIImage imageWithCGImage:imageRef];
+        PHAssetChangeRequest *changeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        
+        PHAssetCollectionChangeRequest *albumChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:[self getPhotoAlbumReference]];
+        tempNewAsset = changeRequest.placeholderForCreatedAsset;
+        [albumChangeRequest addAssets:@[tempNewAsset]];
+    } completionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Image saved to photo library successfully.");
+            if(writeCompletionBlock) {
+                NSURL *assetPath = [[NSURL alloc] initWithString:tempNewAsset.localIdentifier];
+                writeCompletionBlock(assetPath, nil);
+            }
+        } else {
+            if(writeCompletionBlock) {
+                [SentrySDK captureError:error];
+                writeCompletionBlock(nil, error);
+            }
+        }
+    }];
+}
+
 - (NSMutableDictionary*) pCurrentLocation
 {
     return [self pGPSDictionary: self.currentLocation];
@@ -812,7 +849,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     [timer startTimer];
 #endif
 
-    ALAssetsLibrary*                    library = [[ALAssetsLibrary alloc] init]; //AppDelegate().assetLibrary;
     BOOL                                canWriteToAssetLibrary = NO;
 
     // We can get into a situation where the user is asked if our app can write to the photo library (ios6)
@@ -849,10 +885,8 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
             }
         }
 
-
-        [library writeImageToSavedPhotosAlbum: cgImage
-                                     metadata: imageMetadata
-                              completionBlock:^(NSURL* asset, NSError* error)
+        [self writeImageToPhotosLibrary:cgImage
+                        completionBlock: ^(NSURL* asset, NSError* error)
          {
 #if DEBUG
              [timer stopTimer];
