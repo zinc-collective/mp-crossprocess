@@ -48,7 +48,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @property(nonatomic, strong) UIImage*           photoToProcess;
 @property(nonatomic, strong) NSDictionary*      photoMetadata;
 @property(nonatomic, strong) NSURL*             photoAssetLibraryURL;
-@property(nonatomic, strong) NSString*          photoAssetLibraryAssetIdentifier;
 @property(nonatomic, assign) BOOL               photoWasCaptured;
 
 - (void) pLoadAsset: (NSURL*) assetURL usingImageCompletionBlock: (CPLoadAssetImageCompletionBlock) completionBlock;
@@ -98,7 +97,6 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 @synthesize photoToProcess = _photoToProcess;
 @synthesize photoMetadata = _photoMetadata;
 @synthesize photoAssetLibraryURL = _photoAssetLibraryURL;
-@synthesize photoAssetLibraryAssetIdentifier = _photoAssetLibraryAssetIdentifier;
 @synthesize photoWasCaptured = _photoWasCaptured;
 
 @synthesize debugVersionLabel;
@@ -383,7 +381,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 
          self.photoToProcess = photo;
          self.photoMetadata = meta;
-         self.photoAssetLibraryAssetIdentifier = identifier;
+         self.photoAssetLibraryURL = [[NSURL alloc] initWithString:identifier];
          self.photoWasCaptured = NO;
 
          // If the scrollview's contentOffset is already 0,0 then our delegate method for scrollViewDidEndScrollingAnimation
