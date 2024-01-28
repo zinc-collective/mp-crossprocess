@@ -17,7 +17,7 @@ import Foundation
     @objc func getAsset(imageURL: NSURL, success: @escaping (_ asset: CGImage) -> Void, failure: @escaping (_ error: NSError?) -> Void) {
         // Ensure you have access to the Photos library
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            if status == .authorized {
+            if status == .authorized && imageURL.absoluteString != nil {
                 let fetchOptions = PHFetchOptions()
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
