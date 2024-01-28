@@ -1335,37 +1335,22 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
 {
     if(completionBlock)
     {
-        ALAssetsLibrary*	library = [[ALAssetsLibrary alloc] init]; // AppDelegate().assetLibrary;
-
-        [library assetForURL: assetURL
-                 resultBlock:^(ALAsset *asset)
-         {
-             assert([NSThread isMainThread]);
-
-             ALAssetRepresentation*     rep = [asset defaultRepresentation];
-             BOOL                       didFail = YES;
-
-             if(rep)
-             {
-                 UIImage* image = [UIImage imageWithCGImage: [rep fullResolutionImage]];
-                 if(image)
-                 {
-                     didFail = NO;
-                     completionBlock(image, [rep UTI], didFail);
-                 }
-             }
-
-             if(didFail)
-             {
-                 completionBlock(nil, nil, YES);
-             }
-
-         }
-                failureBlock:^(NSError *error)
-         {
-             NSLog(@"###---> %@", [error description]);
-             completionBlock(nil, nil, YES);
-         }];
+        
+        PhotoSource* library = [[PhotoSource alloc] init];
+        [library getAssetWithImageURL:assetURL success:^(CGImageRef cgImage){
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                UIImage* image = [UIImage imageWithCGImage:cgImage];
+                if(image)
+                {
+                    completionBlock(image, nil, NO);
+                }
+            });
+        } failure:^(NSError* error){
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                NSLog(@"###---> %@", [error description]);
+                completionBlock(nil, nil, YES);
+            });
+        }];
     }
 }
 
