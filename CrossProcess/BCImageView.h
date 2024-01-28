@@ -42,6 +42,6 @@ typedef enum
 
 @property(nonatomic, readonly) BOOL portraitOrientation;
 @property(nonatomic, assign) CGSize naturalSize;
-@property(assign, nonatomic) id<PhotoProvider>     photoSource;
+@property(strong, nonatomic) id<PhotoProvider>     photoSource;
 
 @end

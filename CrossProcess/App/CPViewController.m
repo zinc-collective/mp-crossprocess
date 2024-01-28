@@ -465,6 +465,7 @@ typedef void (^CPLoadAssetDataCompletionBlock)(NSData* imageData, NSString* imag
     NSURL* url = [self pURLForVisibleImageView];
     if (url) {
         [self pLoadAsset:url usingImageCompletionBlock:^(UIImage *image, NSString *imageUTI, BOOL didFail) {
+            assert([NSThread isMainThread]);
             if (!didFail) {
                 [self shareImage: image];
             }

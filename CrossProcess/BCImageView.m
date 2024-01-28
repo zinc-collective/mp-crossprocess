@@ -239,22 +239,24 @@ const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
     }
     else
     {
-        [_photoSource getAssetWithImageURL:imageURL success:^(CGImageRef assetRef)
-        {
-            assert([NSThread isMainThread]);
-
-            if(assetRef)
-            {
-                [self pCrossFadeLayer];
-                self.layer.contentsGravity = kCAGravityResizeAspect;
-                self.layer.contents = (__bridge id)assetRef; //TODO: the docs say I should not do this becasue this use case is "tied to a view"
-            }
-            else
-            {
-                NSLog(@"###---> Asset Not Found");
-            }
+        __weak BCImageView* weakSelf = self;
+        [self.photoSource getAssetWithImageURL:imageURL success:^(CGImageRef assetRef)
+         {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                assert([NSThread isMainThread]);
+                if(assetRef && weakSelf)
+                {
+                    [weakSelf pCrossFadeLayer];
+                    weakSelf.layer.contentsGravity = kCAGravityResizeAspect;
+                    weakSelf.layer.contents = (__bridge id)assetRef; //TODO: the docs say I should not do this becasue this use case is "tied to a view"
+                }
+                else
+                {
+                    NSLog(@"###---> Asset Not Found");
+                }
+            });
         } failure:^(NSError *error)
-        {
+         {
             NSLog(@"###---> Failed to load asset: %@", [error description]);
         }];
     }
