@@ -511,11 +511,10 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
 
 #pragma mark - Location Management
 
-- (void) locationManager: (CLLocationManager*) manager
-     didUpdateToLocation: (CLLocation*) newLocation
-            fromLocation: (CLLocation*) oldLocation
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray<CLLocation *> *)locations;
 {
-    self.currentLocation = newLocation;
+    self.currentLocation = locations.lastObject;
 }
 
 #pragma mark - UIScrollViewDelegate
