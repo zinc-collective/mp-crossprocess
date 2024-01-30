@@ -836,7 +836,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -846,7 +846,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.greyscalegorilla.CrossProcess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -868,7 +868,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5GGD34ZNFU;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -878,7 +878,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Cross Process";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.greyscalegorilla.CrossProcess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
