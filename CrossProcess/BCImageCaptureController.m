@@ -53,17 +53,6 @@ NSString* const      BCCameraFlashModeKey = @"BCCameraFlashMode";
     self.view.userInteractionEnabled = NO;
 }
 
-- (void) viewDidUnload
-{
-    [super viewDidUnload];
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void) setupForImageCapture: (UIImagePickerControllerSourceType) sourceType
 {
     self.imagePickerController.sourceType = sourceType;

@@ -60,29 +60,6 @@ static NSInteger    CPLabelViewTag = 101;
     [self pAdjustLabelStrings];
 }
 
-- (void) viewDidUnload
-{
-    self.moreInfoWebView = nil;
-    self.socialWebView = nil;
-    self.tableView = nil;
-    self.redCell = nil;
-    self.blueCell = nil;
-    self.greenCell = nil;
-    self.extremeCell = nil;
-    self.basicCell = nil;
-    self.borderCell = nil;
-    self.saveOriginalCell = nil;
-    self.infoCell = nil;
-    self.communityCell = nil;
-
-    [super viewDidUnload];
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
-{
-    return interfaceOrientation == UIInterfaceOrientationPortrait;
-}
-
 - (IBAction) done: (id) sender
 {
     [self.delegate optionsViewControllerDidFinish: self];

@@ -236,25 +236,6 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
 
 }
 
-- (void) viewDidUnload
-{
-#if DEBUG
-    NSLog(@"###---> View did unload");
-#endif
-
-    [super viewDidUnload];
-
-    if(self.captureSound != 0)
-    {
-        AudioServicesDisposeSystemSoundID(self.captureSound);
-        self.captureSound = 0;
-    }
-
-    self.toolbar = nil;
-    self.recycledImageViews = nil;
-    self.visibleImageViews = nil;
-}
-
 - (void) viewDidAppear: (BOOL) animated
 {
     [super viewDidAppear: animated];
@@ -535,48 +516,6 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
             fromLocation: (CLLocation*) oldLocation
 {
     self.currentLocation = newLocation;
-}
-
-#pragma mark - Rotation
-
-- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
-{
-    return YES;
-}
-
-- (void) willRotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation duration: (NSTimeInterval) duration
-{
-    CGFloat offset = self.scrollView.contentOffset.x;
-    CGFloat scrollViewWidth = self.scrollView.bounds.size.width;
-
-    if(offset >= 0)
-    {
-        self.firstVisibleImageIndexBeforeRotation = floorf(offset / scrollViewWidth);
-        self.percentScrolledIntoFirstVisibleImage = (offset - (self.firstVisibleImageIndexBeforeRotation * scrollViewWidth)) / scrollViewWidth;
-    }
-    else
-    {
-        self.firstVisibleImageIndexBeforeRotation = 0;
-        self.percentScrolledIntoFirstVisibleImage = offset / scrollViewWidth;
-    }
-}
-
-- (void) willAnimateRotationToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation duration: (NSTimeInterval) duration
-{
-    // recalculate contentSize based on current orientation
-    self.scrollView.contentSize = [self pContentSizeForScrollView];
-
-    // adjust frames and configuration of each visible page
-
-    for(UIView* subview in self.scrollView.subviews)
-    {
-        subview.frame = [self pFrameForViewAtIndex: subview.index];
-    }
-
-    // adjust contentOffset to preserve page location based on values collected prior to location
-    CGFloat scrollViewWidth = self.scrollView.bounds.size.width;
-    CGFloat newOffset = (self.firstVisibleImageIndexBeforeRotation * scrollViewWidth) + (self.percentScrolledIntoFirstVisibleImage * scrollViewWidth);
-    self.scrollView.contentOffset = CGPointMake(newOffset, 0);
 }
 
 #pragma mark - UIScrollViewDelegate
