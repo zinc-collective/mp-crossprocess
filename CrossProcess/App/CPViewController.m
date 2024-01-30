@@ -369,9 +369,12 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
 
 - (void) userPickedPhoto: (UIImage*) photo withPhotoLibraryAsset: (NSString*) identifier
  {
-     [self pHideToolbar: NO];
-     [self dismissViewControllerAnimated: YES completion:^{}];
-     [self pValidateToolbarItems];
+     __weak CPViewController* weakSelf = self;
+     dispatch_async(dispatch_get_main_queue(), ^(){
+         [weakSelf pHideToolbar: NO];
+         [weakSelf dismissViewControllerAnimated: YES completion:^{}];
+         [weakSelf pValidateToolbarItems];
+     });
 
      // Begin an image processing operation
      [ImageMetadata fetchMetadataForAssetIdentifier:identifier found:^(NSDictionary * meta) {
@@ -401,26 +404,30 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
 
 - (void) userCapturedPhoto: (UIImage*) photo withMetadata: (NSDictionary*) metadata
 {
-    [self pHideToolbar: NO];
-    [self dismissViewControllerAnimated: YES completion:^{}];
-    [self pValidateToolbarItems];
-
-    // Begin an image processing operation
-
-    self.photoToProcess = photo;
-    self.photoMetadata = metadata;
-    self.photoAssetLibraryURL = nil;
-    self.photoWasCaptured = YES;
-
-    CGPoint scrollOffset = self.scrollView.contentOffset;
-    if(CGPointEqualToPoint(CGPointZero, scrollOffset))
-    {
-        [self pBeginProcessingPhoto: photo.size];
-    }
-    else
-    {
-        [self.scrollView setContentOffset: CGPointZero animated: YES];
-    }
+    
+    __weak CPViewController* weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^(){
+        [weakSelf pHideToolbar: NO];
+        [weakSelf dismissViewControllerAnimated: YES completion:^{}];
+        [weakSelf pValidateToolbarItems];
+        
+        // Begin an image processing operation
+        
+        weakSelf.photoToProcess = photo;
+        weakSelf.photoMetadata = metadata;
+        weakSelf.photoAssetLibraryURL = nil;
+        weakSelf.photoWasCaptured = YES;
+        
+        CGPoint scrollOffset = self.scrollView.contentOffset;
+        if(CGPointEqualToPoint(CGPointZero, scrollOffset))
+        {
+            [weakSelf pBeginProcessingPhoto: photo.size];
+        }
+        else
+        {
+            [weakSelf.scrollView setContentOffset: CGPointZero animated: YES];
+        }
+    });
 }
 
 - (void) userCancelled
@@ -435,7 +442,11 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
     }
 
     [self dismissViewControllerAnimated: YES completion:^{}];
-    [self pValidateToolbarItems];
+    
+    __weak CPViewController* weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^(){
+        [weakSelf pValidateToolbarItems];
+    });
 }
 
 - (void) observeValueForKeyPath: (NSString*) keyPath ofObject: (id) object change: (NSDictionary*) change context: (void*) context
@@ -732,7 +743,6 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
     {
         actionEnabled = NO;
     }
-
     for(UIBarButtonItem* item in self.toolbar.items)
     {
         if(item.tag == CPActionBarButtonItemTag)
@@ -1016,7 +1026,11 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
 {
     NSLog(@"###---> pWriteImageToPhotoLibrary");
     self.writingAsset = YES;
-    [self pValidateToolbarItems];
+    
+    __weak CPViewController* weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^(){
+        [weakSelf pValidateToolbarItems];
+    });
 
     __block CGImageRef  imageRefToWrite = image.CGImageRef;
 
@@ -1048,7 +1062,10 @@ typedef void (^CPLoadAssetImageCompletionBlock)(UIImage* image, NSString* imageU
              }
          }
 
-         [self pValidateToolbarItems];
+        __weak CPViewController* weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            [weakSelf pValidateToolbarItems];
+        });
 
          CGImageRelease(imageRefToWrite);
      }];
