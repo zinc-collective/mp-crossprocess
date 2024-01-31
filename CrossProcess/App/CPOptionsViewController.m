@@ -268,7 +268,8 @@ static NSInteger    CPLabelViewTag = 101;
 
     if(manualURL)
     {
-        [[UIApplication sharedApplication] openURL: manualURL];
+        NSDictionary<NSString *, id> *emptyDictionary = [NSDictionary<NSString *, id> dictionary];
+        [[UIApplication sharedApplication] openURL:manualURL options:emptyDictionary completionHandler:nil];
     }
 }
 
