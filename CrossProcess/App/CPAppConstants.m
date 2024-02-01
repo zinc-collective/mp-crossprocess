@@ -30,6 +30,6 @@ const NSInteger     CPPickPhotoBarButtonItemTag = 200;
 const NSInteger     CPCapturePhotoBarButtonItemTag = 300;
 const NSInteger     CPOptionsBarButtonItemTag = 400;
 
-NSString* const		CPBananaCameraCompanyURL = @"http://bananacameraco.com";
-NSString* const		CPBananaCameraMoreAppsURL = @"http://shakeitphoto.com/moreapps/";
-NSString* const		CPBananaCameraSocialURL = @"http://shakeitphoto.com/social/";
+NSString* const		CPBananaCameraCompanyURL = @"https://www.momentpark.com/";
+NSString* const		CPBananaCameraMoreAppsURL = @"https://www.momentpark.com/products/";
+NSString* const		CPBananaCameraSocialURL = @"https://twitter.com/ZincCooperative";

@@ -6,13 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 @protocol CPOptionsViewControllerDelegate;
 
 @interface CPOptionsViewController : UIViewController< UITableViewDelegate,
                                                        UITableViewDataSource,
                                                        UINavigationBarDelegate,
-                                                       UIWebViewDelegate>
+                                                       UIWebViewDelegate,
+                                                       WKUIDelegate>
 
 @property (assign, nonatomic) id<CPOptionsViewControllerDelegate>   delegate;
 @property (strong, nonatomic) IBOutlet UITableView*                 tableView;
@@ -33,8 +35,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView*                      footerView;
 
-@property (strong, nonatomic) UIWebView*                            moreInfoWebView;
-@property (strong, nonatomic) UIWebView*                            socialWebView;
+@property (strong, nonatomic) WKWebView*                            moreInfoWebView;
+@property (strong, nonatomic) WKWebView*                            socialWebView;
 
 - (IBAction) done: (id) sender;
 - (IBAction) moreInfo : (id) sender;

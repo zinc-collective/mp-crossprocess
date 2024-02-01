@@ -228,9 +228,9 @@ static NSInteger    CPLabelViewTag = 101;
 {
 	if(self.moreInfoWebView == nil)
 	{
-		self.moreInfoWebView = [[UIWebView alloc] initWithFrame: CGRectZero];
-		self.moreInfoWebView.scalesPageToFit = YES;
-		self.moreInfoWebView.delegate = self;
+		self.moreInfoWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[[WKWebViewConfiguration alloc] init]];
+		self.moreInfoWebView.scalesLargeContentImage = YES;
+		self.moreInfoWebView.UIDelegate = self;
 
 		// Webview frame is the full size of the screen - the height of the navigation bar.
 
@@ -277,9 +277,10 @@ static NSInteger    CPLabelViewTag = 101;
 {
 	if(!self.socialWebView)
 	{
-		self.socialWebView = [[UIWebView alloc] initWithFrame: CGRectZero];
-		self.socialWebView.scalesPageToFit = YES;
-		self.socialWebView.delegate = self;
+        // Swtich to SafariViewController and incldue a default url
+        self.socialWebView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:[[WKWebViewConfiguration alloc] init]];
+		self.socialWebView.scalesLargeContentImage = YES;
+		self.socialWebView.UIDelegate = self;
 
 		// Webview frame is the full size of the screen - the height of the navigation bar.
 
