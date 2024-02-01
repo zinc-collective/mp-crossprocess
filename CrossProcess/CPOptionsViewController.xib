@@ -69,21 +69,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="1cX-hc-HfH"/>
+                        </constraints>
                         <connections>
                             <action selector="keepOriginal:" destination="-1" eventType="valueChanged" id="51"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Save Original" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="14">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Save Original" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="14">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="13" firstAttribute="leading" secondItem="14" secondAttribute="trailing" id="0Hh-2Z-vXZ"/>
+                    <constraint firstItem="14" firstAttribute="leading" secondItem="xA2-9B-LnH" secondAttribute="leading" constant="32" id="5hA-8Q-Zag"/>
+                    <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="18" id="LNx-uC-ijc"/>
+                    <constraint firstItem="14" firstAttribute="centerY" secondItem="xA2-9B-LnH" secondAttribute="centerY" id="Qyn-Qm-4C6"/>
+                    <constraint firstItem="13" firstAttribute="centerY" secondItem="xA2-9B-LnH" secondAttribute="centerY" id="YCi-N3-FWp"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="136" y="-213"/>
         </tableViewCell>
@@ -94,21 +102,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="dly-gF-bhB"/>
+                        </constraints>
                         <connections>
                             <action selector="useRedCurve:" destination="-1" eventType="valueChanged" id="52"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Red" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="16">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Red" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="JSO-ms-n39" secondAttribute="leading" constant="32" id="7Dr-wh-isw"/>
+                    <constraint firstItem="17" firstAttribute="leading" secondItem="16" secondAttribute="trailing" id="8uf-rP-z9u"/>
+                    <constraint firstItem="17" firstAttribute="centerY" secondItem="JSO-ms-n39" secondAttribute="centerY" id="Jf3-ew-I3c"/>
+                    <constraint firstItem="17" firstAttribute="leading" secondItem="16" secondAttribute="trailing" id="Lop-jr-Cbo"/>
+                    <constraint firstItem="16" firstAttribute="centerY" secondItem="JSO-ms-n39" secondAttribute="centerY" id="Vk8-G2-hDC"/>
+                    <constraint firstAttribute="trailing" secondItem="17" secondAttribute="trailing" constant="18" id="vKF-Yn-jcd"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="707" y="18"/>
         </tableViewCell>
@@ -119,21 +136,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="kDF-9Z-fYk"/>
+                        </constraints>
                         <connections>
                             <action selector="useGreenCurve:" destination="-1" eventType="valueChanged" id="57"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Green" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="20">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Green" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="20">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="20" firstAttribute="centerY" secondItem="gGe-7v-K8Z" secondAttribute="centerY" id="B7G-qA-Ebi"/>
+                    <constraint firstItem="19" firstAttribute="centerY" secondItem="gGe-7v-K8Z" secondAttribute="centerY" id="EbU-ID-Fyl"/>
+                    <constraint firstItem="19" firstAttribute="leading" secondItem="20" secondAttribute="trailing" id="FlV-37-Ybb"/>
+                    <constraint firstItem="20" firstAttribute="leading" secondItem="gGe-7v-K8Z" secondAttribute="leading" constant="32" id="QO7-V6-fkd"/>
+                    <constraint firstItem="19" firstAttribute="leading" secondItem="20" secondAttribute="trailing" id="kLj-MH-FUV"/>
+                    <constraint firstAttribute="trailing" secondItem="19" secondAttribute="trailing" constant="18" id="njH-f7-Ai8"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="136" y="251"/>
         </tableViewCell>
@@ -144,21 +170,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="cqU-AH-kqx"/>
+                        </constraints>
                         <connections>
                             <action selector="useBlueCurve:" destination="-1" eventType="valueChanged" id="56"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Blue" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="22">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Blue" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="23" firstAttribute="centerY" secondItem="R5N-xq-aEQ" secondAttribute="centerY" id="HGd-SZ-rIw"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="22" secondAttribute="trailing" id="RHY-0Y-awE"/>
+                    <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="18" id="UWr-sH-cxe"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="22" secondAttribute="trailing" id="WKB-mi-Y25"/>
+                    <constraint firstItem="22" firstAttribute="centerY" secondItem="R5N-xq-aEQ" secondAttribute="centerY" id="XZk-eh-dOi"/>
+                    <constraint firstItem="22" firstAttribute="leading" secondItem="R5N-xq-aEQ" secondAttribute="leading" constant="32" id="lA9-ab-eCW"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="22" secondAttribute="trailing" id="t1t-PC-ZOM"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-444" y="18"/>
         </tableViewCell>
@@ -169,21 +205,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="Hu7-f5-mrI"/>
+                        </constraints>
                         <connections>
                             <action selector="useBasicCurve:" destination="-1" eventType="valueChanged" id="55"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Basic" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Basic" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="26">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="25" firstAttribute="leading" secondItem="26" secondAttribute="trailing" id="2S6-Fn-3HH"/>
+                    <constraint firstItem="25" firstAttribute="leading" secondItem="26" secondAttribute="trailing" id="HGF-rP-e3x"/>
+                    <constraint firstItem="26" firstAttribute="leading" secondItem="UWN-fP-aTT" secondAttribute="leading" constant="32" id="Ovo-SF-cG8"/>
+                    <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="18" id="fpt-Sg-t6P"/>
+                    <constraint firstItem="26" firstAttribute="centerY" secondItem="UWN-fP-aTT" secondAttribute="centerY" id="jJv-0M-bYM"/>
+                    <constraint firstItem="25" firstAttribute="centerY" secondItem="UWN-fP-aTT" secondAttribute="centerY" id="ktO-af-0Fk"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-650" y="-59"/>
         </tableViewCell>
@@ -194,21 +239,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="Yuz-7c-Owd"/>
+                        </constraints>
                         <connections>
                             <action selector="useExtremeCurve:" destination="-1" eventType="valueChanged" id="54"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Extreme" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="28">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Extreme" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="28">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="29" firstAttribute="leading" secondItem="28" secondAttribute="trailing" id="348-hj-Zy0"/>
+                    <constraint firstItem="28" firstAttribute="centerY" secondItem="DU7-Bz-Ibs" secondAttribute="centerY" id="7m4-tp-pSy"/>
+                    <constraint firstItem="29" firstAttribute="leading" secondItem="28" secondAttribute="trailing" id="8Wb-M0-N10"/>
+                    <constraint firstItem="29" firstAttribute="centerY" secondItem="DU7-Bz-Ibs" secondAttribute="centerY" id="Tuq-pe-0hd"/>
+                    <constraint firstAttribute="trailing" secondItem="29" secondAttribute="trailing" constant="18" id="XTf-7c-H9l"/>
+                    <constraint firstItem="28" firstAttribute="leading" secondItem="DU7-Bz-Ibs" secondAttribute="leading" constant="32" id="sce-CI-h7E"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-650" y="-136"/>
         </tableViewCell>
@@ -219,14 +273,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="273.66666666666669" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="More Apps" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="32">
-                        <rect key="frame" x="10" y="11" width="250" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="More Apps" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="32">
+                        <rect key="frame" x="31.999999999999986" y="12.333333333333334" width="223.66666666666663" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="32" firstAttribute="centerY" secondItem="Pys-9a-LSa" secondAttribute="centerY" id="9Rm-gW-PGx"/>
+                    <constraint firstItem="32" firstAttribute="leading" secondItem="Pys-9a-LSa" secondAttribute="leading" constant="32" id="bgp-uu-TLu"/>
+                    <constraint firstAttribute="trailing" secondItem="32" secondAttribute="trailing" constant="18" id="nzQ-To-02e"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-1211" y="0.0"/>
         </tableViewCell>
@@ -237,14 +295,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="273.66666666666669" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Community" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="34">
-                        <rect key="frame" x="10" y="11" width="250" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Community" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                        <rect key="frame" x="31.999999999999986" y="12.333333333333334" width="223.66666666666663" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="34" firstAttribute="centerY" secondItem="xDU-fr-F76" secondAttribute="centerY" id="AlT-sS-LfO"/>
+                    <constraint firstItem="34" firstAttribute="leading" secondItem="xDU-fr-F76" secondAttribute="leading" constant="32" id="CFR-MS-GdO"/>
+                    <constraint firstAttribute="trailing" secondItem="34" secondAttribute="trailing" constant="18" id="d7O-Sw-Smw"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-559" y="244"/>
         </tableViewCell>
@@ -255,21 +317,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="wvd-Dy-PiU"/>
+                        </constraints>
                         <connections>
                             <action selector="useBorder:" destination="-1" eventType="valueChanged" id="53"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Border" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="37">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Border" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="37">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="37" firstAttribute="leading" secondItem="cjk-1m-6AC" secondAttribute="leading" constant="32" id="3j1-i3-4nA"/>
+                    <constraint firstAttribute="trailing" secondItem="36" secondAttribute="trailing" constant="18" id="6S5-CT-pMO"/>
+                    <constraint firstItem="36" firstAttribute="leading" secondItem="37" secondAttribute="trailing" id="NJX-JV-H7g"/>
+                    <constraint firstItem="36" firstAttribute="leading" secondItem="37" secondAttribute="trailing" id="XAV-j5-Rz1"/>
+                    <constraint firstItem="37" firstAttribute="centerY" secondItem="cjk-1m-6AC" secondAttribute="centerY" id="cM8-OL-JUt"/>
+                    <constraint firstItem="36" firstAttribute="centerY" secondItem="cjk-1m-6AC" secondAttribute="centerY" id="hOi-s7-pGB"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-1418" y="-77"/>
         </tableViewCell>
@@ -280,21 +351,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
-                        <rect key="frame" x="213" y="8" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <switch opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                        <rect key="frame" x="231" y="6.6666666666666679" width="53" height="31.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="ftT-xq-7zL"/>
+                        </constraints>
                         <connections>
                             <action selector="useFullSizeImage:" destination="-1" eventType="valueChanged" id="67"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" fixedFrame="YES" text="Full Size Images" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="63">
-                        <rect key="frame" x="10" y="11" width="195" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Full Size Images" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="63">
+                        <rect key="frame" x="32" y="12.333333333333334" width="199" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="64" firstAttribute="centerY" secondItem="Kr6-oE-Wb4" secondAttribute="centerY" id="63j-hh-eTa"/>
+                    <constraint firstItem="64" firstAttribute="leading" secondItem="63" secondAttribute="trailing" id="7lj-CC-7Uw"/>
+                    <constraint firstItem="63" firstAttribute="centerY" secondItem="Kr6-oE-Wb4" secondAttribute="centerY" id="AdM-OL-6nR"/>
+                    <constraint firstItem="64" firstAttribute="leading" secondItem="63" secondAttribute="trailing" id="Dvd-h6-Ck8"/>
+                    <constraint firstItem="63" firstAttribute="leading" secondItem="Kr6-oE-Wb4" secondAttribute="leading" constant="32" id="STf-e2-rzK"/>
+                    <constraint firstAttribute="trailing" secondItem="64" secondAttribute="trailing" constant="18" id="gS0-Pr-mxu"/>
+                </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="-1418" y="-154"/>
         </tableViewCell>
@@ -302,9 +382,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76">
-                    <rect key="frame" x="67" y="20" width="186" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76">
+                    <rect key="frame" x="79" y="22.666666666666671" width="162" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Cross Process Manual"/>
                     <connections>
@@ -313,6 +392,10 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="76" firstAttribute="centerY" secondItem="75" secondAttribute="centerY" id="32Y-yf-7V9"/>
+                <constraint firstItem="76" firstAttribute="centerX" secondItem="75" secondAttribute="centerX" id="qB1-tZ-k0D"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="18" y="262"/>

@@ -91,13 +91,13 @@ static NSInteger    CPLabelViewTag = 101;
 	{
         NSString*   processHeaderText = NSLocalizedString(@"processHeaderText", @"Options - Process Header label");
 		headerLabel.text = processHeaderText;
-		headerLabel.frame = CGRectMake(20, 0, 300, 26.0);
+		headerLabel.frame = CGRectMake(17, 4, 300, 26.0);
 	}
 	else if(section == 1)
 	{
         NSString*   extrasHeaderText = NSLocalizedString(@"extrasHeaderText", @"Options - Extra Header label");
 		headerLabel.text = extrasHeaderText;
-		headerLabel.frame = CGRectMake(20, -4, 300, 26.0);
+		headerLabel.frame = CGRectMake(18, 0, 300, 26.0);
 	}
 
   	[customView addSubview:headerLabel];
