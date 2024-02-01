@@ -82,15 +82,9 @@ static NSInteger    CPLabelViewTag = 101;
 
 - (UIView*) tableView: (UITableView*) tableView viewForHeaderInSection: (NSInteger) section
 {
-  	UIView* customView = [[UIView alloc] initWithFrame: CGRectMake(0, 0.0, 300.0, 26.0)];
-	UILabel* headerLabel = [[UILabel alloc] initWithFrame: CGRectZero];
-
-	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.opaque = NO;
-	headerLabel.textColor = [UIColor darkGrayColor];
-	headerLabel.shadowColor = [UIColor whiteColor];
-	headerLabel.shadowOffset = CGSizeMake(0, 1);
-	headerLabel.font = [UIFont boldSystemFontOfSize: 16];
+    UIView* customView = [[UIView alloc] initWithFrame: CGRectMake(0, 0.0, 300.0, 32.0)];
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame: CGRectZero];
+	headerLabel.font = [UIFont boldSystemFontOfSize: 18];
 	headerLabel.textAlignment = NSTextAlignmentLeft;
 
 	if(section == 0)
