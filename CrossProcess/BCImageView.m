@@ -10,7 +10,6 @@
 #import "BCMiscellaneous.h"
 #import "BCUtilities.h"
 #import <QuartzCore/QuartzCore.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 
 const CGRect BCViewFrame = {{0.0, 0.0}, {320, 480}};
 

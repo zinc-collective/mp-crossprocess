@@ -10,7 +10,6 @@
 #import "CPAppConstants.h"
 #import "BCMiscellaneous.h"
 #import <CoreLocation/CoreLocation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "UIImageAdditions.h"
 
 @interface CPAppDelegate()

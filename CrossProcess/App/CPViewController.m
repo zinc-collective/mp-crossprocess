@@ -20,7 +20,6 @@
 #import "BCUtilities.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import <Twitter/Twitter.h>
 #include <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
